@@ -5,67 +5,85 @@
  *
  *
  */
-
+#include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <pthread.h>
 
 pthread_t prod_con;
-//pthread_mutex_t lock;
-pthread_cond_t con_cond, prod_cond;
-int buffer = 32;
+pthread_mutex_t lock;
+//thread_cond_t con_cond, prod_cond;
 
-struct numbers
+int buffer = 0;
+
+struct numbers {
+   int val;
+   int wait;
+};
+
+struct numbers list[32];
+
+void* monitor(void* ptr) {
+   while(1) {
+      printf("buffer: %d\n", buffer);
+      sleep(1);
+   }
+}
 
 void* producer(void* ptr){
+   int i;
 
-    int i;
+   while(1) {
+        pthread_mutex_lock(&lock);      //protect buffer
+        if(buffer < 32) {
 
-    while(true){
-        pthread_mutex_lock(&prod_con);      //protect buffer
-        while(buffer == 32)
-            pthread_cond_wait(&prod_cond, &prod_con);
-        buffer++;
-        pthread_cond_signal(con_cond);
-        pthread_mutex_unlock(&prod_con);
+           buffer++;
+        }
+        pthread_mutex_unlock(&lock);
     }
-    pthread_exit(0);
+    //pthread_exit(0);
 }
 
 void* consumer(void* ptr){
-
-    int i;
-
-    while(true){
-        pthread_mutex_lock(&prod_con);      //protect buffer
-        while(buffer == 0)
-            pthread_cond_wait(&con_cond, & prod_con);
-        buffer--;
-        pthread_cond_signal(&prod_cond);        //wake up producer
-        pthread_mutex_unlock(&prod_con);
+   while(1) {
+        pthread_mutex_lock(&lock);      //protect buffer
+        if(buffer > 0) {
+           buffer--;
+        }
+        pthread_mutex_unlock(&lock);
     }
-    pthread_exit(0);
+    //pthread_exit(0);
 }
 
 int main(int argc, char* argv[]){
-    
     pthread_t prod;
     pthread_t con;
-    num_threads = argv[1];
+    pthread_t mon;
+    int num_threads = atoi(argv[1]);
+    //int i;
+
+    printf("threads: %d\n", num_threads);
 
     /*
      *initialize mutex and condition variables
      *
      */
-    pthread_mutex_init(&the_mutex, NULL);
-    pthread_cond_init(&con_cond, NULL);         //initialize consumer condition
-    pthread_cond_init(&prod_con, NULL);         //initialize producer condition
+    pthread_mutex_init(&lock, NULL);
+   //  pthread_cond_init(&con_cond, NULL);         //initialize consumer condition
+   //  pthread_cond_init(&prod_con, NULL);         //initialize producer condition
 
-    //create threads
-    pthread_create(&con, NULL, consumer, NULL);
-    pthread_create(&prod, NULL, producer, NULL);
+   //create threads
+   for(int i = 0; i < num_threads / 2; i++) {
+      pthread_create(&con, NULL, consumer, NULL);
+      pthread_create(&prod, NULL, producer, NULL);
+   }
+   if(num_threads % 2 == 1) {
+      pthread_create(&con, NULL, consumer, NULL);
+   }
+
+   pthread_create(&mon, NULL, monitor, NULL);
 
     //wait for other thread to finish
-    pthread_join(&con, NULL);
-    pthread_join(&prod, NULL);
-
+    pthread_join(con, NULL);
+    //pthread_join(&prod, NULL);
 }
