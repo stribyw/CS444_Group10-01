@@ -11,17 +11,21 @@
 
 #include "mt19937ar.h"
 
+#define BUFFER_SIZE 32
+
 pthread_t prod_con;
 pthread_mutex_t lock;
 
 int buffer = 0;
+int start = 0;
+int end = 0;
 
 struct numbers {
    int val;
    int wait;
 };
 
-struct numbers list[32];
+struct numbers list[BUFFER_SIZE];
 
 int rand_num(int min, int max) {
    unsigned int eax;
@@ -54,15 +58,21 @@ int rand_num(int min, int max) {
 }
 
 void add_list() {
-   list[buffer].val = rand_num(0, 100);
-   list[buffer].wait = rand_num(2, 10);
-   printf("adding to list - val: %d, wait: %d\n", list[buffer].val, list[buffer].wait);
+   list[end].val = rand_num(0, 100);
+   list[end].wait = rand_num(2, 10);
+
+   printf("adding to list - val: %d, wait: %d\n", list[end].val, list[end].wait);
+
+   end = (end + 1) % BUFFER_SIZE;
    buffer++;
 }
 
 struct numbers remove_list() {
    buffer--;
-   return list[buffer];
+
+   struct numbers n = list[start];
+   start = (start + 1) % BUFFER_SIZE;
+   return n;
 }
 
 void* monitor(void* ptr) {
@@ -75,7 +85,7 @@ void* monitor(void* ptr) {
 void* producer(void* ptr){
    while(1) {
       pthread_mutex_lock(&lock);      //protect buffer
-      if(buffer < 32) {
+      if(buffer < BUFFER_SIZE) {
          add_list();
       }
       pthread_mutex_unlock(&lock);
