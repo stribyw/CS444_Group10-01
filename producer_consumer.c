@@ -14,25 +14,42 @@ pthread_t prod_con;
 pthread_cond_t con_cond, prod_cond;
 int buffer = 32;
 
+struct numbers
+
 void* producer(void* ptr){
 
     int i;
 
     while(true){
         pthread_mutex_lock(&prod_con);      //protect buffer
-        while(buffer != 0)
+        while(buffer == 32)
             pthread_cond_wait(&prod_cond, &prod_con);
         buffer++;
         pthread_cond_signal(con_cond);
         pthread_mutex_unlock(&prod_con);
     }
-
+    pthread_exit(0);
 }
 
+void* consumer(void* ptr){
+
+    int i;
+
+    while(true){
+        pthread_mutex_lock(&prod_con);      //protect buffer
+        while(buffer == 0)
+            pthread_cond_wait(&con_cond, & prod_con);
+        buffer--;
+        pthread_cond_signal(&prod_cond);        //wake up producer
+        pthread_mutex_unlock(&prod_con);
+    }
+    pthread_exit(0);
+}
 
 int main(int argc, char* argv[]){
     
-    pthread_t prod, con;
+    pthread_t prod;
+    pthread_t con;
     num_threads = argv[1];
 
     /*
