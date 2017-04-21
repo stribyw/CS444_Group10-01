@@ -49,43 +49,49 @@ This is the abstract
 \end{abstract}
 \newpage
 \section{Log of Commands}
-cd /scratch/spring2017
-mkdir 10-01
-chmod 777 10-01
-cd 10-01
-git clone git://git.yoctoproject.org/linux-yocto-3.14
-cd linux-yocto-3.14
-git checkout v3.14.26
-source /scratch/opt/environment-setup-i586-poky-linux.csh
-cp /scratch/spring2017/files/config-3.14.26-yocto-qemu .config
-make menuconfig
-pressed /, and typed LOCALVERSION, and pressed enter
-hit 1, pressed enter, edited value to be -10-01-h1
-make -j4 all
-cd ..
-gdb
-In another terminal, source /scratch/opt/environment-setup-i586-poky-linux.csh
-cd 10-01
-cp /scratch/spring2017/files/bzImage-qemux86.bin .
-cp /scratch/spring2017/files/core-image-lsb-sdk-qemux86.ext3 .
-qemu-system-i386 -gdb tcp::5601 -S -nographic -kernel bzImage-qemux86.bin -drive file=core-image-lsb-sdk-qemux86.ext3,if=virtio -enable-kvm -net none -usb -localtime --no-reboot --append "root=/dev/vda rw console=ttyS0 debug"
-In previous terminal, target remote :5601
-continue
-typed root and pressed enter
-uname -a
-reboot
+\$ cd /scratch/spring2017 \\
+\$ mkdir 10-01 \\
+\$ chmod 777 10-01 \\
+\$ cd 10-01 \\
+\$ git clone git://git.yoctoproject.org/linux-yocto-3.14 \\
+\$ cd linux-yocto-3.14 \\
+\$ git checkout v3.14.26 \\
+\$ source /scratch/opt/environment-setup-i586-poky-linux.csh \\
+\$ cp /scratch/spring2017/files/config-3.14.26-yocto-qemu .config \\
+\$ make menuconfig \\
+pressed /, and typed LOCALVERSION, and pressed enter \\
+hit 1, pressed enter, edited value to be -10-01-hw1 \\
+\$ make -j4 all \\
+\$ cd .. \\
+\$ cp ./linux-yocto-3.14/arch/x86/boot/bzImage ./files/ \\
+\$ qemu-system-i386 -gdb tcp::6501 -S -nographic -kernel ./files/bzImage -drive
+file=core-image-lsb-sdk-qemux86.ext3,if=virtio -enable-kvm -net none -usb
+localtime --no-reboot --append "root=/dev/vda rw console=ttyS0 debug" \\
+\\ Open a new shell... \\
+\$ source /scratch/opt/environment-setup-i586-poky-linux.csh \\
+\$ \$GDB \\
+\$ target remote :6501 \\
+\$ continue \\
+\\ Return to other shell... \\
+kernel should have booted \\
+login as root (no password) \\
+\$ uname -a \\
+\$ shutdown -h now
 \section{qemu Flag Explanation}
--gdb tcp::5601 Flag waits for gdb connection on port 5601
--S Flag does not start CPU at startup, you must type 'c' in the monitor
--nographic Flag disables graphical output so QEMU is a command line application
--kernel bzImage-qemux86.bin Flag specifies the image to boot, and can be either a Linux kernel or in multiboot format
--drive file=core-image-lsb-sdk-qemux86.ext3,if=virtio Flag defines a new drive with file core-image-lsb-sdk-qemux86.ext3 over the virtio interface
--enable-kvm Flag enables KVM full virtualization support
--net none Flag indicates that no network devices are configured
--usb Flag enables the USB driver
--localtime Flag is required to use the systems date and time
---no-reboot Flag exits instead of rebooting
---append "root=/dev/vda rw console=ttyS0 debug" Flag uses the command line as a kernel command line
+-gdb tcp::6501 Flag waits for gdb connection on port 6501 \\
+-S Flag does not start CPU at startup, you must type 'c' in the monitor \\
+-nographic Flag disables graphical output so QEMU is a command line application \\
+-kernel bzImage-qemux86.bin Flag specifies the image to boot, and can be either
+a Linux kernel or in multiboot format \\
+-drive file=core-image-lsb-sdk-qemux86.ext3,if=virtio Flag defines a new drive
+with file core-image-lsb-sdk-qemux86.ext3 over the virtio interface \\
+-enable-kvm Flag enables KVM full virtualization support \\
+-net none Flag indicates that no network devices are configured \\
+-usb Flag enables the USB driver \\
+-localtime Flag is required to use the systems date and time \\
+--no-reboot Flag exits instead of rebooting \\
+--append "root=/dev/vda rw console=ttyS0 debug" Flag uses the command line as a
+kernel command line \\
 \section{Concurrency Write Up}
 \subsection{Main Point of the Assignment}
 The main point of the assignment was to introduce the idea of
