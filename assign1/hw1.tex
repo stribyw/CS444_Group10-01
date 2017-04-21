@@ -1,0 +1,125 @@
+\documentclass[letterpaper,10pt,serif,draftclsnofoot,onecolumn,compsoc,titlepage]{article}%this needs to change to IEEEtran but there is a bug
+
+\usepackage{graphicx}                                        
+\usepackage{amssymb}                                         
+\usepackage{amsmath}                                         
+\usepackage{amsthm}                                          
+
+\usepackage{alltt}                                           
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{balance}
+\usepackage[TABBOTCAP, tight]{subfigure}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+
+\usepackage{geometry}
+\geometry{margin=.75in}
+\usepackage{hyperref}
+\usepackage{tikz}
+%\usetikzlibrary{shapes, positioning, calc}
+\colorlet{lightgray}{gray!20}
+\usepackage{caption}
+\usepackage{listings}
+%\usepackage[utf8]{inputenc}
+%pull in the necessary preamble matter for pygments output
+\input{pygments.tex}
+
+%% The following metadata will show up in the PDF properties
+% \hypersetup{
+%   colorlinks = false,
+%   urlcolor = black,
+%   pdfauthor = {\name},
+%   pdfkeywords = {cs311 ``operating systems'' files filesystem I/O},
+%   pdftitle = {CS 311 Project 1: UNIX File I/O},
+%   pdfsubject = {CS 311 Project 1},
+%   pdfpagemode = UseNone
+% }
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+\title{Homework 1 Write Up}
+\author{Shannon Ernst, Keith Stirby, Tanner Cecchetti \\ 21 April 2017 \\ CS 444 Spring 2017 \\ Group 10-01}
+\begin{document}
+\maketitle
+\begin{abstract}
+This is the abstract
+\end{abstract}
+\newpage
+\section{Log of Commands}
+\section{qemu Flag Explanation}
+\section{Concurrency Write Up}
+\subsection{Main Point of the Assignment}
+The main point of the assignment was to introduce the idea of 
+concurrency and refresh on threads. The basics of the assignment was
+to spawn a provided number of threads which would arbitrarily be assigned
+ producer or consumer status. These threads would then operate on the same
+ buffer space adding and removing jobs. This simple simulation allowed 
+ the student to become comfortable with pthreads. 
+\subsection{Design Decisions}
+There were very few concrete requirements for this assignment. The few we 
+did have were:
+\begin{itemize}
+\item Producers create an object containing a random number and a random 
+wait time ranging from 2-9 seconds.
+\item Producers add their object to a buffer so long as there are fewer 
+than 32 items in the buffer after a random wait time of 3-7 seconds.
+\item Consumers remove jobs from the buffer so long as there are more than 
+zero in the buffer
+\item Consumers read the wait time on a given item and wait for that amount 
+of time before printing the item's random value.
+\item Randomization technique is determined by the system and will either 
+use rdrand or the Mersenne Twister.
+\end{itemize}
+Beyond these requirements, we were left to design the rest. We decided to 
+begin with the synchronization technique. This assignment needs to have 
+all of the threads running at the same time on the same buffer. We decided 
+to use mutexes to control the locking and unlocking of the buffer. A 
+producer will take a lock on the buffer to check if it is full. If it is 
+the lock is released immediately. If the buffer is not full, the producer 
+maintains the lock and will create an object. When an object is created 
+the program checks if it can use rdrand and then makes a selection on 
+which randomization technique to use. The item is then added to the current 
+counter position in the buffer and then the counter is incremented. The 
+buffer is an array which acts as a stack: the first item will be the last 
+item removed. We made this decision for simplicity's sake and recognize 
+that a better scheduler would be a first in first out structure which 
+would have just required a rotation of adding to the array, keeping two 
+index counters or pointers to keep track of where to consume from and 
+where to produce to. Similar to producers, consumers take a lock on the 
+buffer and check if it is empty. If it is empty, the consumer releases the 
+lock. If there is an item in the buffer the consumer removes it, 
+decrementing the counter, and reads the wait time. The consumer calls the 
+sleep command for that amount of time. When the consumer wakes up it prints 
+the value. The program continues until a kill command is received from the 
+keyboard. The number of threads is received from the command line. 
+\subsection{Testing}
+We did incremental testing as we developed. The trickiest thing to test was 
+the randomization techniques. We began by testing the rdrand locally on a 
+new MAC laptop which successfully invoked the randomization. Having 
+confirmed that our program would run the rdrand function, we moved onto 
+the os-class server and implemented the Mersenne Twister. We tested with a 
+variety of threads on the os-class maxing out at 4, printing out traces of 
+the functions being invoked. 
+\subsection{Take Aways}
+Coming into this assignment, there were some reservations about implementing
+ pthreads. This assignment has shown us that pthreads is not as difficult as
+ we feared. We also learned how to correctly lock and unclock implicitly 
+ shared data. 
+\section{Version Control Log}
+\section{Work Log}
+Tuesday, 11 April, 2017, 10:00 am: we met our group for the first time in
+ recitation, we attempted to set up the vm and kernal boot in recitation
+  unsuccessfully \\
+Wednesday, 12 April 2017, 6:00 pm: we met to successfully boot the vm and 
+the kernal. We were able to get the vm to work but could not get the kernal 
+to boot. We were going to ask questions later about it.\\
+Wednesday, 19 April, 2017, 6:00 pm: we met and coded the concurrency 
+assignment.\\ 
+Thursday, 20 April, 2017, 9:00 pm: Shannon created the latex file, the 
+make file and wrote the concurrency write up section. 
+
+
+\end{document}
