@@ -28,7 +28,7 @@ test_file.close()
 test_file = open("test_5.txt", "r")
 test_file.read()
 test_file.close()
-test_file = open("test_25.txt", "r")
+test_file = open("test_1.txt", "r")
 test_file.read()
 test_file.close()
 
