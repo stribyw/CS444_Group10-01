@@ -37,7 +37,7 @@
 \parindent = 0.0 in
 \parskip = 0.1 in
 \title{Writing Assignment 1}
-\author{Shannon Ernst\\ 5 May 2017 \\ CS 444 Spring 2017 \\ Group 10-01}
+\author{Shannon Ernst, Keith Stirby, Tanner Cecchetti\\ 5 May 2017 \\ CS 444 Spring 2017 \\ Group 10-01}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -45,7 +45,73 @@
 \newpage
 \tableofcontents
 \newpage
+\section{Purpose and Learning}
+The purpose of this assignment was to explore patching the kernel with a 
+new I/O scheduler, in particular the LOOK scheduler. The LOOK scheduler is 
+an elevator algorithm which is based on traveling in one direction on the 
+disk, looking to see if there is anything left in that direction, if there 
+is not, it turns around and continues going in the opposite direction 
+until nothing is left and so on. C-Look is similar only it goes to the 
+top and then restarts at the bottom instead of traveling down, servicing 
+requests along the way. From this assignment we learned a number of things. 
+We learned primarily about search the kernel code base for things that 
+were relevant to our patch. This was important as often the hardest step 
+is not figuring out the solution to the problem (we all had a fairly good 
+idea of what the elevator should do) but how to do it within the code 
+constraints presented. We were instructed to use the noop io scheduler file 
+as our guide so the first thing we had to do was figure out what was going 
+on in the file and what to change. This was the longest part of the 
+assignment. The next thing we learned was how to test that the system is 
+working. Not surprisingly, it is fairly difficult to test things which 
+are going on in the background or happening rapidly. Last we learned about 
+the elevator algorithm and queues in the kernal. Though this was the main 
+thrust of the assignment, it is ranked last as we definitely spent more 
+time and learned more on the supporting structures. 
+
+\section{Design Choices}
+In designing our solution we had a couple decisions to make. The first was 
+whether to implement LOOK or C-LOOK. The difference between the two 
+approaches is LOOK requires that the list is sorted relative to the current 
+position of the head on insert where C-LOOK is simply sorting in ascending 
+order. From an efficiency standpoint, LOOK is the better option. What 
+would need to occur in LOOK is we would have to pick a turning point for 
+going from ascending to descending and vice versa. This could be 
+accomplished by how we sort and insert. If a value came in that was less
+than our head it would be placed after our max value but sorted relative to
+all of the values after our max. If a value came in that was greater than 
+our head but less than our max, then it would be sorted between the head 
+and the max. If a value came in that less than our smallest number it would 
+appended after our smallest number and point to the next highest if 
+we were in the ascending portion of the queue. This constant switching 
+and monitoring of direction can be tricky to do and will require two kinds 
+of sorts. \\
+For C-LOOK, it is slightly less efficient because it will go in one 
+direction until it runs out of jobs and then restarts from the smallest 
+number. This means the disk head will make a full pass of the disk without 
+doing anything. The algorithm for implementing this a tad simpler with only 
+one sort, a classic insertion sort, with the max number pointing next to 
+the smallest number. The only special cases for the sort would be if 
+inserting a number greater than the max or smaller than the smallest which 
+would just be getting the smallest previous to point to the max and the 
+max next to point to the smallest. In either case of LOOK or C-LOOK the 
+dispatch stays the same, only having to follow the next pointers of the 
+queue as everything is in the correct order. \\
+We decided to go with the C-LOOK as it was an easier algorithm for us to 
+understand from a coding perspective, despite it being slightly less 
+efficient. The next design choice we had to make was how we were going 
+to keep track of our queue. We used the kernel data structure for this and 
+some kernel code to get access to the sector. Ultimately, we did not have 
+to change much in the noop io scheduler aside from add request which simply 
+required us to specify our method of inserting as we described above. 
+\section{Testing}
+The first indication that everything was working was the kernel boot. For 
+the first few times the kernel would not compile or boot. The next thing 
+we did was print the sector number being added and dispatched. This would 
+just print to the screen and interrupt everything in the foreground. 
+This gave us a good indication that things were happening in order but 
+was generally hard to read. We finally settled on creating a python 
+script which generated 25 of files and one million characters in 
+each. 
+\section{Version Control and Work Log}
 \newpage
-%\bibliographystyle{ieeetr}
-%\bibliography{writing1}
 \end{document}

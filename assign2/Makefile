@@ -1,4 +1,4 @@
-TARGET=writing1
+TARGET=write_up
 default: all
 TEX=/usr/local/apps/tex_live/current/bin/x86_64-linux/latex
 all: pdf 
@@ -15,7 +15,7 @@ ps: dvi
 dvi: $(TARGET).tex
 	$(TEX) $(TARGET).tex
 	# Uncomment below for included bibliography
-	bibtex $(TARGET)
+	#bibtex $(TARGET)
 	$(TEX) $(TARGET).tex
 	$(TEX) $(TARGET).tex
 
