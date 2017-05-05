@@ -1,0 +1,2867 @@
+Initializing cgroup subsys cpuset
+Initializing cgroup subsys cpu
+Initializing cgroup subsys cpuacct
+Linux version 3.14.24-10-01-hw2+ (cecchett@os-class.engr.oregonstate.edu) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-18) (GCC) ) #11 SMP PREEMPT Thu May 4 19:09:06 PDT 2017
+e820: BIOS-provided physical RAM map:
+BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+BIOS-e820: [mem 0x0000000000100000-0x0000000017fdffff] usable
+BIOS-e820: [mem 0x0000000017fe0000-0x0000000017ffffff] reserved
+BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+Notice: NX (Execute Disable) protection missing in CPU!
+SMBIOS 2.8 present.
+Hypervisor detected: KVM
+e820: last_pfn = 0x17fe0 max_arch_pfn = 0x100000
+found SMP MP-table at [mem 0x000f0eb0-0x000f0ebf] mapped at [c00f0eb0]
+Scanning 1 areas for low memory corruption
+init_memory_mapping: [mem 0x00000000-0x000fffff]
+init_memory_mapping: [mem 0x17800000-0x17bfffff]
+init_memory_mapping: [mem 0x10000000-0x177fffff]
+init_memory_mapping: [mem 0x00100000-0x0fffffff]
+init_memory_mapping: [mem 0x17c00000-0x17fdffff]
+ACPI: RSDP 000f0cb0 000014 (v00 BOCHS )
+ACPI: RSDT 17fe1854 000034 (v01 BOCHS  BXPCRSDT 00000001 BXPC 00000001)
+ACPI: FACP 17fe0b37 000074 (v01 BOCHS  BXPCFACP 00000001 BXPC 00000001)
+ACPI: DSDT 17fe0040 000AF7 (v01 BOCHS  BXPCDSDT 00000001 BXPC 00000001)
+ACPI: FACS 17fe0000 000040
+ACPI: SSDT 17fe0bab 000BF9 (v01 BOCHS  BXPCSSDT 00000001 BXPC 00000001)
+ACPI: APIC 17fe17a4 000078 (v01 BOCHS  BXPCAPIC 00000001 BXPC 00000001)
+ACPI: HPET 17fe181c 000038 (v01 BOCHS  BXPCHPET 00000001 BXPC 00000001)
+0MB HIGHMEM available.
+383MB LOWMEM available.
+  mapped low ram: 0 - 17fe0000
+  low ram: 0 - 17fe0000
+kvm-clock: Using msrs 4b564d01 and 4b564d00
+kvm-clock: cpu 0, msr 0:17fdf001, boot clock
+Zone ranges:
+  DMA      [mem 0x00001000-0x00ffffff]
+  Normal   [mem 0x01000000-0x17fdffff]
+  HighMem  empty
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x00001000-0x0009efff]
+  node   0: [mem 0x00100000-0x17fdffff]
+Using APIC driver default
+ACPI: PM-Timer IO Port: 0x608
+ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)
+ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+ACPI: IOAPIC (id[0x00] address[0xfec00000] gsi_base[0])
+IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+Using ACPI (MADT) for SMP configuration information
+ACPI: HPET id: 0x8086a201 base: 0xfed00000
+smpboot: Allowing 1 CPUs, 0 hotplug CPUs
+e820: [mem 0x18000000-0xfeffbfff] available for PCI devices
+Booting paravirtualized kernel on KVM
+setup_percpu: NR_CPUS:8 nr_cpumask_bits:8 nr_cpu_ids:1 nr_node_ids:1
+PERCPU: Embedded 13 pages/cpu @d7cce000 s32256 r0 d20992 u53248
+kvm-clock: cpu 0, msr 0:17fdf001, primary cpu clock
+kvm-stealtime: cpu 0, msr 17cd0900
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 97406
+Kernel command line: root=/dev/hda rw console=ttyS0 debug.
+PID hash table entries: 2048 (order: 1, 8192 bytes)
+Dentry cache hash table entries: 65536 (order: 6, 262144 bytes)
+Inode-cache hash table entries: 32768 (order: 5, 131072 bytes)
+Initializing CPU#0
+allocated 786168 bytes of page_cgroup
+please try 'cgroup_disable=memory' option if you don't want memory cgroups
+Initializing HighMem for node 0 (00000000:00000000)
+Memory: 375644K/392696K available (7726K kernel code, 501K rwdata, 2756K rodata, 712K init, 880K bss, 17052K reserved, 0K highmem)
+virtual kernel memory layout:
+    fixmap  : 0xfff15000 - 0xfffff000   ( 936 kB)
+    pkmap   : 0xff800000 - 0xffc00000   (4096 kB)
+    vmalloc : 0xd87e0000 - 0xff7fe000   ( 624 MB)
+    lowmem  : 0xc0000000 - 0xd7fe0000   ( 383 MB)
+      .init : 0xc1abd000 - 0xc1b6f000   ( 712 kB)
+      .data : 0xc178beba - 0xc1abc540   (3265 kB)
+      .text : 0xc1000000 - 0xc178beba   (7727 kB)
+Checking if this processor honours the WP bit even in supervisor mode...Ok.
+SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+Preemptible hierarchical RCU implementation.
+	RCU restricting CPUs from NR_CPUS=8 to nr_cpu_ids=1.
+RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+NR_IRQS:2304 nr_irqs:256 16
+Console: colour VGA+ 80x25
+console [ttyS0] enabled
+tsc: Detected 2399.998 MHz processor
+Calibrating delay loop (skipped) preset value.. 4799.99 BogoMIPS (lpj=2399998)
+pid_max: default: 32768 minimum: 301
+ACPI: Core revision 20131218
+ACPI: All ACPI Tables successfully acquired
+Security Framework initialized
+Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+Initializing cgroup subsys debug
+Initializing cgroup subsys memory
+Initializing cgroup subsys devices
+Initializing cgroup subsys freezer
+Initializing cgroup subsys net_cls
+Initializing cgroup subsys blkio
+Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+tlb_flushall_shift: 6
+Freeing SMP alternatives memory: 32K (c1b6f000 - c1b77000)
+ftrace: allocating 28933 entries in 57 pages
+Enabling APIC mode:  Flat.  Using 1 I/O APICs
+..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+smpboot: CPU0: Intel QEMU Virtual CPU version 2.1.0 (fam: 06, model: 06, stepping: 03)
+Performance Events: Broken PMU hardware detected, using software events only.
+Failed to access perfctr msr (MSR c1 is 0)
+x86: Booted up 1 node, 1 CPUs
+smpboot: Total of 1 processors activated (4799.99 BogoMIPS)
+devtmpfs: initialized
+xor: measuring software checksum speed
+   pIII_sse  : 12356.000 MB/sec
+   prefetch64-sse: 13316.000 MB/sec
+xor: using function: prefetch64-sse (13316.000 MB/sec)
+NET: Registered protocol family 16
+cpuidle: using governor ladder
+cpuidle: using governor menu
+ACPI: bus type PCI registered
+PCI: PCI BIOS revision 2.10 entry at 0xfd456, last bus=0
+PCI: Using configuration type 1 for base access
+bio: create slab <bio-0> at 0
+raid6: mmxx1     4761 MB/s
+raid6: mmxx2     5179 MB/s
+raid6: sse1x1    3972 MB/s
+raid6: sse1x2    4808 MB/s
+raid6: sse2x1    7308 MB/s
+raid6: sse2x2    9433 MB/s
+raid6: using algorithm sse2x2 (9433 MB/s)
+raid6: using intx1 recovery algorithm
+ACPI: Added _OSI(Module Device)
+ACPI: Added _OSI(Processor Device)
+ACPI: Added _OSI(3.0 _SCP Extensions)
+ACPI: Added _OSI(Processor Aggregator Device)
+ACPI: Interpreter enabled
+ACPI Exception: AE_NOT_FOUND, While evaluating Sleep State [\_S1_] (20131218/hwxface-580)
+ACPI Exception: AE_NOT_FOUND, While evaluating Sleep State [\_S2_] (20131218/hwxface-580)
+ACPI: (supports S0 S3 S5)
+ACPI: Using IOAPIC for interrupt routing
+PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+acpi PNP0A03:00: _OSC: OS supports [ASPM ClockPM Segments MSI]
+acpi PNP0A03:00: _OSC failed (AE_NOT_FOUND); disabling ASPM
+acpi PNP0A03:00: fail to add MMCONFIG information, can't access extended PCI configuration space under this bridge.
+PCI host bridge to bus 0000:00
+pci_bus 0000:00: root bus resource [bus 00-ff]
+pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7]
+pci_bus 0000:00: root bus resource [io  0x0d00-0xadff]
+pci_bus 0000:00: root bus resource [io  0xae0f-0xaeff]
+pci_bus 0000:00: root bus resource [io  0xaf20-0xafdf]
+pci_bus 0000:00: root bus resource [io  0xafe4-0xffff]
+pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff]
+pci_bus 0000:00: root bus resource [mem 0x18000000-0xfebfffff]
+pci 0000:00:01.3: quirk: [io  0x0600-0x063f] claimed by PIIX4 ACPI
+pci 0000:00:01.3: quirk: [io  0x0700-0x070f] claimed by PIIX4 SMB
+ACPI: PCI Interrupt Link [LNKA] (IRQs 5 *10 11)
+ACPI: PCI Interrupt Link [LNKB] (IRQs 5 *10 11)
+ACPI: PCI Interrupt Link [LNKC] (IRQs 5 10 *11)
+ACPI: PCI Interrupt Link [LNKD] (IRQs 5 10 *11)
+ACPI: PCI Interrupt Link [LNKS] (IRQs *9)
+ACPI: Enabled 16 GPEs in block 00 to 0F
+vgaarb: device added: PCI:0000:00:02.0,decodes=io+mem,owns=io+mem,locks=none
+vgaarb: loaded
+vgaarb: bridge control possible 0000:00:02.0
+SCSI subsystem initialized
+ACPI: bus type USB registered
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+pps_core: LinuxPPS API ver. 1 registered
+pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+PTP clock support registered
+Advanced Linux Sound Architecture Driver Initialized.
+PCI: Using ACPI for IRQ routing
+HPET: 3 timers in total, 0 timers will be used for per-cpu timer
+hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+Switched to clocksource kvm-clock
+pnp: PnP ACPI init
+ACPI: bus type PNP registered
+pnp: PnP ACPI: found 7 devices
+ACPI: bus type PNP unregistered
+NET: Registered protocol family 2
+TCP established hash table entries: 4096 (order: 2, 16384 bytes)
+TCP bind hash table entries: 4096 (order: 3, 32768 bytes)
+TCP: Hash tables configured (established 4096 bind 4096)
+TCP: reno registered
+UDP hash table entries: 256 (order: 1, 8192 bytes)
+UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+pci 0000:00:01.0: PIIX3: Enabling Passive Release
+pci 0000:00:01.0: Activating ISA DMA hang workarounds
+ACPI: PCI Interrupt Link [LNKD] enabled at IRQ 11
+microcode: CPU0 sig=0x663, pf=0x1, revision=0x1
+microcode: Microcode Update Driver: v2.00 <tigran@aivazian.fsnet.co.uk>, Peter Oruba
+Scanning for low memory corruption every 60 seconds
+futex hash table entries: 256 (order: 2, 16384 bytes)
+NFS: Registering the id_resolver key type
+Key type id_resolver registered
+Key type id_legacy registered
+msgmni has been set to 733
+Block layer SCSI generic (bsg) driver version 0.4 loaded (major 250)
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered
+io scheduler sstf registered (default)
+pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+ACPI: Power Button [PWRF]
+Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+00:05: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+Linux agpgart interface v0.103
+[drm] Initialized drm 1.1.0 20060810
+brd: module loaded
+loop: module loaded
+Uniform Multi-Platform E-IDE driver
+piix 0000:00:01.1: IDE controller (0x8086:0x7010 rev 0x00)
+piix 0000:00:01.1: not 100% native mode: will probe irqs later
+    ide0: BM-DMA at 0xc020-0xc027
+    ide1: BM-DMA at 0xc028-0xc02f
+hda: QEMU HARDDISK, ATA DISK drive
+tsc: Refined TSC clocksource calibration: 2399.955 MHz
+hda: MWDMA2 mode selected
+hdc: QEMU DVD-ROM, ATAPI CD/DVD-ROM drive
+hdc: MWDMA2 mode selected
+ide0 at 0x1f0-0x1f7,0x3f6 on irq 14
+ide1 at 0x170-0x177,0x376 on irq 15
+ide-gd driver 1.18
+hda: max request size: 512KiB
+hda: 5536786 sectors (2834 MB) w/256KiB Cache, CHS=5492/255/63
+hda: cache flushes supported
+ hda: unknown partition table
+ide-cd driver 5.00
+ide-cd: hdc: ATAPI 4X DVD-ROM drive, 512kB Cache
+cdrom: Uniform CD-ROM driver Revision: 3.20
+pcnet32: pcnet32.c:v1.35 21.Apr.2008 tsbogend@alpha.franken.de
+e100: Intel(R) PRO/100 Network Driver, 3.5.24-k2-NAPI
+e100: Copyright(c) 1999-2006 Intel Corporation
+e1000: Intel(R) PRO/1000 Network Driver - version 7.3.21-k8-NAPI
+e1000: Copyright (c) 1999-2006 Intel Corporation.
+e1000e: Intel(R) PRO/1000 Network Driver - 2.3.2-k
+e1000e: Copyright(c) 1999 - 2013 Intel Corporation.
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+ehci-pci: EHCI PCI platform driver
+ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+ohci-pci: OHCI PCI platform driver
+uhci_hcd: USB Universal Host Controller Interface driver
+uhci_hcd 0000:00:01.2: UHCI Host Controller
+uhci_hcd 0000:00:01.2: new USB bus registered, assigned bus number 1
+uhci_hcd 0000:00:01.2: irq 11, io base 0x0000c000
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 2 ports detected
+usbcore: registered new interface driver usb-storage
+usbcore: registered new interface driver usbserial
+usbcore: registered new interface driver usbserial_generic
+usbserial: USB Serial support registered for generic
+usbcore: registered new interface driver ftdi_sio
+usbserial: USB Serial support registered for FTDI USB Serial Device
+usbcore: registered new interface driver pl2303
+usbserial: USB Serial support registered for pl2303
+i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+serio: i8042 KBD port at 0x60,0x64 irq 1
+serio: i8042 AUX port at 0x60,0x64 irq 12
+mousedev: PS/2 mouse device common for all mice
+input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+usbcore: registered new interface driver wacom
+rtc_cmos 00:00: RTC can wake from S4
+rtc_cmos 00:00: rtc core: registered rtc_cmos as rtc0
+rtc_cmos 00:00: alarms up to one day, 114 bytes nvram, hpet irqs
+md: linear personality registered for level -1
+md: raid0 personality registered for level 0
+md: raid1 personality registered for level 1
+md: raid10 personality registered for level 10
+md: multipath personality registered for level -4
+md: faulty personality registered for level -5
+device-mapper: ioctl: 4.27.0-ioctl (2013-10-30) initialised: dm-devel@redhat.com
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+oprofile: using NMI interrupt.
+u32 classifier
+    Actions configured
+TCP: cubic registered
+NET: Registered protocol family 10
+sit: IPv6 over IPv4 tunneling driver
+NET: Registered protocol family 17
+Key type dns_resolver registered
+Using IPI No-Shortcut mode
+bio: create slab <bio-1> at 1
+Btrfs loaded
+console [netcon0] enabled
+netconsole: network logging started
+rtc_cmos 00:00: setting system clock to 2017-05-05 02:28:27 UTC (1493951307)
+ALSA device list:
+  No soundcards found.
+input: ImExPS/2 Generic Explorer Mouse as /devices/platform/i8042/serio1/input/input3
+md: Waiting for all devices to be available before autodetect
+md: If you don't use raid, use raid=noautodetect
+md: Autodetecting RAID arrays.
+md: Scanned 0 and added 0 devices.
+md: autorun ...
+md: ... autorun DONE.
+kjournald starting.  Commit interval 5 seconds
+EXT3-fs (hda): using internal journal
+EXT3-fs (hda): mounted filesystem with ordered data mode
+VFS: Mounted root (ext3 filesystem) on device 3:0.
+devtmpfs: mounted
+Freeing unused kernel memory: 712K (c1abd000 - c1b6f000)
+Write protecting the kernel text: 7728k
+Write protecting the kernel read-only data: 2764k
+INIT: version 2.88 booting
+Error opening /dev/fb0: No such file or directory
+Starting udev
+udevd[75]: starting version 182
+random: nonblocking pool is initialized
+ALSA: Restoring mixer settings...
+/usr/sbin/alsactl: load_state:1729: No soundcards found...
+INIT: Entering runlevel: 5
+Configuring network interfaces... done.
+Starting system message bus: dbus.
+Starting Connection Manager
+Starting OpenBSD Secure Shell server: sshd
+done.
+Starting rpcbind daemon...done.
+starting statd: done
+Starting atd: OK
+Starting domain name service: named.
+Starting Distributed Compiler Daemon: distcc.
+NFS daemon support not enabled in kernel
+Starting system log daemon...0
+Starting kernel log daemon...0
+Starting internet superserver: xinetd.
+ * Starting Avahi mDNS/DNS-SD Daemon: avahi-daemon
+Starting Telephony daemon
+Starting Lighttpd Web Server: lighttpd.
+cups: started scheduler.
+Starting crond: OK
+Starting OProfileUI server
+Starting tcf-agent: OK
+
+Poky (Yocto Project Reference Distro) 1.7.1 qemux86 /dev/ttyS0
+
+qemux86 login: root
+root@qemux86:~# dmesg
+[    0.273070] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    0.273499] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    0.273927] pci 0000:00:01.0: Activating ISA DMA hang workarounds
+[    0.301577] ACPI: PCI Interrupt Link [LNKD] enabled at IRQ 11
+[    0.329378] pci 0000:00:02.0: Boot video device
+[    0.329387] PCI: CLS 0 bytes, default 32
+[    0.329588] microcode: CPU0 sig=0x663, pf=0x1, revision=0x1
+[    0.330046] microcode: Microcode Update Driver: v2.00 <tigran@aivazian.fsnet.co.uk>, Peter Oruba
+[    0.330779] Scanning for low memory corruption every 60 seconds
+[    0.331414] futex hash table entries: 256 (order: 2, 16384 bytes)
+[    0.348940] NFS: Registering the id_resolver key type
+[    0.349319] Key type id_resolver registered
+[    0.349592] Key type id_legacy registered
+[    0.349932] msgmni has been set to 733
+[    0.350386] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 250)
+[    0.350945] io scheduler noop registered
+[    0.351213] io scheduler deadline registered
+[    0.351547] io scheduler cfq registered
+[    0.351790] io scheduler sstf registered (default)
+[    0.352168] pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+[    0.352646] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    0.353221] ACPI: Power Button [PWRF]
+[    0.359240] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.386495] 00:05: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    0.508798] Linux agpgart interface v0.103
+[    0.509162] [drm] Initialized drm 1.1.0 20060810
+[    0.510469] brd: module loaded
+[    0.511158] loop: module loaded
+[    0.511358] Uniform Multi-Platform E-IDE driver
+[    0.511681] piix 0000:00:01.1: IDE controller (0x8086:0x7010 rev 0x00)
+[    0.512204] piix 0000:00:01.1: not 100% native mode: will probe irqs later
+[    0.513132]     ide0: BM-DMA at 0xc020-0xc027
+[    0.513433]     ide1: BM-DMA at 0xc028-0xc02f
+[    0.513710] Probing IDE interface ide0...
+[    0.777131] hda: QEMU HARDDISK, ATA DISK drive
+[    1.332127] tsc: Refined TSC clocksource calibration: 2399.955 MHz
+[    1.389137] hda: host max PIO4 wanted PIO255(auto-tune) selected PIO4
+[    1.389212] hda: MWDMA2 mode selected
+[    1.389533] Probing IDE interface ide1...
+[    2.061204] hdc: QEMU DVD-ROM, ATAPI CD/DVD-ROM drive
+[    2.674156] hdc: host max PIO4 wanted PIO255(auto-tune) selected PIO0
+[    2.674194] hdc: MWDMA2 mode selected
+[    2.674554] ide0 at 0x1f0-0x1f7,0x3f6 on irq 14
+[    2.674927] ide1 at 0x170-0x177,0x376 on irq 15
+[    2.675316] ide-gd driver 1.18
+[    2.675511] hda: max request size: 512KiB
+[    2.675784] hda: 5536786 sectors (2834 MB) w/256KiB Cache, CHS=5492/255/63
+[    2.682109] hda: cache flushes supported
+[    2.691296]  hda: unknown partition table
+[    2.691769] ide-cd driver 5.00
+[    2.692083] ide-cd: hdc: ATAPI 4X DVD-ROM drive, 512kB Cache
+[    2.692519] cdrom: Uniform CD-ROM driver Revision: 3.20
+[    2.693596] pcnet32: pcnet32.c:v1.35 21.Apr.2008 tsbogend@alpha.franken.de
+[    2.694121] e100: Intel(R) PRO/100 Network Driver, 3.5.24-k2-NAPI
+[    2.694553] e100: Copyright(c) 1999-2006 Intel Corporation
+[    2.694927] e1000: Intel(R) PRO/1000 Network Driver - version 7.3.21-k8-NAPI
+[    2.695447] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    2.695857] e1000e: Intel(R) PRO/1000 Network Driver - 2.3.2-k
+[    2.696269] e1000e: Copyright(c) 1999 - 2013 Intel Corporation.
+[    2.696690] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    2.697153] ehci-pci: EHCI PCI platform driver
+[    2.697442] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    2.697876] ohci-pci: OHCI PCI platform driver
+[    2.698169] uhci_hcd: USB Universal Host Controller Interface driver
+[    2.724778] uhci_hcd 0000:00:01.2: UHCI Host Controller
+[    2.725132] uhci_hcd 0000:00:01.2: new USB bus registered, assigned bus number 1
+[    2.725739] uhci_hcd 0000:00:01.2: irq 11, io base 0x0000c000
+[    2.726294] hub 1-0:1.0: USB hub found
+[    2.726519] hub 1-0:1.0: 2 ports detected
+[    2.726843] usbcore: registered new interface driver usb-storage
+[    2.727355] usbcore: registered new interface driver usbserial
+[    2.727752] usbcore: registered new interface driver usbserial_generic
+[    2.728277] usbserial: USB Serial support registered for generic
+[    2.728686] usbcore: registered new interface driver ftdi_sio
+[    2.729082] usbserial: USB Serial support registered for FTDI USB Serial Device
+[    2.729656] usbcore: registered new interface driver pl2303
+[    2.730034] usbserial: USB Serial support registered for pl2303
+[    2.730502] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    2.731636] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    2.731997] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    2.732483] mousedev: PS/2 mouse device common for all mice
+[    2.733084] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    2.734937] usbcore: registered new interface driver wacom
+[    2.735335] rtc_cmos 00:00: RTC can wake from S4
+[    2.735860] rtc_cmos 00:00: rtc core: registered rtc_cmos as rtc0
+[    2.736480] rtc_cmos 00:00: alarms up to one day, 114 bytes nvram, hpet irqs
+[    2.736985] md: linear personality registered for level -1
+[    2.737357] md: raid0 personality registered for level 0
+[    2.737766] md: raid1 personality registered for level 1
+[    2.738114] md: raid10 personality registered for level 10
+[    2.738546] md: multipath personality registered for level -4
+[    2.738920] md: faulty personality registered for level -5
+[    2.739377] device-mapper: ioctl: 4.27.0-ioctl (2013-10-30) initialised: dm-devel@redhat.com
+[    2.740127] usbcore: registered new interface driver usbhid
+[    2.740606] usbhid: USB HID core driver
+[    2.740919] oprofile: using NMI interrupt.
+[    2.741215] u32 classifier
+[    2.741364]     Actions configured
+[    2.741667] TCP: cubic registered
+[    2.741935] NET: Registered protocol family 10
+[    2.742405] sit: IPv6 over IPv4 tunneling driver
+[    2.742909] NET: Registered protocol family 17
+[    2.743233] Key type dns_resolver registered
+[    2.743581] Using IPI No-Shortcut mode
+[    2.744063] bio: create slab <bio-1> at 1
+[    2.744449] Btrfs loaded
+[    2.744696] console [netcon0] enabled
+[    2.744903] netconsole: network logging started
+[    2.745242] rtc_cmos 00:00: setting system clock to 2017-05-05 02:28:27 UTC (1493951307)
+[    2.745897] ALSA device list:
+[    2.746059]   No soundcards found.
+[    3.334688] input: ImExPS/2 Generic Explorer Mouse as /devices/platform/i8042/serio1/input/input3
+[    3.335532] md: Waiting for all devices to be available before autodetect
+[    3.336066] md: If you don't use raid, use raid=noautodetect
+[    3.336569] md: Autodetecting RAID arrays.
+[    3.336850] md: Scanned 0 and added 0 devices.
+[    3.337139] md: autorun ...
+[    3.337281] md: ... autorun DONE.
+[    3.337535] [i/o][sstf] adding          4
+[    3.337538] [i/o][sstf] dispatching     4
+[    3.337733] [i/o][sstf] adding          8
+[    3.337734] [i/o][sstf] dispatching     8
+[    3.337884] [i/o][sstf] adding          16
+[    3.337885] [i/o][sstf] dispatching     16
+[    3.338041] [i/o][sstf] adding          1384
+[    3.338043] [i/o][sstf] dispatching     1384
+[    3.338175] [i/o][sstf] adding          2637200
+[    3.338176] [i/o][sstf] dispatching     2637200
+[    3.338327] [i/o][sstf] adding          8
+[    3.338328] [i/o][sstf] dispatching     8
+[    3.338394] kjournald starting.  Commit interval 5 seconds
+[    3.338847] EXT3-fs (hda): using internal journal
+[    3.339156] EXT3-fs (hda): mounted filesystem with ordered data mode
+[    3.339589] VFS: Mounted root (ext3 filesystem) on device 3:0.
+[    3.340027] [i/o][sstf] adding          17120
+[    3.340029] [i/o][sstf] dispatching     17120
+[    3.340158] [i/o][sstf] adding          537440
+[    3.340159] [i/o][sstf] dispatching     537440
+[    3.340311] devtmpfs: mounted
+[    3.340631] Freeing unused kernel memory: 712K (c1abd000 - c1b6f000)
+[    3.341181] Write protecting the kernel text: 7728k
+[    3.341533] Write protecting the kernel read-only data: 2764k
+[    3.341956] [i/o][sstf] adding          1392
+[    3.341957] [i/o][sstf] dispatching     1392
+[    3.342109] [i/o][sstf] adding          17224
+[    3.342110] [i/o][sstf] dispatching     17224
+[    3.342234] [i/o][sstf] adding          1400
+[    3.342235] [i/o][sstf] dispatching     1400
+[    3.342361] [i/o][sstf] adding          1432
+[    3.342362] [i/o][sstf] dispatching     1432
+[    3.342497] [i/o][sstf] adding          34144
+[    3.342499] [i/o][sstf] dispatching     34144
+[    3.342644] [i/o][sstf] adding          537232
+[    3.342645] [i/o][sstf] dispatching     537232
+[    3.342767] [i/o][sstf] adding          4595192
+[    3.342769] [i/o][sstf] dispatching     4595192
+[    3.342890] [i/o][sstf] adding          537248
+[    3.342891] [i/o][sstf] dispatching     537248
+[    3.343028] [i/o][sstf] adding          537416
+[    3.343029] [i/o][sstf] dispatching     537416
+[    3.343157] [i/o][sstf] adding          4635568
+[    3.343159] [i/o][sstf] dispatching     4635568
+[    3.343311] [i/o][sstf] adding          34200
+[    3.343313] [i/o][sstf] dispatching     34200
+[    3.343462] [i/o][sstf] adding          4635640
+[    3.343463] [i/o][sstf] dispatching     4635640
+[    3.343591] [i/o][sstf] adding          4635824
+[    3.343592] [i/o][sstf] dispatching     4635824
+[    3.343753] [i/o][sstf] adding          4635632
+[    3.343754] [i/o][sstf] adding          4635680
+[    3.343755] [i/o][sstf] dispatching     4635632
+[    3.343893] [i/o][sstf] dispatching     4635680
+[    3.346286] [i/o][sstf] adding          536840
+[    3.346288] [i/o][sstf] dispatching     536840
+[    3.346489] [i/o][sstf] adding          4589416
+[    3.346491] [i/o][sstf] dispatching     4589416
+[    3.346697] [i/o][sstf] adding          536864
+[    3.346698] [i/o][sstf] dispatching     536864
+[    3.346867] [i/o][sstf] adding          4589832
+[    3.346869] [i/o][sstf] dispatching     4589832
+[    3.347072] [i/o][sstf] adding          537424
+[    3.347073] [i/o][sstf] dispatching     537424
+[    3.347226] [i/o][sstf] adding          537344
+[    3.347227] [i/o][sstf] dispatching     537344
+[    3.347386] [i/o][sstf] adding          4625600
+[    3.347387] [i/o][sstf] dispatching     4625600
+[    3.347558] [i/o][sstf] adding          4625672
+[    3.347559] [i/o][sstf] dispatching     4625672
+[    3.347710] [i/o][sstf] adding          4628608
+[    3.347712] [i/o][sstf] dispatching     4628608
+[    3.712078] [i/o][sstf] adding          4625664
+[    3.712080] [i/o][sstf] adding          4625848
+[    3.712082] [i/o][sstf] dispatching     4625664
+[    3.712362] [i/o][sstf] dispatching     4625848
+[    3.715316] [i/o][sstf] adding          4627832
+[    3.715317] [i/o][sstf] dispatching     4627832
+[    3.715596] [i/o][sstf] adding          4627392
+[    3.715597] [i/o][sstf] dispatching     4627392
+[    3.715821] [i/o][sstf] adding          4626664
+[    3.715822] [i/o][sstf] dispatching     4626664
+[    3.716067] [i/o][sstf] adding          4626000
+[    3.716068] [i/o][sstf] dispatching     4626000
+[    3.716319] [i/o][sstf] adding          4626976
+[    3.716320] [i/o][sstf] dispatching     4626976
+[    3.716560] [i/o][sstf] adding          4626208
+[    3.716561] [i/o][sstf] dispatching     4626208
+[    3.717304] [i/o][sstf] adding          536728
+[    3.717305] [i/o][sstf] dispatching     536728
+[    3.717446] [i/o][sstf] adding          4032304
+[    3.717447] [i/o][sstf] dispatching     4032304
+[    3.717587] [i/o][sstf] adding          17200
+[    3.717588] [i/o][sstf] dispatching     17200
+[    3.717716] [i/o][sstf] adding          4980760
+[    3.717717] [i/o][sstf] dispatching     4980760
+[    3.717861] [i/o][sstf] adding          4980744
+[    3.717862] [i/o][sstf] dispatching     4980744
+[    3.718030] [i/o][sstf] adding          4628024
+[    3.718032] [i/o][sstf] dispatching     4628024
+[    3.719390] [i/o][sstf] adding          4626408
+[    3.719391] [i/o][sstf] dispatching     4626408
+[    3.719586] [i/o][sstf] adding          536936
+[    3.719588] [i/o][sstf] dispatching     536936
+[    3.719728] [i/o][sstf] adding          4590856
+[    3.719729] [i/o][sstf] dispatching     4590856
+[    3.719877] [i/o][sstf] adding          4628280
+[    3.719878] [i/o][sstf] dispatching     4628280
+[    3.720491] [i/o][sstf] adding          4032328
+[    3.720493] [i/o][sstf] dispatching     4032328
+[    3.720662] [i/o][sstf] adding          4032344
+[    3.720663] [i/o][sstf] dispatching     4032344
+[    3.720860] [i/o][sstf] adding          537080
+[    3.720861] [i/o][sstf] dispatching     537080
+[    3.721033] [i/o][sstf] adding          4593272
+[    3.721034] [i/o][sstf] dispatching     4593272
+[    3.721193] [i/o][sstf] adding          4593376
+[    3.721194] [i/o][sstf] dispatching     4593376
+[    3.721363] [i/o][sstf] adding          536768
+[    3.721364] [i/o][sstf] dispatching     536768
+[    3.721529] [i/o][sstf] adding          4577256
+[    3.721531] [i/o][sstf] dispatching     4577256
+[    3.721682] [i/o][sstf] adding          536776
+[    3.721684] [i/o][sstf] dispatching     536776
+[    3.721827] [i/o][sstf] adding          536824
+[    3.721829] [i/o][sstf] dispatching     536824
+[    3.721977] [i/o][sstf] adding          4585936
+[    3.721978] [i/o][sstf] dispatching     4585936
+[    3.722185] [i/o][sstf] adding          4586008
+[    3.722187] [i/o][sstf] dispatching     4586008
+[    3.722345] [i/o][sstf] adding          4588360
+[    3.722346] [i/o][sstf] dispatching     4588360
+[    3.722588] [i/o][sstf] adding          4586000
+[    3.722589] [i/o][sstf] adding          4586168
+[    3.722590] [i/o][sstf] dispatching     4586000
+[    3.722746] [i/o][sstf] dispatching     4586168
+[    3.725219] [i/o][sstf] adding          537256
+[    3.725221] [i/o][sstf] dispatching     537256
+[    3.725391] [i/o][sstf] adding          4624264
+[    3.725392] [i/o][sstf] dispatching     4624264
+[    3.725575] [i/o][sstf] adding          4624336
+[    3.725576] [i/o][sstf] dispatching     4624336
+[    3.725735] [i/o][sstf] adding          4624520
+[    3.725736] [i/o][sstf] dispatching     4624520
+[    3.725940] [i/o][sstf] adding          4617424
+[    3.725942] [i/o][sstf] dispatching     4617424
+[    3.726154] [i/o][sstf] adding          4624328
+[    3.726155] [i/o][sstf] adding          4624384
+[    3.726156] [i/o][sstf] dispatching     4624328
+[    3.726313] [i/o][sstf] dispatching     4624384
+[    3.726341] [i/o][sstf] adding          4586424
+[    3.726487] [i/o][sstf] dispatching     4586424
+[    3.726699] [i/o][sstf] adding          4587720
+[    3.726882] [i/o][sstf] dispatching     4587720
+[    3.729258] [i/o][sstf] adding          4587008
+[    3.729259] [i/o][sstf] dispatching     4587008
+[    3.729458] [i/o][sstf] adding          4587920
+[    3.729459] [i/o][sstf] dispatching     4587920
+[    3.729674] [i/o][sstf] adding          4587264
+[    3.729675] [i/o][sstf] dispatching     4587264
+[    3.729767] [i/o][sstf] adding          4586752
+[    3.729769] [i/o][sstf] dispatching     4586752
+[    3.732242] [i/o][sstf] adding          4586576
+[    3.732244] [i/o][sstf] dispatching     4586576
+[    3.732457] [i/o][sstf] adding          4595184
+[    3.732459] [i/o][sstf] dispatching     4595184
+[    3.732699] [i/o][sstf] adding          4587392
+[    3.732701] [i/o][sstf] dispatching     4587392
+[    3.733034] [i/o][sstf] adding          4626720
+[    3.733036] [i/o][sstf] dispatching     4626720
+[    3.733311] [i/o][sstf] adding          536800
+[    3.733312] [i/o][sstf] dispatching     536800
+[    3.733658] [i/o][sstf] adding          4585856
+[    3.733660] [i/o][sstf] dispatching     4585856
+[    3.733851] [i/o][sstf] adding          4585904
+[    3.733852] [i/o][sstf] dispatching     4585904
+[    3.734095] [i/o][sstf] adding          4624960
+[    3.734097] [i/o][sstf] dispatching     4624960
+[    3.734277] [i/o][sstf] adding          4625032
+[    3.734278] [i/o][sstf] dispatching     4625032
+[    3.734433] [i/o][sstf] adding          4625568
+[    3.734434] [i/o][sstf] dispatching     4625568
+[    3.734624] [i/o][sstf] adding          4625024
+[    3.734626] [i/o][sstf] adding          4625192
+[    3.734627] [i/o][sstf] dispatching     4625024
+[    3.734827] [i/o][sstf] dispatching     4625192
+[    3.734868] [i/o][sstf] adding          537288
+[    3.735029] [i/o][sstf] dispatching     537288
+[    3.737176] [i/o][sstf] adding          537360
+[    3.737177] [i/o][sstf] dispatching     537360
+[    3.737333] [i/o][sstf] adding          4629008
+[    3.737334] [i/o][sstf] dispatching     4629008
+[    3.737507] [i/o][sstf] adding          4629080
+[    3.737508] [i/o][sstf] dispatching     4629080
+[    3.737675] [i/o][sstf] adding          4629560
+[    3.737676] [i/o][sstf] dispatching     4629560
+[    3.737912] [i/o][sstf] adding          537408
+[    3.737913] [i/o][sstf] dispatching     537408
+[    3.738074] [i/o][sstf] adding          4620104
+[    3.738076] [i/o][sstf] dispatching     4620104
+[    3.738244] [i/o][sstf] adding          4620112
+[    3.738250] [i/o][sstf] dispatching     4620112
+[    3.738508] [i/o][sstf] adding          4629072
+[    3.738509] [i/o][sstf] adding          4629272
+[    3.738510] [i/o][sstf] dispatching     4629072
+[    3.738661] [i/o][sstf] dispatching     4629272
+[    3.738667] [i/o][sstf] adding          4629424
+[    3.738819] [i/o][sstf] adding          4625432
+[    3.738820] [i/o][sstf] dispatching     4625432
+[    3.741193] [i/o][sstf] dispatching     4629424
+[    3.744294] [i/o][sstf] adding          536968
+[    3.744296] [i/o][sstf] dispatching     536968
+[    3.744451] [i/o][sstf] adding          787816
+[    3.744452] [i/o][sstf] dispatching     787816
+[    3.744597] [i/o][sstf] adding          4637832
+[    3.744599] [i/o][sstf] dispatching     4637832
+[    3.744769] [i/o][sstf] adding          537176
+[    3.744770] [i/o][sstf] dispatching     537176
+[    3.744977] [i/o][sstf] adding          4594544
+[    3.744978] [i/o][sstf] dispatching     4594544
+[    3.745371] [i/o][sstf] adding          537160
+[    3.745372] [i/o][sstf] dispatching     537160
+[    3.745516] [i/o][sstf] adding          4594272
+[    3.745518] [i/o][sstf] dispatching     4594272
+[    3.745669] [i/o][sstf] adding          4594296
+[    3.745670] [i/o][sstf] dispatching     4594296
+[    3.746074] [i/o][sstf] adding          537096
+[    3.746075] [i/o][sstf] dispatching     537096
+[    3.746234] [i/o][sstf] adding          4593616
+[    3.746235] [i/o][sstf] dispatching     4593616
+[    3.747571] [i/o][sstf] adding          536816
+[    3.747573] [i/o][sstf] dispatching     536816
+[    3.747864] [i/o][sstf] adding          4583992
+[    3.747865] [i/o][sstf] dispatching     4583992
+[    3.748089] [i/o][sstf] adding          4584064
+[    3.748090] [i/o][sstf] dispatching     4584064
+[    3.748250] [i/o][sstf] adding          4584120
+[    3.748251] [i/o][sstf] dispatching     4584120
+[    3.749241] [i/o][sstf] adding          536952
+[    3.749243] [i/o][sstf] dispatching     536952
+[    3.749498] [i/o][sstf] adding          4591120
+[    3.749500] [i/o][sstf] dispatching     4591120
+[    3.750151] [i/o][sstf] adding          536960
+[    3.750153] [i/o][sstf] dispatching     536960
+[    3.750304] [i/o][sstf] adding          537088
+[    3.750306] [i/o][sstf] dispatching     537088
+[    3.750662] [i/o][sstf] adding          4593464
+[    3.750664] [i/o][sstf] dispatching     4593464
+[    3.751637] [i/o][sstf] adding          1408
+[    3.751638] [i/o][sstf] dispatching     1408
+[    3.751800] [i/o][sstf] adding          4584936
+[    3.751801] [i/o][sstf] dispatching     4584936
+[    3.751994] [i/o][sstf] adding          4585008
+[    3.751996] [i/o][sstf] dispatching     4585008
+[    3.752164] [i/o][sstf] adding          4585288
+[    3.752166] [i/o][sstf] dispatching     4585288
+[    3.752403] [i/o][sstf] adding          4624016
+[    3.752405] [i/o][sstf] dispatching     4624016
+[    3.752577] [i/o][sstf] adding          4624088
+[    3.752578] [i/o][sstf] dispatching     4624088
+[    3.752744] [i/o][sstf] adding          4624184
+[    3.752745] [i/o][sstf] dispatching     4624184
+[    3.752952] [i/o][sstf] adding          4624040
+[    3.752954] [i/o][sstf] dispatching     4624040
+[    3.753197] [i/o][sstf] adding          4585000
+[    3.753198] [i/o][sstf] adding          4585152
+[    3.753199] [i/o][sstf] dispatching     4585000
+[    3.753367] [i/o][sstf] dispatching     4585152
+[    3.756334] [i/o][sstf] adding          4595168
+[    3.756335] [i/o][sstf] dispatching     4595168
+[    3.756513] [i/o][sstf] adding          4637776
+[    3.756514] [i/o][sstf] dispatching     4637776
+[    3.756676] [i/o][sstf] adding          537296
+[    3.756677] [i/o][sstf] dispatching     537296
+[    3.756827] [i/o][sstf] adding          4620352
+[    3.756828] [i/o][sstf] dispatching     4620352
+[    3.757252] [i/o][sstf] adding          17208
+[    3.757253] [i/o][sstf] dispatching     17208
+[    3.757412] [i/o][sstf] adding          17216
+[    3.757413] [i/o][sstf] dispatching     17216
+[    3.757594] [i/o][sstf] adding          537104
+[    3.757596] [i/o][sstf] dispatching     537104
+[    3.757990] [i/o][sstf] adding          4593696
+[    3.757991] [i/o][sstf] dispatching     4593696
+[    3.759697] [i/o][sstf] adding          4593688
+[    3.759699] [i/o][sstf] dispatching     4593688
+[    3.759896] [i/o][sstf] adding          4368
+[    3.759898] [i/o][sstf] dispatching     4368
+[    3.760242] [i/o][sstf] adding          365544
+[    3.760244] [i/o][sstf] dispatching     365544
+[    3.760383] [i/o][sstf] adding          271240
+[    3.760385] [i/o][sstf] dispatching     271240
+[    3.760509] [i/o][sstf] adding          1355392
+[    3.760510] [i/o][sstf] dispatching     1355392
+[    3.760637] [i/o][sstf] adding          1536720
+[    3.760638] [i/o][sstf] dispatching     1536720
+[    3.760704] [i/o][sstf] adding          1619464
+[    3.760705] [i/o][sstf] dispatching     1619464
+[    3.760708] [i/o][sstf] adding          1681280
+[    3.760713] [i/o][sstf] adding          1710480
+[    3.760762] [i/o][sstf] adding          273848
+[    3.760884] [i/o][sstf] dispatching     273848
+[    3.761933] [i/o][sstf] adding          4593312
+[    3.762085] [i/o][sstf] dispatching     1681280
+[    3.763188] [i/o][sstf] dispatching     1710480
+[    3.766130] [i/o][sstf] dispatching     4593312
+[    3.766142] [i/o][sstf] adding          273944
+[    3.766265] [i/o][sstf] dispatching     273944
+[    3.766445] [i/o][sstf] adding          536808
+[    3.766579] [i/o][sstf] dispatching     536808
+[    3.766593] [i/o][sstf] adding          1629752
+[    3.766710] [i/o][sstf] dispatching     1629752
+[    3.766829] [i/o][sstf] adding          4581840
+[    3.766962] [i/o][sstf] dispatching     4581840
+[    3.767049] [i/o][sstf] adding          1629824
+[    3.767224] [i/o][sstf] dispatching     1629824
+[    3.767279] [i/o][sstf] adding          4581912
+[    3.767428] [i/o][sstf] dispatching     4581912
+[    3.767438] [i/o][sstf] adding          1629840
+[    3.767574] [i/o][sstf] dispatching     1629840
+[    3.767585] [i/o][sstf] adding          4582344
+[    3.767700] [i/o][sstf] dispatching     4582344
+[    3.774113] [i/o][sstf] adding          4581904
+[    3.774113] [i/o][sstf] adding          4582104
+[    3.774114] [i/o][sstf] dispatching     4581904
+[    3.774298] [i/o][sstf] dispatching     4582104
+[    3.774391] [i/o][sstf] adding          4582208
+[    3.774595] [i/o][sstf] dispatching     4582208
+[    3.780353] [i/o][sstf] adding          4589408
+[    3.780354] [i/o][sstf] dispatching     4589408
+[    3.791180] [i/o][sstf] adding          4593576
+[    3.791182] [i/o][sstf] dispatching     4593576
+[    3.795057] [i/o][sstf] adding          1416
+[    3.795058] [i/o][sstf] dispatching     1416
+[    3.797115] [i/o][sstf] adding          32000
+[    3.797116] [i/o][sstf] dispatching     32000
+[    3.798071] [i/o][sstf] adding          32072
+[    3.798071] [i/o][sstf] dispatching     32072
+[    3.802013] [i/o][sstf] adding          32080
+[    3.802014] [i/o][sstf] dispatching     32080
+[    3.804964] [i/o][sstf] adding          4593504
+[    3.804965] [i/o][sstf] dispatching     4593504
+[    3.809535] [i/o][sstf] adding          4633792
+[    3.809536] [i/o][sstf] dispatching     4633792
+[    3.809732] [i/o][sstf] adding          537376
+[    3.809734] [i/o][sstf] dispatching     537376
+[    3.809914] [i/o][sstf] adding          537168
+[    3.809915] [i/o][sstf] dispatching     537168
+[    3.810081] [i/o][sstf] adding          4594392
+[    3.810082] [i/o][sstf] dispatching     4594392
+[    3.810296] [i/o][sstf] adding          537072
+[    3.810297] [i/o][sstf] dispatching     537072
+[    3.810425] [i/o][sstf] adding          4593176
+[    3.810427] [i/o][sstf] dispatching     4593176
+[    3.810563] [i/o][sstf] adding          4593184
+[    3.810564] [i/o][sstf] dispatching     4593184
+[    3.812177] [i/o][sstf] adding          4376
+[    3.812179] [i/o][sstf] dispatching     4376
+[    3.812335] [i/o][sstf] adding          365576
+[    3.812337] [i/o][sstf] dispatching     365576
+[    3.812476] [i/o][sstf] adding          273832
+[    3.812478] [i/o][sstf] dispatching     273832
+[    3.812604] [i/o][sstf] adding          273744
+[    3.812605] [i/o][sstf] dispatching     273744
+[    3.812901] [i/o][sstf] adding          1517760
+[    3.812902] [i/o][sstf] dispatching     1517760
+[    3.813103] [i/o][sstf] adding          1517832
+[    3.813104] [i/o][sstf] dispatching     1517832
+[    3.813235] [i/o][sstf] adding          1519088
+[    3.813237] [i/o][sstf] dispatching     1519088
+[    3.813476] [i/o][sstf] adding          1517824
+[    3.813477] [i/o][sstf] adding          1517992
+[    3.813478] [i/o][sstf] dispatching     1517824
+[    3.813617] [i/o][sstf] dispatching     1517992
+[    3.813681] [i/o][sstf] adding          4617488
+[    3.813847] [i/o][sstf] dispatching     4617488
+[    3.816175] [i/o][sstf] adding          4617560
+[    3.816176] [i/o][sstf] dispatching     4617560
+[    3.816307] [i/o][sstf] adding          4618064
+[    3.816308] [i/o][sstf] dispatching     4618064
+[    3.816539] [i/o][sstf] adding          4617552
+[    3.816540] [i/o][sstf] adding          4617720
+[    3.816541] [i/o][sstf] dispatching     4617552
+[    3.816677] [i/o][sstf] dispatching     4617720
+[    3.816737] [i/o][sstf] adding          1518248
+[    3.816822] [i/o][sstf] adding          4617928
+[    3.816823] [i/o][sstf] dispatching     1518248
+[    3.819228] [i/o][sstf] dispatching     4617928
+[    3.822255] [i/o][sstf] adding          1518792
+[    3.822257] [i/o][sstf] dispatching     1518792
+[    3.822518] [i/o][sstf] adding          1518536
+[    3.822519] [i/o][sstf] dispatching     1518536
+[    3.822887] [i/o][sstf] adding          1518944
+[    3.822889] [i/o][sstf] dispatching     1518944
+[    3.822988] [i/o][sstf] adding          1518336
+[    3.822989] [i/o][sstf] dispatching     1518336
+[    3.825624] [i/o][sstf] adding          4583656
+[    3.825625] [i/o][sstf] dispatching     4583656
+[    3.825841] [i/o][sstf] adding          4583728
+[    3.825843] [i/o][sstf] dispatching     4583728
+[    3.826028] [i/o][sstf] adding          4583760
+[    3.826029] [i/o][sstf] dispatching     4583760
+[    3.827277] [i/o][sstf] adding          4718616
+[    3.827278] [i/o][sstf] dispatching     4718616
+[    3.829477] [i/o][sstf] adding          4456472
+[    3.829478] [i/o][sstf] dispatching     4456472
+[    3.829646] [i/o][sstf] adding          4702216
+[    3.829647] [i/o][sstf] dispatching     4702216
+[    3.829924] [i/o][sstf] adding          536792
+[    3.829926] [i/o][sstf] dispatching     536792
+[    3.830260] [i/o][sstf] adding          4579960
+[    3.830262] [i/o][sstf] dispatching     4579960
+[    3.830470] [i/o][sstf] adding          4580032
+[    3.830471] [i/o][sstf] dispatching     4580032
+[    3.830616] [i/o][sstf] adding          4580968
+[    3.830617] [i/o][sstf] dispatching     4580968
+[    3.830850] [i/o][sstf] adding          4580024
+[    3.830851] [i/o][sstf] adding          4580224
+[    3.830852] [i/o][sstf] dispatching     4580024
+[    3.831025] [i/o][sstf] dispatching     4580224
+[    3.831198] [i/o][sstf] adding          4580480
+[    3.831295] [i/o][sstf] adding          4580768
+[    3.831297] [i/o][sstf] dispatching     4580480
+[    4.114019] [i/o][sstf] dispatching     4580768
+[    4.116635] [i/o][sstf] adding          4580512
+[    4.116637] [i/o][sstf] dispatching     4580512
+[    4.116933] [i/o][sstf] adding          4580832
+[    4.116935] [i/o][sstf] dispatching     4580832
+[    4.117068] [i/o][sstf] adding          4931616
+[    4.117070] [i/o][sstf] dispatching     4931616
+[    4.120501] [i/o][sstf] adding          4589096
+[    4.120503] [i/o][sstf] dispatching     4589096
+[    4.120780] [i/o][sstf] adding          4589168
+[    4.120781] [i/o][sstf] dispatching     4589168
+[    4.120962] [i/o][sstf] adding          4589296
+[    4.120964] [i/o][sstf] dispatching     4589296
+[    4.121394] [i/o][sstf] adding          4589152
+[    4.121395] [i/o][sstf] dispatching     4589152
+[    4.121946] [i/o][sstf] adding          4627576
+[    4.121948] [i/o][sstf] dispatching     4627576
+[    4.122220] [i/o][sstf] adding          536880
+[    4.122221] [i/o][sstf] dispatching     536880
+[    4.122430] [i/o][sstf] adding          4590480
+[    4.122431] [i/o][sstf] dispatching     4590480
+[    4.122658] [i/o][sstf] adding          537352
+[    4.122660] [i/o][sstf] dispatching     537352
+[    4.122832] [i/o][sstf] adding          537432
+[    4.122833] [i/o][sstf] dispatching     537432
+[    4.122997] [i/o][sstf] adding          4637416
+[    4.122998] [i/o][sstf] dispatching     4637416
+[    4.123163] [i/o][sstf] adding          4637456
+[    4.123164] [i/o][sstf] dispatching     4637456
+[    4.123329] [i/o][sstf] adding          4620144
+[    4.123330] [i/o][sstf] dispatching     4620144
+[    4.123482] [i/o][sstf] adding          4620216
+[    4.123483] [i/o][sstf] dispatching     4620216
+[    4.123629] [i/o][sstf] adding          4620312
+[    4.123630] [i/o][sstf] dispatching     4620312
+[    4.123809] [i/o][sstf] adding          4620168
+[    4.123811] [i/o][sstf] dispatching     4620168
+[    4.123967] [i/o][sstf] adding          4636744
+[    4.123968] [i/o][sstf] dispatching     4636744
+[    4.124131] [i/o][sstf] adding          4636808
+[    4.124132] [i/o][sstf] dispatching     4636808
+[    4.124313] [i/o][sstf] adding          4618464
+[    4.124314] [i/o][sstf] dispatching     4618464
+[    4.124469] [i/o][sstf] adding          4618536
+[    4.124470] [i/o][sstf] dispatching     4618536
+[    4.124614] [i/o][sstf] adding          4618544
+[    4.124615] [i/o][sstf] dispatching     4618544
+[    4.124788] [i/o][sstf] adding          536896
+[    4.124789] [i/o][sstf] dispatching     536896
+[    4.124930] [i/o][sstf] adding          4590552
+[    4.124931] [i/o][sstf] dispatching     4590552
+[    4.125099] [i/o][sstf] adding          536920
+[    4.125100] [i/o][sstf] dispatching     536920
+[    4.125237] [i/o][sstf] adding          4590784
+[    4.125244] [i/o][sstf] dispatching     4590784
+[    4.144309] [i/o][sstf] adding          536832
+[    4.144311] [i/o][sstf] dispatching     536832
+[    4.144484] [i/o][sstf] adding          1440
+[    4.144485] [i/o][sstf] dispatching     1440
+[    4.144677] [i/o][sstf] adding          34720
+[    4.144678] [i/o][sstf] dispatching     34720
+[    4.144879] [i/o][sstf] adding          34736
+[    4.144880] [i/o][sstf] dispatching     34736
+[    4.145590] [i/o][sstf] adding          4626224
+[    4.145591] [i/o][sstf] dispatching     4626224
+[    4.147090] [i/o][sstf] adding          4634544
+[    4.147092] [i/o][sstf] dispatching     4634544
+[    4.147339] [i/o][sstf] adding          4634616
+[    4.147340] [i/o][sstf] dispatching     4634616
+[    4.147540] [i/o][sstf] adding          4634936
+[    4.147541] [i/o][sstf] dispatching     4634936
+[    4.147824] [i/o][sstf] adding          4618704
+[    4.147826] [i/o][sstf] dispatching     4618704
+[    4.148045] [i/o][sstf] adding          4618736
+[    4.148047] [i/o][sstf] dispatching     4618736
+[    4.148249] [i/o][sstf] adding          278544
+[    4.148250] [i/o][sstf] dispatching     278544
+[    4.148406] [i/o][sstf] adding          1933616
+[    4.148407] [i/o][sstf] dispatching     1933616
+[    4.148527] [i/o][sstf] adding          2116336
+[    4.148528] [i/o][sstf] dispatching     2116336
+[    4.148593] [i/o][sstf] adding          2167664
+[    4.148594] [i/o][sstf] dispatching     2167664
+[    4.148597] [i/o][sstf] adding          2199528
+[    4.148599] [i/o][sstf] adding          2349456
+[    4.148602] [i/o][sstf] adding          2471752
+[    4.148604] [i/o][sstf] adding          2536536
+[    4.148606] [i/o][sstf] adding          3931928
+[    4.148610] [i/o][sstf] adding          3991912
+[    4.151172] [i/o][sstf] dispatching     2199528
+[    4.154177] [i/o][sstf] dispatching     2349456
+[    4.157307] [i/o][sstf] dispatching     2471752
+[    4.160294] [i/o][sstf] dispatching     2536536
+[    4.163313] [i/o][sstf] dispatching     3931928
+[    4.166311] [i/o][sstf] dispatching     3991912
+[    4.166334] [i/o][sstf] adding          536400
+[    4.166594] [i/o][sstf] dispatching     536400
+[    4.169324] [i/o][sstf] adding          529576
+[    4.169325] [i/o][sstf] dispatching     529576
+[    4.169535] [i/o][sstf] adding          2348560
+[    4.169537] [i/o][sstf] dispatching     2348560
+[    4.169835] [i/o][sstf] adding          2348632
+[    4.169837] [i/o][sstf] dispatching     2348632
+[    4.170111] [i/o][sstf] adding          2348776
+[    4.170113] [i/o][sstf] dispatching     2348776
+[    4.170446] [i/o][sstf] adding          4634608
+[    4.170448] [i/o][sstf] adding          4634800
+[    4.170449] [i/o][sstf] dispatching     4634608
+[    4.170532] [i/o][sstf] adding          2348624
+[    4.170533] [i/o][sstf] adding          2348640
+[    4.170534] [i/o][sstf] dispatching     2348624
+[    4.170647] [i/o][sstf] adding          4624752
+[    4.170926] [i/o][sstf] dispatching     2348640
+[    4.173300] [i/o][sstf] dispatching     4624752
+[    4.176288] [i/o][sstf] dispatching     4634800
+[    4.176338] [i/o][sstf] adding          4624824
+[    4.176647] [i/o][sstf] dispatching     4624824
+[    4.179313] [i/o][sstf] adding          4624928
+[    4.179315] [i/o][sstf] dispatching     4624928
+[    4.179739] [i/o][sstf] adding          4624776
+[    4.179740] [i/o][sstf] dispatching     4624776
+[    4.180418] [i/o][sstf] adding          4634112
+[    4.180420] [i/o][sstf] dispatching     4634112
+[    4.180993] [i/o][sstf] adding          274088
+[    4.180994] [i/o][sstf] dispatching     274088
+[    4.181313] udevd[75]: starting version 182
+[    4.181702] [i/o][sstf] adding          537368
+[    4.181704] [i/o][sstf] dispatching     537368
+[    4.181866] [i/o][sstf] adding          4634216
+[    4.181867] [i/o][sstf] dispatching     4634216
+[    4.182077] [i/o][sstf] adding          4593224
+[    4.182078] [i/o][sstf] dispatching     4593224
+[    4.182161] [i/o][sstf] adding          1697616
+[    4.182162] [i/o][sstf] dispatching     1697616
+[    4.182274] [i/o][sstf] adding          4634344
+[    4.182412] [i/o][sstf] dispatching     4634344
+[    4.182472] [i/o][sstf] adding          1697688
+[    4.182610] [i/o][sstf] dispatching     1697688
+[    4.182706] [i/o][sstf] adding          4634336
+[    4.182844] [i/o][sstf] dispatching     4634336
+[    4.182855] [i/o][sstf] adding          1698016
+[    4.182995] [i/o][sstf] dispatching     1698016
+[    4.183570] [i/o][sstf] adding          4634256
+[    4.183755] [i/o][sstf] dispatching     4634256
+[    4.184057] [i/o][sstf] adding          1697680
+[    4.184058] [i/o][sstf] adding          1697880
+[    4.184195] [i/o][sstf] dispatching     1697680
+[    4.184256] [i/o][sstf] adding          4634312
+[    4.184417] [i/o][sstf] dispatching     1697880
+[    4.185227] [i/o][sstf] dispatching     4634312
+[    4.188212] [i/o][sstf] adding          4634320
+[    4.188214] [i/o][sstf] dispatching     4634320
+[    4.188437] [i/o][sstf] adding          4634328
+[    4.188438] [i/o][sstf] dispatching     4634328
+[    4.188631] [i/o][sstf] adding          4634368
+[    4.188632] [i/o][sstf] dispatching     4634368
+[    4.188831] [i/o][sstf] adding          4634416
+[    4.188833] [i/o][sstf] dispatching     4634416
+[    4.189170] [i/o][sstf] adding          4634400
+[    4.189172] [i/o][sstf] dispatching     4634400
+[    4.189368] [i/o][sstf] adding          4593264
+[    4.189370] [i/o][sstf] dispatching     4593264
+[    4.189526] [i/o][sstf] adding          4634288
+[    4.189527] [i/o][sstf] dispatching     4634288
+[    4.189696] [i/o][sstf] adding          4634424
+[    4.189697] [i/o][sstf] dispatching     4634424
+[    4.189925] [i/o][sstf] adding          4634352
+[    4.189926] [i/o][sstf] dispatching     4634352
+[    4.190123] [i/o][sstf] adding          4634360
+[    4.190125] [i/o][sstf] dispatching     4634360
+[    4.190311] [i/o][sstf] adding          4634264
+[    4.190312] [i/o][sstf] dispatching     4634264
+[    4.190480] [i/o][sstf] adding          4634280
+[    4.190482] [i/o][sstf] dispatching     4634280
+[    4.190672] [i/o][sstf] adding          4634240
+[    4.190673] [i/o][sstf] dispatching     4634240
+[    4.190911] [i/o][sstf] adding          4634248
+[    4.190912] [i/o][sstf] dispatching     4634248
+[    4.191100] [i/o][sstf] adding          4634272
+[    4.191101] [i/o][sstf] dispatching     4634272
+[    4.191282] [i/o][sstf] adding          4634296
+[    4.191284] [i/o][sstf] dispatching     4634296
+[    4.191508] [i/o][sstf] adding          4634392
+[    4.191509] [i/o][sstf] dispatching     4634392
+[    4.191961] [i/o][sstf] adding          4634304
+[    4.191962] [i/o][sstf] dispatching     4634304
+[    4.192153] [i/o][sstf] adding          4634224
+[    4.192155] [i/o][sstf] dispatching     4634224
+[    4.192346] [i/o][sstf] adding          4593240
+[    4.192347] [i/o][sstf] dispatching     4593240
+[    4.192520] [i/o][sstf] adding          4593256
+[    4.192521] [i/o][sstf] dispatching     4593256
+[    4.192691] [i/o][sstf] adding          4593232
+[    4.192692] [i/o][sstf] dispatching     4593232
+[    4.192873] [i/o][sstf] adding          4593248
+[    4.192874] [i/o][sstf] dispatching     4593248
+[    4.482303] [i/o][sstf] adding          4593600
+[    4.482306] [i/o][sstf] dispatching     4593600
+[    4.496663] [i/o][sstf] adding          4593536
+[    4.496666] [i/o][sstf] dispatching     4593536
+[    4.518188] [i/o][sstf] adding          4590488
+[    4.518191] [i/o][sstf] dispatching     4590488
+[    4.521547] [i/o][sstf] adding          5536648
+[    4.521549] [i/o][sstf] dispatching     5536648
+[    4.526097] [i/o][sstf] adding          5226504
+[    4.526099] [i/o][sstf] dispatching     5226504
+[    4.526183] [i/o][sstf] adding          2637200
+[    4.526184] [i/o][sstf] dispatching     2637200
+[    4.528658] [i/o][sstf] adding          5536776
+[    4.528787] [i/o][sstf] adding          4593192
+[    4.528788] [i/o][sstf] dispatching     4593192
+[    4.528864] [i/o][sstf] adding          2637240
+[    4.529045] [i/o][sstf] dispatching     2637240
+[    4.529254] [i/o][sstf] dispatching     5536776
+[    4.529428] [i/o][sstf] adding          4593208
+[    4.529556] [i/o][sstf] adding          5536786
+[    4.530427] [i/o][sstf] dispatching     4593208
+[    4.530472] [i/o][sstf] adding          16
+[    4.530473] [i/o][sstf] adding          4980744
+[    4.530474] [i/o][sstf] adding          4980760
+[    4.530645] [i/o][sstf] dispatching     16
+[    4.533229] [i/o][sstf] dispatching     4980744
+[    4.536218] [i/o][sstf] dispatching     4980760
+[    4.539201] [i/o][sstf] dispatching     5536786
+[    4.539648] [i/o][sstf] adding          536784
+[    4.539806] [i/o][sstf] dispatching     536784
+[    4.540378] [i/o][sstf] adding          5536536
+[    4.540598] [i/o][sstf] dispatching     5536536
+[    4.542225] [i/o][sstf] adding          5536728
+[    4.542227] [i/o][sstf] dispatching     5536728
+[    4.542416] [i/o][sstf] adding          5536392
+[    4.542418] [i/o][sstf] dispatching     5536392
+[    4.542601] [i/o][sstf] adding          5536200
+[    4.542603] [i/o][sstf] dispatching     5536200
+[    4.542809] [i/o][sstf] adding          5536112
+[    4.542810] [i/o][sstf] dispatching     5536112
+[    4.543435] [i/o][sstf] adding          5536056
+[    4.543437] [i/o][sstf] dispatching     5536056
+[    4.543999] [i/o][sstf] adding          5535880
+[    4.544001] [i/o][sstf] dispatching     5535880
+[    4.544631] [i/o][sstf] adding          5535816
+[    4.544633] [i/o][sstf] dispatching     5535816
+[    4.545207] [i/o][sstf] adding          5535800
+[    4.545209] [i/o][sstf] dispatching     5535800
+[    4.545826] [i/o][sstf] adding          5535840
+[    4.545828] [i/o][sstf] dispatching     5535840
+[    4.546869] [i/o][sstf] adding          5533704
+[    4.546870] [i/o][sstf] dispatching     5533704
+[    4.556161] [i/o][sstf] adding          5536784
+[    4.556163] [i/o][sstf] dispatching     5536784
+[    4.556605] [i/o][sstf] adding          2056
+[    4.556606] [i/o][sstf] dispatching     2056
+[    4.556912] [i/o][sstf] adding          32
+[    4.556914] [i/o][sstf] dispatching     32
+[    4.557318] [i/o][sstf] adding          64
+[    4.557319] [i/o][sstf] dispatching     64
+[    4.557490] [i/o][sstf] adding          128
+[    4.557491] [i/o][sstf] dispatching     128
+[    4.558241] [i/o][sstf] adding          24
+[    4.558242] [i/o][sstf] adding          56
+[    4.558243] [i/o][sstf] adding          120
+[    4.558244] [i/o][sstf] adding          512
+[    4.558245] [i/o][sstf] dispatching     24
+[    4.558395] [i/o][sstf] dispatching     56
+[    4.561179] [i/o][sstf] dispatching     120
+[    4.564199] [i/o][sstf] dispatching     512
+[    4.568096] [i/o][sstf] adding          4579224
+[    4.568098] [i/o][sstf] dispatching     4579224
+[    4.568411] [i/o][sstf] adding          274248
+[    4.568413] [i/o][sstf] dispatching     274248
+[    4.568950] [i/o][sstf] adding          776
+[    4.568951] [i/o][sstf] dispatching     776
+[    4.569133] [i/o][sstf] adding          4579296
+[    4.569134] [i/o][sstf] dispatching     4579296
+[    4.569215] [i/o][sstf] adding          1752776
+[    4.569216] [i/o][sstf] dispatching     1752776
+[    4.569341] [i/o][sstf] adding          4579344
+[    4.569503] [i/o][sstf] dispatching     4579344
+[    4.569551] [i/o][sstf] adding          1752816
+[    4.569729] [i/o][sstf] dispatching     1752816
+[    4.571503] [i/o][sstf] adding          784
+[    4.571674] [i/o][sstf] dispatching     784
+[    4.571703] [i/o][sstf] adding          4593200
+[    4.571786] [i/o][sstf] adding          1752792
+[    4.571788] [i/o][sstf] dispatching     1752792
+[    4.571880] [i/o][sstf] adding          792
+[    4.572007] [i/o][sstf] dispatching     792
+[    4.572148] [i/o][sstf] dispatching     4593200
+[    4.573078] [i/o][sstf] adding          4593216
+[    4.573217] [i/o][sstf] dispatching     4593216
+[    4.586961] [i/o][sstf] adding          800
+[    4.586964] [i/o][sstf] dispatching     800
+[    4.587343] [i/o][sstf] adding          808
+[    4.587344] [i/o][sstf] dispatching     808
+[    4.589930] [i/o][sstf] adding          816
+[    4.589932] [i/o][sstf] dispatching     816
+[    4.590115] [i/o][sstf] adding          824
+[    4.590116] [i/o][sstf] dispatching     824
+[    4.590338] [i/o][sstf] adding          832
+[    4.590340] [i/o][sstf] dispatching     832
+[    4.590516] [i/o][sstf] adding          4593392
+[    4.590517] [i/o][sstf] dispatching     4593392
+[    4.590599] [i/o][sstf] adding          840
+[    4.590600] [i/o][sstf] dispatching     840
+[    4.591614] [i/o][sstf] adding          4593728
+[    4.591751] [i/o][sstf] dispatching     4593728
+[    4.591976] [i/o][sstf] adding          848
+[    4.592150] [i/o][sstf] dispatching     848
+[    4.594698] [i/o][sstf] adding          856
+[    4.594700] [i/o][sstf] dispatching     856
+[    4.601079] [i/o][sstf] adding          864
+[    4.601081] [i/o][sstf] dispatching     864
+[    4.601491] [i/o][sstf] adding          872
+[    4.601493] [i/o][sstf] dispatching     872
+[    4.603553] [i/o][sstf] adding          880
+[    4.603555] [i/o][sstf] dispatching     880
+[    4.604031] [i/o][sstf] adding          888
+[    4.604032] [i/o][sstf] dispatching     888
+[    4.604641] [i/o][sstf] adding          896
+[    4.604642] [i/o][sstf] dispatching     896
+[    4.605590] [i/o][sstf] adding          904
+[    4.605592] [i/o][sstf] dispatching     904
+[    4.606452] [i/o][sstf] adding          912
+[    4.606454] [i/o][sstf] dispatching     912
+[    4.607368] [i/o][sstf] adding          920
+[    4.607370] [i/o][sstf] dispatching     920
+[    4.608236] [i/o][sstf] adding          928
+[    4.608238] [i/o][sstf] dispatching     928
+[    4.612343] [i/o][sstf] adding          271288
+[    4.612345] [i/o][sstf] dispatching     271288
+[    4.899304] [i/o][sstf] adding          936
+[    4.899310] [i/o][sstf] dispatching     936
+[    4.899556] random: nonblocking pool is initialized
+[    4.903509] [i/o][sstf] adding          944
+[    4.903511] [i/o][sstf] dispatching     944
+[    4.903618] [i/o][sstf] adding          273896
+[    4.903620] [i/o][sstf] dispatching     273896
+[    5.086705] [i/o][sstf] adding          952
+[    5.086709] [i/o][sstf] dispatching     952
+[    5.087590] [i/o][sstf] adding          1555232
+[    5.087777] [i/o][sstf] dispatching     1555232
+[    5.088144] [i/o][sstf] adding          960
+[    5.088391] [i/o][sstf] dispatching     960
+[    5.088592] [i/o][sstf] adding          1555304
+[    5.088748] [i/o][sstf] dispatching     1555304
+[    5.088904] [i/o][sstf] adding          968
+[    5.089026] [i/o][sstf] dispatching     968
+[    5.089315] [i/o][sstf] adding          1555456
+[    5.089404] [i/o][sstf] adding          1555336
+[    5.089405] [i/o][sstf] dispatching     1555336
+[    5.089415] [i/o][sstf] adding          1555344
+[    5.089463] [i/o][sstf] adding          976
+[    5.089583] [i/o][sstf] dispatching     976
+[    5.092185] [i/o][sstf] dispatching     1555456
+[    5.092303] [i/o][sstf] adding          984
+[    5.092482] [i/o][sstf] dispatching     984
+[    5.092788] [i/o][sstf] adding          529056
+[    5.092934] [i/o][sstf] dispatching     529056
+[    5.094046] [i/o][sstf] adding          992
+[    5.094192] [i/o][sstf] dispatching     992
+[    5.095305] [i/o][sstf] adding          1000
+[    5.095307] [i/o][sstf] dispatching     1000
+[    5.095993] [i/o][sstf] adding          1008
+[    5.095994] [i/o][sstf] dispatching     1008
+[    5.096932] [i/o][sstf] adding          1016
+[    5.096933] [i/o][sstf] dispatching     1016
+[    5.098216] [i/o][sstf] adding          1024
+[    5.098218] [i/o][sstf] dispatching     1024
+[    5.098309] [i/o][sstf] adding          1555328
+[    5.098310] [i/o][sstf] dispatching     1555328
+[    5.098446] [i/o][sstf] adding          530776
+[    5.098545] [i/o][sstf] adding          520
+[    5.098546] [i/o][sstf] dispatching     520
+[    5.098974] [i/o][sstf] adding          4581304
+[    5.099168] [i/o][sstf] dispatching     530776
+[    5.099722] [i/o][sstf] adding          131080
+[    5.099868] [i/o][sstf] dispatching     131080
+[    5.100039] [i/o][sstf] adding          2537960
+[    5.100170] [i/o][sstf] dispatching     2537960
+[    5.100234] [i/o][sstf] adding          4104
+[    5.100371] [i/o][sstf] dispatching     4104
+[    5.100828] [i/o][sstf] adding          537184
+[    5.100932] [i/o][sstf] adding          2538032
+[    5.100933] [i/o][sstf] dispatching     537184
+[    5.101146] [i/o][sstf] dispatching     2538032
+[    5.102090] [i/o][sstf] adding          4594616
+[    5.102232] [i/o][sstf] dispatching     4581304
+[    5.102244] [i/o][sstf] adding          2538784
+[    5.102372] [i/o][sstf] dispatching     2538816
+[    5.102380] [i/o][sstf] adding          2538824
+[    5.102513] [i/o][sstf] dispatching     2538888
+[    5.102518] [i/o][sstf] adding          2538896
+[    5.102674] [i/o][sstf] dispatching     2538912
+[    5.104195] [i/o][sstf] dispatching     4594616
+[    5.104241] [i/o][sstf] adding          2538024
+[    5.104242] [i/o][sstf] adding          2538192
+[    5.104372] [i/o][sstf] dispatching     2538024
+[    5.105878] [i/o][sstf] adding          537224
+[    5.106057] [i/o][sstf] dispatching     537224
+[    5.106269] [i/o][sstf] adding          1555296
+[    5.106270] [i/o][sstf] adding          1555320
+[    5.106402] [i/o][sstf] dispatching     1555296
+[    5.106431] [i/o][sstf] adding          2538776
+[    5.106585] [i/o][sstf] dispatching     1555320
+[    5.107157] [i/o][sstf] dispatching     2538448
+[    5.110285] [i/o][sstf] dispatching     2538776
+[    5.110592] [i/o][sstf] adding          4595064
+[    5.110805] [i/o][sstf] dispatching     4595064
+[    5.111556] [i/o][sstf] adding          271248
+[    5.111698] [i/o][sstf] dispatching     271248
+[    5.113491] [i/o][sstf] adding          274072
+[    5.113493] [i/o][sstf] dispatching     274072
+[    5.122960] [i/o][sstf] adding          4588480
+[    5.122962] [i/o][sstf] dispatching     4588480
+[    5.123750] [i/o][sstf] adding          4588552
+[    5.123752] [i/o][sstf] dispatching     4588552
+[    5.124070] [i/o][sstf] adding          4588584
+[    5.124071] [i/o][sstf] dispatching     4588584
+[    5.124244] [i/o][sstf] adding          1693424
+[    5.124245] [i/o][sstf] dispatching     1693424
+[    5.125165] [i/o][sstf] adding          1693440
+[    5.125167] [i/o][sstf] dispatching     1693440
+[    5.125611] [i/o][sstf] adding          537192
+[    5.125613] [i/o][sstf] dispatching     537192
+[    5.139371] [i/o][sstf] adding          4582496
+[    5.139373] [i/o][sstf] dispatching     4582496
+[    5.140418] [i/o][sstf] adding          4582568
+[    5.140419] [i/o][sstf] dispatching     4582568
+[    5.140995] [i/o][sstf] adding          4583624
+[    5.140997] [i/o][sstf] dispatching     4583624
+[    5.141123] [i/o][sstf] adding          4480
+[    5.141124] [i/o][sstf] dispatching     4480
+[    5.141537] [i/o][sstf] adding          4582560
+[    5.141538] [i/o][sstf] adding          4582760
+[    5.141665] [i/o][sstf] dispatching     4582560
+[    5.141848] [i/o][sstf] adding          460120
+[    5.141994] [i/o][sstf] dispatching     460120
+[    5.144193] [i/o][sstf] dispatching     4583016
+[    5.144670] [i/o][sstf] adding          460128
+[    5.145118] [i/o][sstf] dispatching     460128
+[    5.147439] [i/o][sstf] adding          4528
+[    5.147440] [i/o][sstf] dispatching     4528
+[    5.147885] [i/o][sstf] adding          460912
+[    5.147886] [i/o][sstf] dispatching     460912
+[    5.149073] [i/o][sstf] adding          4583488
+[    5.149075] [i/o][sstf] dispatching     4583488
+[    5.152178] [i/o][sstf] adding          4583320
+[    5.152180] [i/o][sstf] dispatching     4583320
+[    5.153788] [i/o][sstf] adding          31368
+[    5.153790] [i/o][sstf] dispatching     31368
+[    5.160331] [i/o][sstf] adding          31376
+[    5.160333] [i/o][sstf] dispatching     31376
+[    5.161033] [i/o][sstf] adding          537336
+[    5.161035] [i/o][sstf] dispatching     537336
+[    5.161670] [i/o][sstf] adding          4628656
+[    5.161671] [i/o][sstf] dispatching     4628656
+[    5.161941] [i/o][sstf] adding          273992
+[    5.161943] [i/o][sstf] dispatching     273992
+[    5.163058] [i/o][sstf] adding          1659776
+[    5.163060] [i/o][sstf] dispatching     1659776
+[    5.163355] [i/o][sstf] adding          1659824
+[    5.163357] [i/o][sstf] dispatching     1659824
+[    5.165200] [i/o][sstf] adding          4593368
+[    5.165202] [i/o][sstf] dispatching     4593368
+[    5.168320] [i/o][sstf] adding          4593768
+[    5.168322] [i/o][sstf] dispatching     4593768
+[    5.168615] [i/o][sstf] adding          4589016
+[    5.168617] [i/o][sstf] dispatching     4589016
+[    5.170362] [i/o][sstf] adding          4589032
+[    5.170364] [i/o][sstf] dispatching     4589032
+[    5.171887] [i/o][sstf] adding          2538528
+[    5.171888] [i/o][sstf] dispatching     2538528
+[    5.172521] [i/o][sstf] adding          4577824
+[    5.172523] [i/o][sstf] dispatching     4577824
+[    5.173080] [i/o][sstf] adding          4577896
+[    5.173081] [i/o][sstf] dispatching     4577896
+[    5.173696] [i/o][sstf] adding          4577960
+[    5.173697] [i/o][sstf] dispatching     4577960
+[    5.174595] [i/o][sstf] adding          536736
+[    5.174596] [i/o][sstf] dispatching     536736
+[    5.174732] [i/o][sstf] adding          4032488
+[    5.174733] [i/o][sstf] dispatching     4032488
+[    5.174863] [i/o][sstf] adding          536760
+[    5.174864] [i/o][sstf] dispatching     536760
+[    5.174986] [i/o][sstf] adding          4134256
+[    5.174987] [i/o][sstf] dispatching     4134256
+[    5.176300] [i/o][sstf] adding          4849672
+[    5.176302] [i/o][sstf] dispatching     4849672
+[    5.177536] [i/o][sstf] adding          271256
+[    5.177538] [i/o][sstf] dispatching     271256
+[    5.178073] [i/o][sstf] adding          4579064
+[    5.178074] [i/o][sstf] dispatching     4579064
+[    5.178159] [i/o][sstf] adding          274032
+[    5.178165] [i/o][sstf] dispatching     274032
+[    5.178581] [i/o][sstf] adding          4579136
+[    5.178706] [i/o][sstf] dispatching     4579136
+[    5.178748] [i/o][sstf] adding          1679544
+[    5.178887] [i/o][sstf] dispatching     1679544
+[    5.178895] [i/o][sstf] adding          4579192
+[    5.179009] [i/o][sstf] dispatching     4579192
+[    5.179083] [i/o][sstf] adding          1679616
+[    5.179221] [i/o][sstf] dispatching     1679616
+[    5.179451] [i/o][sstf] adding          4718600
+[    5.179591] [i/o][sstf] dispatching     4718600
+[    5.179597] [i/o][sstf] adding          1679632
+[    5.179712] [i/o][sstf] dispatching     1679632
+[    5.179724] [i/o][sstf] adding          4718608
+[    5.179839] [i/o][sstf] dispatching     4718608
+[    5.183129] [i/o][sstf] adding          4584456
+[    5.183131] [i/o][sstf] dispatching     4584456
+[    5.184195] [i/o][sstf] adding          4584528
+[    5.184197] [i/o][sstf] dispatching     4584528
+[    5.185069] [i/o][sstf] adding          4584592
+[    5.185070] [i/o][sstf] dispatching     4584592
+[    5.186204] [i/o][sstf] adding          4593528
+[    5.186205] [i/o][sstf] dispatching     4593528
+[    5.186385] [i/o][sstf] adding          273960
+[    5.186386] [i/o][sstf] dispatching     273960
+[    5.187112] [i/o][sstf] adding          273784
+[    5.187113] [i/o][sstf] dispatching     273784
+[    5.187338] [i/o][sstf] adding          1528056
+[    5.187340] [i/o][sstf] dispatching     1528056
+[    5.187417] [i/o][sstf] adding          273816
+[    5.187418] [i/o][sstf] dispatching     273816
+[    5.188083] [i/o][sstf] adding          1528128
+[    5.188210] [i/o][sstf] dispatching     1528128
+[    5.188228] [i/o][sstf] adding          274208
+[    5.188363] [i/o][sstf] dispatching     274208
+[    5.188601] [i/o][sstf] adding          1528144
+[    5.188724] [i/o][sstf] dispatching     1528144
+[    5.188770] [i/o][sstf] adding          1745896
+[    5.188854] [i/o][sstf] adding          274152
+[    5.188855] [i/o][sstf] dispatching     274152
+[    5.189256] [i/o][sstf] adding          4593288
+[    5.189378] [i/o][sstf] dispatching     1745896
+[    5.189429] [i/o][sstf] adding          1752136
+[    5.189554] [i/o][sstf] dispatching     1752136
+[    5.189607] [i/o][sstf] adding          1745968
+[    5.189729] [i/o][sstf] dispatching     1745968
+[    5.189780] [i/o][sstf] adding          1752208
+[    5.189910] [i/o][sstf] dispatching     1752208
+[    5.189915] [i/o][sstf] adding          1745976
+[    5.190010] [i/o][sstf] dispatching     1745976
+[    5.190123] [i/o][sstf] adding          1752688
+[    5.190124] [i/o][sstf] dispatching     1752688
+[    5.193194] [i/o][sstf] dispatching     4593288
+[    5.193409] [i/o][sstf] adding          1752200
+[    5.193411] [i/o][sstf] adding          1752400
+[    5.193539] [i/o][sstf] dispatching     1752200
+[    5.193901] [i/o][sstf] adding          273808
+[    5.194045] [i/o][sstf] dispatching     273808
+[    5.196136] [i/o][sstf] dispatching     1752552
+[    5.196306] [i/o][sstf] adding          1539856
+[    5.196527] [i/o][sstf] dispatching     1539856
+[    5.206601] [i/o][sstf] adding          1539904
+[    5.206603] [i/o][sstf] dispatching     1539904
+[    5.207869] [i/o][sstf] adding          4577320
+[    5.207870] [i/o][sstf] dispatching     4577320
+[    5.208164] [i/o][sstf] adding          4577392
+[    5.208166] [i/o][sstf] dispatching     4577392
+[    5.208393] [i/o][sstf] adding          4577616
+[    5.208395] [i/o][sstf] dispatching     4577616
+[    5.208681] [i/o][sstf] adding          4577384
+[    5.208682] [i/o][sstf] adding          4577480
+[    5.208683] [i/o][sstf] dispatching     4577384
+[    5.208819] [i/o][sstf] dispatching     4577480
+[    5.213657] [i/o][sstf] adding          4866064
+[    5.213659] [i/o][sstf] dispatching     4866064
+[    5.214477] [i/o][sstf] adding          4579480
+[    5.214479] [i/o][sstf] dispatching     4579480
+[    5.214664] [i/o][sstf] adding          4579552
+[    5.214666] [i/o][sstf] dispatching     4579552
+[    5.214816] [i/o][sstf] adding          4579624
+[    5.214817] [i/o][sstf] dispatching     4579624
+[    5.215697] [i/o][sstf] adding          4578912
+[    5.215698] [i/o][sstf] dispatching     4578912
+[    5.215880] [i/o][sstf] adding          4578984
+[    5.215881] [i/o][sstf] dispatching     4578984
+[    5.216054] [i/o][sstf] adding          4579032
+[    5.216055] [i/o][sstf] dispatching     4579032
+[    5.226745] [i/o][sstf] adding          4581040
+[    5.226748] [i/o][sstf] dispatching     4581040
+[    5.226990] [i/o][sstf] adding          4581112
+[    5.226991] [i/o][sstf] dispatching     4581112
+[    5.227169] [i/o][sstf] adding          4581176
+[    5.227170] [i/o][sstf] dispatching     4581176
+[    5.244074] [i/o][sstf] adding          4593408
+[    5.244077] [i/o][sstf] dispatching     4593408
+[    5.244339] [i/o][sstf] adding          4594304
+[    5.244341] [i/o][sstf] dispatching     4594304
+[    5.247124] [i/o][sstf] adding          4593352
+[    5.247126] [i/o][sstf] dispatching     4593352
+[    5.247564] [i/o][sstf] adding          4581208
+[    5.247566] [i/o][sstf] dispatching     4581208
+[    5.247800] [i/o][sstf] adding          4581280
+[    5.247801] [i/o][sstf] dispatching     4581280
+[    5.247986] [i/o][sstf] adding          4581288
+[    5.247987] [i/o][sstf] dispatching     4581288
+[    5.253781] [i/o][sstf] adding          4593752
+[    5.253783] [i/o][sstf] dispatching     4593752
+[    5.258806] [i/o][sstf] adding          4440
+[    5.258808] [i/o][sstf] dispatching     4440
+[    5.258964] [i/o][sstf] adding          4134224
+[    5.258965] [i/o][sstf] dispatching     4134224
+[    5.259647] [i/o][sstf] adding          4593512
+[    5.259649] [i/o][sstf] dispatching     4593512
+[    5.259964] [i/o][sstf] adding          427064
+[    5.259965] [i/o][sstf] dispatching     427064
+[    5.260245] [i/o][sstf] adding          427136
+[    5.260246] [i/o][sstf] dispatching     427136
+[    5.260440] [i/o][sstf] adding          427240
+[    5.260442] [i/o][sstf] dispatching     427240
+[    5.260690] [i/o][sstf] adding          427096
+[    5.260692] [i/o][sstf] dispatching     427096
+[    5.260792] [i/o][sstf] adding          536688
+[    5.260794] [i/o][sstf] dispatching     536688
+[    5.260818] [i/o][sstf] adding          4589064
+[    5.263185] [i/o][sstf] dispatching     4589064
+[    5.263221] [i/o][sstf] adding          530688
+[    5.263388] [i/o][sstf] dispatching     530688
+[    5.264746] [i/o][sstf] adding          4594768
+[    5.264919] [i/o][sstf] dispatching     4594768
+[    5.264942] [i/o][sstf] adding          2485336
+[    5.265103] [i/o][sstf] dispatching     2485336
+[    5.265942] [i/o][sstf] adding          4593360
+[    5.266032] [i/o][sstf] dispatching     4593360
+[    5.266154] [i/o][sstf] adding          2485408
+[    5.266318] [i/o][sstf] dispatching     2485408
+[    5.269207] [i/o][sstf] adding          2487664
+[    5.269209] [i/o][sstf] dispatching     2487664
+[    5.269482] [i/o][sstf] adding          2485400
+[    5.269483] [i/o][sstf] adding          2485600
+[    5.269484] [i/o][sstf] dispatching     2485400
+[    5.269617] [i/o][sstf] dispatching     2485600
+[    5.270157] [i/o][sstf] adding          32960
+[    5.270335] [i/o][sstf] dispatching     32960
+[    5.270734] [i/o][sstf] adding          2485856
+[    5.270865] [i/o][sstf] dispatching     2485856
+[    5.270981] [i/o][sstf] adding          2487000
+[    5.271176] [i/o][sstf] dispatching     2487000
+[    5.271213] [i/o][sstf] adding          4618944
+[    5.271385] [i/o][sstf] dispatching     4618944
+[    5.271502] [i/o][sstf] adding          4134232
+[    5.271632] [i/o][sstf] dispatching     4134232
+[    5.271658] [i/o][sstf] adding          4619016
+[    5.271777] [i/o][sstf] dispatching     4619016
+[    5.272651] [i/o][sstf] adding          4619048
+[    5.272652] [i/o][sstf] dispatching     4619048
+[    5.273050] [i/o][sstf] adding          4590872
+[    5.273052] [i/o][sstf] dispatching     4590872
+[    5.273498] [i/o][sstf] adding          4593672
+[    5.273499] [i/o][sstf] dispatching     4593672
+[    5.274412] [i/o][sstf] adding          1448
+[    5.274414] [i/o][sstf] dispatching     1448
+[    5.275824] [i/o][sstf] adding          537208
+[    5.275825] [i/o][sstf] dispatching     537208
+[    5.276718] [i/o][sstf] adding          4637944
+[    5.276719] [i/o][sstf] dispatching     4637944
+[    5.280066] [i/o][sstf] adding          537112
+[    5.280068] [i/o][sstf] dispatching     537112
+[    5.280303] [i/o][sstf] adding          4593816
+[    5.280305] [i/o][sstf] dispatching     4593816
+[    5.281215] [i/o][sstf] adding          4593424
+[    5.281217] [i/o][sstf] dispatching     4593424
+[    5.283768] [i/o][sstf] adding          4594624
+[    5.283770] [i/o][sstf] dispatching     4594624
+[    5.285251] [i/o][sstf] adding          4594632
+[    5.285252] [i/o][sstf] dispatching     4594632
+[    5.285445] [i/o][sstf] adding          4594640
+[    5.285446] [i/o][sstf] dispatching     4594640
+[    5.286564] [i/o][sstf] adding          4594648
+[    5.286566] [i/o][sstf] dispatching     4594648
+[    5.288621] [i/o][sstf] adding          34544
+[    5.288623] [i/o][sstf] dispatching     34544
+[    5.288826] [i/o][sstf] adding          34616
+[    5.288828] [i/o][sstf] dispatching     34616
+[    5.288975] [i/o][sstf] adding          34664
+[    5.288976] [i/o][sstf] dispatching     34664
+[    5.290697] [i/o][sstf] adding          4594672
+[    5.290699] [i/o][sstf] dispatching     4594672
+[    5.291255] [i/o][sstf] adding          537120
+[    5.291257] [i/o][sstf] dispatching     537120
+[    5.291663] [i/o][sstf] adding          4593432
+[    5.291664] [i/o][sstf] dispatching     4593432
+[    5.297610] [i/o][sstf] adding          274224
+[    5.297612] [i/o][sstf] dispatching     274224
+[    5.297860] [i/o][sstf] adding          1748064
+[    5.297861] [i/o][sstf] dispatching     1748064
+[    5.298120] [i/o][sstf] adding          528912
+[    5.298121] [i/o][sstf] dispatching     528912
+[    5.298268] [i/o][sstf] adding          533904
+[    5.298269] [i/o][sstf] dispatching     533904
+[    5.298396] [i/o][sstf] adding          3767824
+[    5.298397] [i/o][sstf] dispatching     3767824
+[    5.298544] [i/o][sstf] adding          3767896
+[    5.298545] [i/o][sstf] dispatching     3767896
+[    5.298674] [i/o][sstf] adding          3768544
+[    5.298675] [i/o][sstf] dispatching     3768544
+[    5.298844] [i/o][sstf] adding          3767888
+[    5.298845] [i/o][sstf] adding          3768056
+[    5.298846] [i/o][sstf] dispatching     3767888
+[    5.298974] [i/o][sstf] dispatching     3768056
+[    5.299125] [i/o][sstf] adding          3768312
+[    5.299278] [i/o][sstf] dispatching     3768312
+[    5.301248] [i/o][sstf] adding          4032536
+[    5.301249] [i/o][sstf] dispatching     4032536
+[    5.301385] [i/o][sstf] adding          5242904
+[    5.301386] [i/o][sstf] dispatching     5242904
+[    5.301516] [i/o][sstf] adding          5390344
+[    5.301517] [i/o][sstf] dispatching     5390344
+[    5.302629] [i/o][sstf] adding          1632072
+[    5.302631] [i/o][sstf] dispatching     1632072
+[    5.302818] [i/o][sstf] adding          1632144
+[    5.302820] [i/o][sstf] dispatching     1632144
+[    5.302950] [i/o][sstf] adding          1633144
+[    5.302951] [i/o][sstf] dispatching     1633144
+[    5.303183] [i/o][sstf] adding          536440
+[    5.303184] [i/o][sstf] dispatching     536440
+[    5.303321] [i/o][sstf] adding          530856
+[    5.303322] [i/o][sstf] dispatching     530856
+[    5.303445] [i/o][sstf] adding          2769112
+[    5.303446] [i/o][sstf] dispatching     2769112
+[    5.303587] [i/o][sstf] adding          2769184
+[    5.303588] [i/o][sstf] dispatching     2769184
+[    5.303712] [i/o][sstf] adding          2769432
+[    5.303713] [i/o][sstf] dispatching     2769432
+[    5.303879] [i/o][sstf] adding          2769176
+[    5.303881] [i/o][sstf] adding          2769296
+[    5.303881] [i/o][sstf] dispatching     2769176
+[    5.304007] [i/o][sstf] dispatching     2769296
+[    5.304042] [i/o][sstf] adding          1632136
+[    5.304043] [i/o][sstf] adding          1632336
+[    5.304181] [i/o][sstf] dispatching     1632136
+[    5.304336] [i/o][sstf] adding          1632848
+[    5.304464] [i/o][sstf] dispatching     1632336
+[    5.306168] [i/o][sstf] dispatching     1632848
+[    5.309211] [i/o][sstf] adding          1632592
+[    5.309212] [i/o][sstf] dispatching     1632592
+[    5.309451] [i/o][sstf] adding          1633008
+[    5.309453] [i/o][sstf] dispatching     1633008
+[    5.309566] [i/o][sstf] adding          536944
+[    5.309567] [i/o][sstf] dispatching     536944
+[    5.312146] [i/o][sstf] adding          4590928
+[    5.312147] [i/o][sstf] dispatching     4590928
+[    5.312293] [i/o][sstf] adding          4591016
+[    5.312294] [i/o][sstf] dispatching     4591016
+[    5.312563] [i/o][sstf] adding          4590936
+[    5.312565] [i/o][sstf] dispatching     4590936
+[    5.312714] [i/o][sstf] adding          4590944
+[    5.312715] [i/o][sstf] dispatching     4590944
+[    5.312889] [i/o][sstf] adding          4590992
+[    5.312891] [i/o][sstf] dispatching     4590992
+[    5.313550] [i/o][sstf] adding          4591000
+[    5.313551] [i/o][sstf] dispatching     4591000
+[    5.313727] [i/o][sstf] adding          4590960
+[    5.313728] [i/o][sstf] dispatching     4590960
+[    5.313927] [i/o][sstf] adding          4590952
+[    5.313928] [i/o][sstf] dispatching     4590952
+[    5.314168] [i/o][sstf] adding          4590968
+[    5.314170] [i/o][sstf] dispatching     4590968
+[    5.314358] [i/o][sstf] adding          4590976
+[    5.314359] [i/o][sstf] dispatching     4590976
+[    5.314714] [i/o][sstf] adding          1632384
+[    5.314715] [i/o][sstf] dispatching     1632384
+[    5.314798] [i/o][sstf] adding          1752800
+[    5.314799] [i/o][sstf] dispatching     1752800
+[    5.317162] [i/o][sstf] adding          6424
+[    5.317164] [i/o][sstf] dispatching     6424
+[    5.317290] [i/o][sstf] adding          645944
+[    5.317291] [i/o][sstf] dispatching     645944
+[    5.317416] [i/o][sstf] adding          646048
+[    5.317417] [i/o][sstf] dispatching     646048
+[    5.317556] [i/o][sstf] adding          6432
+[    5.317557] [i/o][sstf] dispatching     6432
+[    5.317684] [i/o][sstf] adding          646064
+[    5.317685] [i/o][sstf] dispatching     646064
+[    5.317826] [i/o][sstf] adding          646080
+[    5.317827] [i/o][sstf] dispatching     646080
+[    5.317968] [i/o][sstf] adding          646056
+[    5.317969] [i/o][sstf] dispatching     646056
+[    5.318134] [i/o][sstf] adding          646072
+[    5.318135] [i/o][sstf] dispatching     646072
+[    5.319046] [i/o][sstf] adding          4593552
+[    5.319048] [i/o][sstf] dispatching     4593552
+[    5.320887] [i/o][sstf] adding          530664
+[    5.320888] [i/o][sstf] dispatching     530664
+[    5.321060] [i/o][sstf] adding          2484904
+[    5.321061] [i/o][sstf] dispatching     2484904
+[    5.321243] [i/o][sstf] adding          530680
+[    5.321244] [i/o][sstf] dispatching     530680
+[    5.321409] [i/o][sstf] adding          2485296
+[    5.321410] [i/o][sstf] dispatching     2485296
+[    5.323254] [i/o][sstf] adding          536752
+[    5.323256] [i/o][sstf] dispatching     536752
+[    5.323393] [i/o][sstf] adding          4134160
+[    5.323395] [i/o][sstf] dispatching     4134160
+[    5.323682] [i/o][sstf] adding          4424
+[    5.323683] [i/o][sstf] dispatching     4424
+[    5.323819] [i/o][sstf] adding          416480
+[    5.323820] [i/o][sstf] dispatching     416480
+[    5.323984] [i/o][sstf] adding          416552
+[    5.323985] [i/o][sstf] dispatching     416552
+[    5.324132] [i/o][sstf] adding          418584
+[    5.324133] [i/o][sstf] dispatching     418584
+[    5.324341] [i/o][sstf] adding          416544
+[    5.324343] [i/o][sstf] adding          416712
+[    5.324343] [i/o][sstf] dispatching     416544
+[    5.324483] [i/o][sstf] dispatching     416712
+[    5.324517] [i/o][sstf] adding          529216
+[    5.324668] [i/o][sstf] dispatching     529216
+[    5.327209] [i/o][sstf] adding          529120
+[    5.327211] [i/o][sstf] dispatching     529120
+[    5.327395] [i/o][sstf] adding          2203224
+[    5.327397] [i/o][sstf] dispatching     2203224
+[    5.327579] [i/o][sstf] adding          2203296
+[    5.327580] [i/o][sstf] dispatching     2203296
+[    5.327745] [i/o][sstf] adding          2205984
+[    5.327746] [i/o][sstf] dispatching     2205984
+[    5.327933] [i/o][sstf] adding          2203288
+[    5.327934] [i/o][sstf] adding          2203472
+[    5.327935] [i/o][sstf] dispatching     2203288
+[    5.328058] [i/o][sstf] dispatching     2203472
+[    5.331250] [i/o][sstf] adding          536488
+[    5.331252] [i/o][sstf] dispatching     536488
+[    5.331388] [i/o][sstf] adding          529560
+[    5.331389] [i/o][sstf] dispatching     529560
+[    5.331515] [i/o][sstf] adding          2336448
+[    5.331516] [i/o][sstf] dispatching     2336448
+[    5.331662] [i/o][sstf] adding          2336520
+[    5.331663] [i/o][sstf] dispatching     2336520
+[    5.331798] [i/o][sstf] adding          2336528
+[    5.331799] [i/o][sstf] dispatching     2336528
+[    5.331940] [i/o][sstf] adding          529648
+[    5.331941] [i/o][sstf] dispatching     529648
+[    5.332082] [i/o][sstf] adding          528864
+[    5.332083] [i/o][sstf] dispatching     528864
+[    5.332216] [i/o][sstf] adding          2116384
+[    5.332217] [i/o][sstf] dispatching     2116384
+[    5.332415] [i/o][sstf] adding          2116456
+[    5.332416] [i/o][sstf] dispatching     2116456
+[    5.332603] [i/o][sstf] adding          2118976
+[    5.332605] [i/o][sstf] dispatching     2118976
+[    5.332789] [i/o][sstf] adding          2116448
+[    5.332790] [i/o][sstf] adding          2116616
+[    5.332791] [i/o][sstf] dispatching     2116448
+[    5.332940] [i/o][sstf] dispatching     2116616
+[    5.335253] [i/o][sstf] adding          4637624
+[    5.335255] [i/o][sstf] dispatching     4637624
+[    5.335464] [i/o][sstf] adding          4637696
+[    5.335466] [i/o][sstf] dispatching     4637696
+[    5.335655] [i/o][sstf] adding          4637768
+[    5.335657] [i/o][sstf] dispatching     4637768
+[    5.335963] [i/o][sstf] adding          529632
+[    5.335964] [i/o][sstf] dispatching     529632
+[    5.336173] [i/o][sstf] adding          2384792
+[    5.336175] [i/o][sstf] dispatching     2384792
+[    5.336330] [i/o][sstf] adding          2384864
+[    5.336331] [i/o][sstf] dispatching     2384864
+[    5.336472] [i/o][sstf] adding          2385224
+[    5.336473] [i/o][sstf] dispatching     2385224
+[    5.336652] [i/o][sstf] adding          530744
+[    5.336654] [i/o][sstf] dispatching     530744
+[    5.336795] [i/o][sstf] adding          278600
+[    5.336796] [i/o][sstf] dispatching     278600
+[    5.336926] [i/o][sstf] adding          1950968
+[    5.336928] [i/o][sstf] dispatching     1950968
+[    5.337074] [i/o][sstf] adding          1951040
+[    5.337076] [i/o][sstf] dispatching     1951040
+[    5.337206] [i/o][sstf] adding          1951344
+[    5.337207] [i/o][sstf] dispatching     1951344
+[    5.337465] [i/o][sstf] adding          2116872
+[    5.337467] [i/o][sstf] dispatching     2116872
+[    5.337673] [i/o][sstf] adding          416968
+[    5.337675] [i/o][sstf] dispatching     416968
+[    5.337872] [i/o][sstf] adding          2384856
+[    5.337873] [i/o][sstf] adding          2385056
+[    5.337874] [i/o][sstf] dispatching     2384856
+[    5.337999] [i/o][sstf] dispatching     2385056
+[    5.338022] [i/o][sstf] adding          2385088
+[    5.338131] [i/o][sstf] adding          1951032
+[    5.338132] [i/o][sstf] adding          1951208
+[    5.338133] [i/o][sstf] dispatching     1951032
+[    5.340149] [i/o][sstf] dispatching     1951208
+[    5.343164] [i/o][sstf] dispatching     2385088
+[    5.346218] [i/o][sstf] adding          2118272
+[    5.346220] [i/o][sstf] dispatching     2118272
+[    5.346461] [i/o][sstf] adding          2118400
+[    5.346462] [i/o][sstf] dispatching     2118400
+[    5.346635] [i/o][sstf] adding          2117144
+[    5.346636] [i/o][sstf] dispatching     2117144
+[    5.346830] [i/o][sstf] adding          2118656
+[    5.346831] [i/o][sstf] dispatching     2118656
+[    5.349049] [i/o][sstf] adding          2117856
+[    5.349051] [i/o][sstf] dispatching     2117856
+[    5.349268] [i/o][sstf] adding          2204888
+[    5.349269] [i/o][sstf] dispatching     2204888
+[    5.349459] [i/o][sstf] adding          417872
+[    5.349461] [i/o][sstf] dispatching     417872
+[    5.349654] [i/o][sstf] adding          2204032
+[    5.349655] [i/o][sstf] dispatching     2204032
+[    5.349834] [i/o][sstf] adding          2204208
+[    5.349836] [i/o][sstf] dispatching     2204208
+[    5.350017] [i/o][sstf] adding          2204400
+[    5.350018] [i/o][sstf] dispatching     2204400
+[    5.350194] [i/o][sstf] adding          2204552
+[    5.350195] [i/o][sstf] dispatching     2204552
+[    5.350364] [i/o][sstf] adding          2203768
+[    5.350366] [i/o][sstf] dispatching     2203768
+[    5.350545] [i/o][sstf] adding          2203776
+[    5.350546] [i/o][sstf] dispatching     2203776
+[    5.351238] [i/o][sstf] adding          4593344
+[    5.351240] [i/o][sstf] dispatching     4593344
+[    5.352394] [i/o][sstf] adding          2203512
+[    5.352395] [i/o][sstf] dispatching     2203512
+[    5.352550] [i/o][sstf] adding          2205600
+[    5.352552] [i/o][sstf] dispatching     2205600
+[    5.352788] [i/o][sstf] adding          3768408
+[    5.352790] [i/o][sstf] dispatching     3768408
+[    5.353792] [i/o][sstf] adding          418040
+[    5.353794] [i/o][sstf] dispatching     418040
+[    5.354251] [i/o][sstf] adding          417552
+[    5.354252] [i/o][sstf] dispatching     417552
+[    5.354462] [i/o][sstf] adding          2205016
+[    5.354463] [i/o][sstf] dispatching     2205016
+[    5.354626] [i/o][sstf] adding          9040
+[    5.354627] [i/o][sstf] dispatching     9040
+[    5.354759] [i/o][sstf] adding          809728
+[    5.354760] [i/o][sstf] dispatching     809728
+[    5.354900] [i/o][sstf] adding          2205320
+[    5.354901] [i/o][sstf] dispatching     2205320
+[    5.355119] [i/o][sstf] adding          536264
+[    5.355121] [i/o][sstf] dispatching     536264
+[    5.355254] [i/o][sstf] adding          3949496
+[    5.355255] [i/o][sstf] dispatching     3949496
+[    5.355430] [i/o][sstf] adding          3959736
+[    5.355431] [i/o][sstf] dispatching     3959736
+[    5.355563] [i/o][sstf] adding          536328
+[    5.355564] [i/o][sstf] dispatching     536328
+[    5.355693] [i/o][sstf] adding          3955840
+[    5.355694] [i/o][sstf] dispatching     3955840
+[    5.355877] [i/o][sstf] adding          3955904
+[    5.355878] [i/o][sstf] dispatching     3955904
+[    5.356241] [i/o][sstf] adding          3955912
+[    5.356243] [i/o][sstf] dispatching     3955912
+[    5.356362] [i/o][sstf] adding          3955928
+[    5.356364] [i/o][sstf] dispatching     3955928
+[    5.358281] [i/o][sstf] adding          417216
+[    5.358283] [i/o][sstf] dispatching     417216
+[    5.361065] [i/o][sstf] adding          4734984
+[    5.361067] [i/o][sstf] dispatching     4734984
+[    5.361569] [i/o][sstf] adding          4392
+[    5.361571] [i/o][sstf] dispatching     4392
+[    5.361699] [i/o][sstf] adding          2205064
+[    5.361700] [i/o][sstf] dispatching     2205064
+[    5.361886] [i/o][sstf] adding          4947984
+[    5.361888] [i/o][sstf] dispatching     4947984
+[    5.362063] [i/o][sstf] adding          4734352
+[    5.362065] [i/o][sstf] dispatching     4734352
+[    5.362206] [i/o][sstf] adding          2637296
+[    5.362207] [i/o][sstf] dispatching     2637296
+[    5.362335] [i/o][sstf] adding          2637288
+[    5.362336] [i/o][sstf] adding          2637344
+[    5.362337] [i/o][sstf] dispatching     2637288
+[    5.362474] [i/o][sstf] dispatching     2637344
+[    5.363213] [i/o][sstf] adding          389832
+[    5.363362] [i/o][sstf] dispatching     389832
+[    5.363548] [i/o][sstf] adding          389904
+[    5.364226] [i/o][sstf] dispatching     389904
+[    5.364286] [i/o][sstf] adding          417296
+[    5.364410] [i/o][sstf] dispatching     417296
+[    5.364474] [i/o][sstf] adding          417616
+[    5.364552] [i/o][sstf] adding          391544
+[    5.364553] [i/o][sstf] dispatching     391544
+[    5.367154] [i/o][sstf] dispatching     417616
+[    5.367234] [i/o][sstf] adding          389896
+[    5.367235] [i/o][sstf] adding          390096
+[    5.367331] [i/o][sstf] adding          4636664
+[    5.367332] [i/o][sstf] dispatching     389896
+[    5.367472] [i/o][sstf] adding          4488
+[    5.367604] [i/o][sstf] dispatching     4488
+[    5.370133] [i/o][sstf] dispatching     390096
+[    5.370153] [i/o][sstf] adding          460248
+[    5.370340] [i/o][sstf] dispatching     460248
+[    5.373170] [i/o][sstf] dispatching     4636664
+[    5.373216] [i/o][sstf] adding          4496
+[    5.373340] [i/o][sstf] dispatching     4496
+[    5.373365] [i/o][sstf] adding          4636712
+[    5.373482] [i/o][sstf] dispatching     4636712
+[    5.373495] [i/o][sstf] adding          460320
+[    5.373618] [i/o][sstf] dispatching     460320
+[    5.373659] [i/o][sstf] adding          4618576
+[    5.373776] [i/o][sstf] dispatching     4618576
+[    5.373806] [i/o][sstf] adding          4504
+[    5.373928] [i/o][sstf] dispatching     4504
+[    5.373952] [i/o][sstf] adding          4618648
+[    5.374092] [i/o][sstf] dispatching     4618648
+[    5.374108] [i/o][sstf] adding          460480
+[    5.374242] [i/o][sstf] dispatching     460480
+[    5.374248] [i/o][sstf] adding          4618672
+[    5.374360] [i/o][sstf] dispatching     4618672
+[    5.374402] [i/o][sstf] adding          460512
+[    5.374521] [i/o][sstf] dispatching     460512
+[    5.374551] [i/o][sstf] adding          4629648
+[    5.374667] [i/o][sstf] dispatching     4629648
+[    5.374699] [i/o][sstf] adding          460528
+[    5.374819] [i/o][sstf] dispatching     460528
+[    5.374840] [i/o][sstf] adding          4629720
+[    5.374954] [i/o][sstf] dispatching     4629720
+[    5.374978] [i/o][sstf] adding          4512
+[    5.375109] [i/o][sstf] dispatching     4512
+[    5.375119] [i/o][sstf] adding          4633784
+[    5.375236] [i/o][sstf] dispatching     4633784
+[    5.375265] [i/o][sstf] adding          4520
+[    5.375400] [i/o][sstf] dispatching     4520
+[    5.375436] [i/o][sstf] adding          4630040
+[    5.375565] [i/o][sstf] dispatching     4630040
+[    5.375586] [i/o][sstf] adding          460688
+[    5.375772] [i/o][sstf] dispatching     460688
+[    5.375849] [i/o][sstf] adding          4618768
+[    5.375968] [i/o][sstf] dispatching     4618768
+[    5.376527] [i/o][sstf] adding          2484912
+[    5.376528] [i/o][sstf] dispatching     2484912
+[    5.381694] [i/o][sstf] adding          4618816
+[    5.381696] [i/o][sstf] dispatching     4618816
+[    5.381998] [i/o][sstf] adding          4629712
+[    5.382000] [i/o][sstf] adding          4629784
+[    5.382001] [i/o][sstf] dispatching     4629712
+[    5.382148] [i/o][sstf] dispatching     4629784
+[    5.382213] [i/o][sstf] adding          4633648
+[    5.382336] [i/o][sstf] dispatching     4633648
+[    5.382546] [i/o][sstf] adding          278760
+[    5.382697] [i/o][sstf] dispatching     278760
+[    5.382769] [i/o][sstf] adding          4630296
+[    5.382883] [i/o][sstf] dispatching     4630296
+[    5.382939] [i/o][sstf] adding          4630552
+[    5.383035] [i/o][sstf] adding          1967888
+[    5.383036] [i/o][sstf] dispatching     1967888
+[    5.383753] [i/o][sstf] adding          390352
+[    5.383869] [i/o][sstf] dispatching     390352
+[    5.384054] [i/o][sstf] adding          4632472
+[    5.384150] [i/o][sstf] adding          1967920
+[    5.384151] [i/o][sstf] dispatching     1967920
+[    5.385140] [i/o][sstf] dispatching     4630552
+[    5.385220] [i/o][sstf] adding          1967992
+[    5.385380] [i/o][sstf] dispatching     1967992
+[    5.388167] [i/o][sstf] dispatching     4632472
+[    5.388186] [i/o][sstf] adding          1968656
+[    5.388366] [i/o][sstf] dispatching     1968656
+[    5.388416] [i/o][sstf] adding          390896
+[    5.388593] [i/o][sstf] dispatching     390896
+[    5.388800] [i/o][sstf] adding          1967984
+[    5.388802] [i/o][sstf] adding          1968184
+[    5.388970] [i/o][sstf] dispatching     1967984
+[    5.388992] [i/o][sstf] adding          390504
+[    5.389145] [i/o][sstf] dispatching     390504
+[    5.389451] [i/o][sstf] adding          1968488
+[    5.389592] [i/o][sstf] dispatching     1968184
+[    5.389692] [i/o][sstf] adding          391280
+[    5.389838] [i/o][sstf] dispatching     391280
+[    5.391169] [i/o][sstf] dispatching     1968488
+[    5.392084] [i/o][sstf] adding          536872
+[    5.392246] [i/o][sstf] dispatching     536872
+[    5.392261] [i/o][sstf] adding          1968232
+[    5.392389] [i/o][sstf] dispatching     1968232
+[    5.392919] [i/o][sstf] adding          4589896
+[    5.393049] [i/o][sstf] dispatching     4589896
+[    5.393653] [i/o][sstf] adding          387248
+[    5.393780] [i/o][sstf] dispatching     387248
+[    5.395117] [i/o][sstf] adding          4579896
+[    5.395119] [i/o][sstf] dispatching     4579896
+[    5.395323] [i/o][sstf] adding          387320
+[    5.395324] [i/o][sstf] dispatching     387320
+[    5.395489] [i/o][sstf] adding          4579928
+[    5.395490] [i/o][sstf] dispatching     4579928
+[    5.395565] [i/o][sstf] adding          389584
+[    5.395566] [i/o][sstf] dispatching     389584
+[    5.397682] [i/o][sstf] adding          4631504
+[    5.397844] [i/o][sstf] dispatching     4631504
+[    5.397916] [i/o][sstf] adding          529624
+[    5.398025] [i/o][sstf] dispatching     529624
+[    5.398108] [i/o][sstf] adding          4631248
+[    5.398231] [i/o][sstf] dispatching     4631248
+[    5.398250] [i/o][sstf] adding          278688
+[    5.398388] [i/o][sstf] dispatching     278688
+[    5.398422] [i/o][sstf] adding          4632688
+[    5.398537] [i/o][sstf] dispatching     4632688
+[    5.398548] [i/o][sstf] adding          1962552
+[    5.398716] [i/o][sstf] dispatching     1962552
+[    5.398825] [i/o][sstf] adding          4631088
+[    5.398945] [i/o][sstf] dispatching     4631088
+[    5.398966] [i/o][sstf] adding          1962624
+[    5.399111] [i/o][sstf] dispatching     1962624
+[    5.399178] [i/o][sstf] adding          4590392
+[    5.399292] [i/o][sstf] dispatching     4590392
+[    5.399303] [i/o][sstf] adding          1962808
+[    5.399410] [i/o][sstf] dispatching     1962808
+[    5.399463] [i/o][sstf] adding          391024
+[    5.399598] [i/o][sstf] dispatching     391024
+[    5.399631] [i/o][sstf] adding          529224
+[    5.399771] [i/o][sstf] dispatching     529224
+[    5.399860] [i/o][sstf] adding          4627112
+[    5.399977] [i/o][sstf] dispatching     4627112
+[    5.399994] [i/o][sstf] adding          536448
+[    5.400167] [i/o][sstf] dispatching     536448
+[    5.400502] [i/o][sstf] adding          4637848
+[    5.400625] [i/o][sstf] dispatching     4637848
+[    5.400637] [i/o][sstf] adding          3974912
+[    5.400750] [i/o][sstf] dispatching     3974912
+[    5.400799] [i/o][sstf] adding          4631864
+[    5.400921] [i/o][sstf] dispatching     4631864
+[    5.400940] [i/o][sstf] adding          3974936
+[    5.401021] [i/o][sstf] dispatching     3974936
+[    5.401137] [i/o][sstf] adding          4631608
+[    5.401256] [i/o][sstf] dispatching     4631608
+[    5.401310] [i/o][sstf] adding          530736
+[    5.401437] [i/o][sstf] dispatching     530736
+[    5.401463] [i/o][sstf] adding          4630952
+[    5.401579] [i/o][sstf] dispatching     4630952
+[    5.401591] [i/o][sstf] adding          536408
+[    5.401732] [i/o][sstf] dispatching     536408
+[    5.401773] [i/o][sstf] adding          4630736
+[    5.401887] [i/o][sstf] dispatching     4630736
+[    5.401902] [i/o][sstf] adding          3965264
+[    5.402043] [i/o][sstf] dispatching     3965264
+[    5.403243] [i/o][sstf] adding          4637856
+[    5.403374] [i/o][sstf] dispatching     4637856
+[    5.403398] [i/o][sstf] adding          3965336
+[    5.403514] [i/o][sstf] dispatching     3965336
+[    5.403573] [i/o][sstf] adding          4637880
+[    5.403687] [i/o][sstf] dispatching     4637880
+[    5.403700] [i/o][sstf] adding          3966736
+[    5.403809] [i/o][sstf] dispatching     3966736
+[    5.403893] [i/o][sstf] adding          4637888
+[    5.404044] [i/o][sstf] dispatching     4637888
+[    5.404236] [i/o][sstf] adding          528888
+[    5.404306] [i/o][sstf] dispatching     528888
+[    5.404420] [i/o][sstf] adding          4637864
+[    5.404535] [i/o][sstf] dispatching     4637864
+[    5.404546] [i/o][sstf] adding          2122576
+[    5.404660] [i/o][sstf] dispatching     2122576
+[    5.404716] [i/o][sstf] adding          4630816
+[    5.404838] [i/o][sstf] dispatching     4630816
+[    5.404854] [i/o][sstf] adding          2122584
+[    5.404990] [i/o][sstf] dispatching     2122584
+[    5.405952] [i/o][sstf] adding          4637872
+[    5.406095] [i/o][sstf] dispatching     4637872
+[    5.406130] [i/o][sstf] adding          4636968
+[    5.406254] [i/o][sstf] dispatching     4636968
+[    5.407166] [i/o][sstf] adding          4636976
+[    5.407168] [i/o][sstf] dispatching     4636976
+[    5.407333] [i/o][sstf] adding          1962616
+[    5.407334] [i/o][sstf] adding          1962672
+[    5.407335] [i/o][sstf] dispatching     1962616
+[    5.407457] [i/o][sstf] dispatching     1962672
+[    5.407514] [i/o][sstf] adding          387312
+[    5.407515] [i/o][sstf] adding          387512
+[    5.407632] [i/o][sstf] dispatching     387312
+[    5.407767] [i/o][sstf] adding          3965328
+[    5.407768] [i/o][sstf] adding          3965496
+[    5.407890] [i/o][sstf] dispatching     387512
+[    5.407920] [i/o][sstf] adding          4637896
+[    5.408061] [i/o][sstf] dispatching     3965328
+[    5.410138] [i/o][sstf] dispatching     3965496
+[    5.410175] [i/o][sstf] adding          3966320
+[    5.410357] [i/o][sstf] dispatching     3966320
+[    5.413189] [i/o][sstf] dispatching     4637896
+[    5.415493] [i/o][sstf] adding          388648
+[    5.415624] [i/o][sstf] dispatching     388648
+[    5.415727] [i/o][sstf] adding          4637904
+[    5.415901] [i/o][sstf] dispatching     4637904
+[    5.415929] [i/o][sstf] adding          388968
+[    5.416044] [i/o][sstf] dispatching     388968
+[    5.416923] [i/o][sstf] adding          388344
+[    5.416924] [i/o][sstf] dispatching     388344
+[    5.417113] [i/o][sstf] adding          387816
+[    5.417114] [i/o][sstf] dispatching     387816
+[    5.417218] [i/o][sstf] adding          4593760
+[    5.417219] [i/o][sstf] dispatching     4593760
+[    5.417294] [i/o][sstf] adding          388712
+[    5.417372] [i/o][sstf] adding          387560
+[    5.417373] [i/o][sstf] dispatching     387560
+[    5.420198] [i/o][sstf] dispatching     388712
+[    5.421060] [i/o][sstf] adding          387976
+[    5.421237] [i/o][sstf] dispatching     387976
+[    5.423111] [i/o][sstf] adding          4472
+[    5.423113] [i/o][sstf] dispatching     4472
+[    5.423208] [i/o][sstf] adding          388088
+[    5.423329] [i/o][sstf] dispatching     388088
+[    5.423398] [i/o][sstf] adding          537136
+[    5.423541] [i/o][sstf] dispatching     537136
+[    5.426188] [i/o][sstf] adding          4593920
+[    5.426190] [i/o][sstf] dispatching     4593920
+[    5.429330] [i/o][sstf] adding          458384
+[    5.429332] [i/o][sstf] dispatching     458384
+[    5.429520] [i/o][sstf] adding          458456
+[    5.429522] [i/o][sstf] dispatching     458456
+[    5.429677] [i/o][sstf] adding          458464
+[    5.429678] [i/o][sstf] dispatching     458464
+[    5.429883] [i/o][sstf] adding          536232
+[    5.429884] [i/o][sstf] dispatching     536232
+[    5.430050] [i/o][sstf] adding          278560
+[    5.430051] [i/o][sstf] dispatching     278560
+[    5.430186] [i/o][sstf] adding          1934560
+[    5.430187] [i/o][sstf] dispatching     1934560
+[    5.430332] [i/o][sstf] adding          1934632
+[    5.430334] [i/o][sstf] dispatching     1934632
+[    5.430458] [i/o][sstf] adding          1934888
+[    5.430459] [i/o][sstf] dispatching     1934888
+[    5.430735] [i/o][sstf] adding          1934624
+[    5.430736] [i/o][sstf] adding          1934752
+[    5.430737] [i/o][sstf] dispatching     1934624
+[    5.430864] [i/o][sstf] dispatching     1934752
+[    5.433219] [i/o][sstf] adding          536976
+[    5.433221] [i/o][sstf] dispatching     536976
+[    5.433364] [i/o][sstf] adding          4591344
+[    5.433365] [i/o][sstf] dispatching     4591344
+[    5.433683] [i/o][sstf] adding          4635504
+[    5.433684] [i/o][sstf] dispatching     4635504
+[    5.433923] [i/o][sstf] adding          4594704
+[    5.433924] [i/o][sstf] dispatching     4594704
+[    5.434103] [i/o][sstf] adding          4594712
+[    5.434105] [i/o][sstf] dispatching     4594712
+[    5.435881] [i/o][sstf] adding          4593744
+[    5.435883] [i/o][sstf] dispatching     4593744
+[    5.439167] [i/o][sstf] adding          4593416
+[    5.439169] [i/o][sstf] dispatching     4593416
+[    5.445314] [i/o][sstf] adding          4384
+[    5.445316] [i/o][sstf] dispatching     4384
+[    5.445465] [i/o][sstf] adding          378384
+[    5.445466] [i/o][sstf] dispatching     378384
+[    5.445658] [i/o][sstf] adding          378456
+[    5.445659] [i/o][sstf] dispatching     378456
+[    5.445805] [i/o][sstf] adding          378520
+[    5.445806] [i/o][sstf] dispatching     378520
+[    5.446406] [i/o][sstf] adding          4590560
+[    5.446408] [i/o][sstf] dispatching     4590560
+[    5.446961] [i/o][sstf] adding          537064
+[    5.446963] [i/o][sstf] dispatching     537064
+[    5.447495] [i/o][sstf] adding          375672
+[    5.447496] [i/o][sstf] dispatching     375672
+[    5.447690] [i/o][sstf] adding          375744
+[    5.447692] [i/o][sstf] dispatching     375744
+[    5.447832] [i/o][sstf] adding          375760
+[    5.447833] [i/o][sstf] dispatching     375760
+[    5.448341] [i/o][sstf] adding          4134176
+[    5.448343] [i/o][sstf] dispatching     4134176
+[    5.448495] [i/o][sstf] adding          4134192
+[    5.448496] [i/o][sstf] dispatching     4134192
+[    5.448639] [i/o][sstf] adding          4134200
+[    5.448640] [i/o][sstf] dispatching     4134200
+[    5.448782] [i/o][sstf] adding          4134208
+[    5.448783] [i/o][sstf] dispatching     4134208
+[    5.449185] [i/o][sstf] adding          4637912
+[    5.449186] [i/o][sstf] dispatching     4637912
+[    5.450792] [i/o][sstf] adding          4593384
+[    5.450794] [i/o][sstf] dispatching     4593384
+[    5.456825] [i/o][sstf] adding          4593640
+[    5.456826] [i/o][sstf] dispatching     4593640
+[    5.457917] [i/o][sstf] adding          4594312
+[    5.457919] [i/o][sstf] dispatching     4594312
+[    5.459580] [i/o][sstf] adding          4594416
+[    5.459582] [i/o][sstf] dispatching     4594416
+[    5.459683] [i/o][sstf] adding          4408
+[    5.459712] [i/o][sstf] dispatching     4408
+[    5.459949] [i/o][sstf] adding          404480
+[    5.459951] [i/o][sstf] dispatching     404480
+[    5.460134] [i/o][sstf] adding          404496
+[    5.460136] [i/o][sstf] dispatching     404496
+[    5.460718] [i/o][sstf] adding          4134264
+[    5.460719] [i/o][sstf] dispatching     4134264
+[    5.460853] [i/o][sstf] adding          4134272
+[    5.460854] [i/o][sstf] dispatching     4134272
+[    5.461041] [i/o][sstf] adding          4134280
+[    5.461043] [i/o][sstf] dispatching     4134280
+[    5.461753] [i/o][sstf] adding          4032368
+[    5.461755] [i/o][sstf] dispatching     4032368
+[    5.463635] [i/o][sstf] adding          379024
+[    5.463636] [i/o][sstf] dispatching     379024
+[    5.463830] [i/o][sstf] adding          379096
+[    5.463831] [i/o][sstf] dispatching     379096
+[    5.463963] [i/o][sstf] adding          385664
+[    5.463964] [i/o][sstf] dispatching     385664
+[    5.464215] [i/o][sstf] adding          379088
+[    5.464216] [i/o][sstf] adding          379288
+[    5.464217] [i/o][sstf] dispatching     379088
+[    5.464352] [i/o][sstf] dispatching     379288
+[    5.465049] [i/o][sstf] adding          385520
+[    5.465210] [i/o][sstf] dispatching     385520
+[    5.467200] [i/o][sstf] adding          379544
+[    5.467201] [i/o][sstf] dispatching     379544
+[    5.467542] [i/o][sstf] adding          383344
+[    5.467543] [i/o][sstf] dispatching     383344
+[    5.467735] [i/o][sstf] adding          383088
+[    5.467736] [i/o][sstf] dispatching     383088
+[    5.467925] [i/o][sstf] adding          382864
+[    5.467926] [i/o][sstf] dispatching     382864
+[    5.468103] [i/o][sstf] adding          379984
+[    5.468104] [i/o][sstf] dispatching     379984
+[    5.468354] [i/o][sstf] adding          381784
+[    5.468355] [i/o][sstf] dispatching     381784
+[    5.468546] [i/o][sstf] adding          380488
+[    5.468547] [i/o][sstf] dispatching     380488
+[    5.468745] [i/o][sstf] adding          383680
+[    5.468746] [i/o][sstf] dispatching     383680
+[    5.468947] [i/o][sstf] adding          383944
+[    5.468948] [i/o][sstf] dispatching     383944
+[    5.469163] [i/o][sstf] adding          382552
+[    5.469164] [i/o][sstf] dispatching     382552
+[    5.469336] [i/o][sstf] adding          382608
+[    5.469337] [i/o][sstf] dispatching     382608
+[    5.470409] [i/o][sstf] adding          380232
+[    5.470412] [i/o][sstf] dispatching     380232
+[    5.470632] [i/o][sstf] adding          382040
+[    5.470633] [i/o][sstf] dispatching     382040
+[    5.470721] [i/o][sstf] adding          379728
+[    5.470722] [i/o][sstf] dispatching     379728
+[    5.473201] [i/o][sstf] adding          380024
+[    5.473202] [i/o][sstf] dispatching     380024
+[    5.473378] [i/o][sstf] adding          380680
+[    5.473379] [i/o][sstf] dispatching     380680
+[    5.473580] [i/o][sstf] adding          381008
+[    5.473581] [i/o][sstf] dispatching     381008
+[    5.473779] [i/o][sstf] adding          380752
+[    5.473780] [i/o][sstf] dispatching     380752
+[    5.474287] [i/o][sstf] adding          382872
+[    5.474288] [i/o][sstf] dispatching     382872
+[    5.474418] [i/o][sstf] adding          381208
+[    5.474419] [i/o][sstf] dispatching     381208
+[    5.474622] [i/o][sstf] adding          381520
+[    5.474623] [i/o][sstf] dispatching     381520
+[    5.475165] [i/o][sstf] adding          381264
+[    5.475166] [i/o][sstf] dispatching     381264
+[    5.475947] [i/o][sstf] adding          4632120
+[    5.475948] [i/o][sstf] dispatching     4632120
+[    5.477035] [i/o][sstf] adding          4632216
+[    5.477037] [i/o][sstf] dispatching     4632216
+[    5.477451] [i/o][sstf] adding          529656
+[    5.477452] [i/o][sstf] dispatching     529656
+[    5.477602] [i/o][sstf] adding          2388216
+[    5.477603] [i/o][sstf] dispatching     2388216
+[    5.477752] [i/o][sstf] adding          2388248
+[    5.477753] [i/o][sstf] dispatching     2388248
+[    5.478289] [i/o][sstf] adding          382296
+[    5.478290] [i/o][sstf] dispatching     382296
+[    5.480114] [i/o][sstf] adding          383424
+[    5.480116] [i/o][sstf] dispatching     383424
+[    5.480322] [i/o][sstf] adding          383688
+[    5.480323] [i/o][sstf] dispatching     383688
+[    5.480954] [i/o][sstf] adding          4594480
+[    5.480956] [i/o][sstf] dispatching     4594480
+[    5.481144] [i/o][sstf] adding          4594424
+[    5.481145] [i/o][sstf] dispatching     4594424
+[    5.481366] [i/o][sstf] adding          4594504
+[    5.481368] [i/o][sstf] dispatching     4594504
+[    5.481526] [i/o][sstf] adding          4947976
+[    5.481527] [i/o][sstf] dispatching     4947976
+[    5.481832] [i/o][sstf] adding          4594440
+[    5.481833] [i/o][sstf] dispatching     4594440
+[    5.484800] [i/o][sstf] adding          4594432
+[    5.484802] [i/o][sstf] dispatching     4594432
+[    5.486845] [i/o][sstf] adding          4032464
+[    5.486847] [i/o][sstf] dispatching     4032464
+[    5.491129] [i/o][sstf] adding          4594464
+[    5.491131] [i/o][sstf] dispatching     4594464
+[    5.493497] [i/o][sstf] adding          4594496
+[    5.493499] [i/o][sstf] dispatching     4594496
+[    5.495502] [i/o][sstf] adding          4594472
+[    5.495503] [i/o][sstf] dispatching     4594472
+[    5.497190] [i/o][sstf] adding          4593488
+[    5.497192] [i/o][sstf] dispatching     4593488
+[    5.498333] [i/o][sstf] adding          4594384
+[    5.498335] [i/o][sstf] dispatching     4594384
+[    5.498591] [i/o][sstf] adding          273984
+[    5.498592] [i/o][sstf] dispatching     273984
+[    5.503655] [i/o][sstf] adding          1656328
+[    5.503656] [i/o][sstf] dispatching     1656328
+[    5.503853] [i/o][sstf] adding          1656400
+[    5.503855] [i/o][sstf] dispatching     1656400
+[    5.503985] [i/o][sstf] adding          1656584
+[    5.503987] [i/o][sstf] dispatching     1656584
+[    5.504275] [i/o][sstf] adding          536240
+[    5.504276] [i/o][sstf] dispatching     536240
+[    5.504411] [i/o][sstf] adding          530768
+[    5.504412] [i/o][sstf] dispatching     530768
+[    5.504535] [i/o][sstf] adding          2537704
+[    5.504536] [i/o][sstf] dispatching     2537704
+[    5.504680] [i/o][sstf] adding          2537776
+[    5.504681] [i/o][sstf] dispatching     2537776
+[    5.504816] [i/o][sstf] adding          2537792
+[    5.504817] [i/o][sstf] dispatching     2537792
+[    5.504963] [i/o][sstf] adding          530752
+[    5.504964] [i/o][sstf] dispatching     530752
+[    5.505109] [i/o][sstf] adding          536672
+[    5.505110] [i/o][sstf] dispatching     536672
+[    5.505238] [i/o][sstf] adding          3993024
+[    5.505240] [i/o][sstf] dispatching     3993024
+[    5.505378] [i/o][sstf] adding          3993096
+[    5.505380] [i/o][sstf] dispatching     3993096
+[    5.505530] [i/o][sstf] adding          3993120
+[    5.505531] [i/o][sstf] dispatching     3993120
+[    5.505679] [i/o][sstf] adding          1656392
+[    5.505680] [i/o][sstf] adding          1656448
+[    5.505681] [i/o][sstf] dispatching     1656392
+[    5.505769] [i/o][sstf] adding          536680
+[    5.505771] [i/o][sstf] dispatching     536680
+[    5.508145] [i/o][sstf] dispatching     1656448
+[    5.508165] [i/o][sstf] adding          3993160
+[    5.508295] [i/o][sstf] dispatching     3993160
+[    5.511172] [i/o][sstf] adding          3993232
+[    5.511173] [i/o][sstf] dispatching     3993232
+[    5.511331] [i/o][sstf] adding          3993304
+[    5.511332] [i/o][sstf] dispatching     3993304
+[    5.514761] [i/o][sstf] adding          4593304
+[    5.514763] [i/o][sstf] dispatching     4593304
+[    5.519529] [i/o][sstf] adding          4400
+[    5.519531] [i/o][sstf] dispatching     4400
+[    5.519715] [i/o][sstf] adding          4416
+[    5.519716] [i/o][sstf] dispatching     4416
+[    5.522308] [i/o][sstf] adding          4593480
+[    5.522310] [i/o][sstf] dispatching     4593480
+[    5.528485] [i/o][sstf] adding          4595176
+[    5.528487] [i/o][sstf] dispatching     4595176
+[    5.528956] [i/o][sstf] adding          4581744
+[    5.528957] [i/o][sstf] dispatching     4581744
+[    5.529175] [i/o][sstf] adding          4581808
+[    5.529177] [i/o][sstf] dispatching     4581808
+[    5.530994] [i/o][sstf] adding          31424
+[    5.530996] [i/o][sstf] dispatching     31424
+[    5.531225] [i/o][sstf] adding          31472
+[    5.531226] [i/o][sstf] dispatching     31472
+[    5.533422] [i/o][sstf] adding          1424
+[    5.533424] [i/o][sstf] dispatching     1424
+[    5.533619] [i/o][sstf] adding          31504
+[    5.533620] [i/o][sstf] dispatching     31504
+[    5.533817] [i/o][sstf] adding          31536
+[    5.533818] [i/o][sstf] dispatching     31536
+[    5.534721] [i/o][sstf] adding          4134328
+[    5.534723] [i/o][sstf] dispatching     4134328
+[    5.534901] [i/o][sstf] adding          9672
+[    5.534903] [i/o][sstf] dispatching     9672
+[    5.535062] [i/o][sstf] adding          851416
+[    5.535063] [i/o][sstf] dispatching     851416
+[    5.614547] [i/o][sstf] adding          4593296
+[    5.614551] [i/o][sstf] dispatching     4593296
+[    5.632549] [i/o][sstf] adding          4594280
+[    5.632551] [i/o][sstf] dispatching     4594280
+[    5.638489] [i/o][sstf] adding          4591048
+[    5.638490] [i/o][sstf] dispatching     4591048
+[    5.645600] [i/o][sstf] adding          4593656
+[    5.645602] [i/o][sstf] dispatching     4593656
+[    5.648877] [i/o][sstf] adding          4636536
+[    5.648879] [i/o][sstf] dispatching     4636536
+[    5.649356] [i/o][sstf] adding          4636544
+[    5.649358] [i/o][sstf] dispatching     4636544
+[    5.649932] [i/o][sstf] adding          4448
+[    5.649934] [i/o][sstf] dispatching     4448
+[    5.653164] [i/o][sstf] adding          371352
+[    5.653168] [i/o][sstf] dispatching     371352
+[    5.653566] [i/o][sstf] adding          371424
+[    5.653567] [i/o][sstf] dispatching     371424
+[    5.653850] [i/o][sstf] adding          371712
+[    5.653851] [i/o][sstf] dispatching     371712
+[    5.654238] [i/o][sstf] adding          371416
+[    5.654240] [i/o][sstf] adding          371576
+[    5.654241] [i/o][sstf] dispatching     371416
+[    5.654382] [i/o][sstf] dispatching     371576
+[    5.659697] [i/o][sstf] adding          4590496
+[    5.659699] [i/o][sstf] dispatching     4590496
+[    5.660120] [i/o][sstf] adding          430568
+[    5.660122] [i/o][sstf] dispatching     430568
+[    5.660581] [i/o][sstf] adding          430640
+[    5.660582] [i/o][sstf] dispatching     430640
+[    5.660892] [i/o][sstf] adding          430848
+[    5.660894] [i/o][sstf] dispatching     430848
+[    5.661167] [i/o][sstf] adding          430632
+[    5.661168] [i/o][sstf] adding          430712
+[    5.661169] [i/o][sstf] dispatching     430632
+[    5.661313] [i/o][sstf] dispatching     430712
+[    5.661352] [i/o][sstf] adding          278704
+[    5.661508] [i/o][sstf] dispatching     278704
+[    5.662707] [i/o][sstf] adding          4590504
+[    5.662834] [i/o][sstf] dispatching     4590504
+[    5.662863] [i/o][sstf] adding          529592
+[    5.662987] [i/o][sstf] dispatching     529592
+[    5.663191] [i/o][sstf] adding          4589456
+[    5.663323] [i/o][sstf] dispatching     4589456
+[    5.663353] [i/o][sstf] adding          2378152
+[    5.663483] [i/o][sstf] dispatching     2378152
+[    5.663774] [i/o][sstf] adding          530696
+[    5.663913] [i/o][sstf] dispatching     530696
+[    5.663939] [i/o][sstf] adding          2378224
+[    5.664035] [i/o][sstf] dispatching     2378224
+[    5.664075] [i/o][sstf] adding          2532104
+[    5.664205] [i/o][sstf] dispatching     2532104
+[    5.664227] [i/o][sstf] adding          2378672
+[    5.664352] [i/o][sstf] dispatching     2378672
+[    5.664370] [i/o][sstf] adding          530712
+[    5.664545] [i/o][sstf] dispatching     530712
+[    5.664603] [i/o][sstf] adding          2378216
+[    5.664604] [i/o][sstf] adding          2378384
+[    5.664729] [i/o][sstf] dispatching     2378216
+[    5.664757] [i/o][sstf] adding          2533144
+[    5.664902] [i/o][sstf] dispatching     2378384
+[    5.664938] [i/o][sstf] adding          529064
+[    5.665126] [i/o][sstf] dispatching     529064
+[    5.667139] [i/o][sstf] dispatching     2533144
+[    5.667158] [i/o][sstf] adding          528984
+[    5.667288] [i/o][sstf] dispatching     528984
+[    5.670161] [i/o][sstf] adding          2168072
+[    5.670163] [i/o][sstf] dispatching     2168072
+[    5.670322] [i/o][sstf] adding          2168096
+[    5.670323] [i/o][sstf] dispatching     2168096
+[    5.670925] [i/o][sstf] adding          2378536
+[    5.670927] [i/o][sstf] dispatching     2378536
+[    5.671470] [i/o][sstf] adding          4589848
+[    5.671472] [i/o][sstf] dispatching     4589848
+[    5.675159] [i/o][sstf] adding          4584624
+[    5.675161] [i/o][sstf] dispatching     4584624
+[    5.675491] [i/o][sstf] adding          4584696
+[    5.675493] [i/o][sstf] dispatching     4584696
+[    5.675863] [i/o][sstf] adding          4584904
+[    5.675864] [i/o][sstf] dispatching     4584904
+[    5.676161] [i/o][sstf] adding          4628696
+[    5.676163] [i/o][sstf] dispatching     4628696
+[    5.676321] [i/o][sstf] adding          4628712
+[    5.676323] [i/o][sstf] dispatching     4628712
+[    5.676518] [i/o][sstf] adding          4584688
+[    5.676519] [i/o][sstf] adding          4584768
+[    5.676520] [i/o][sstf] dispatching     4584688
+[    5.676665] [i/o][sstf] dispatching     4584768
+[    5.679289] [i/o][sstf] adding          4134168
+[    5.679290] [i/o][sstf] dispatching     4134168
+[    5.679433] [i/o][sstf] adding          5505048
+[    5.679434] [i/o][sstf] dispatching     5505048
+[    5.679592] [i/o][sstf] adding          4456456
+[    5.679593] [i/o][sstf] dispatching     4456456
+[    5.680870] [i/o][sstf] adding          4589888
+[    5.680872] [i/o][sstf] dispatching     4589888
+[    5.682274] [i/o][sstf] adding          4618912
+[    5.682276] [i/o][sstf] dispatching     4618912
+[    5.683672] [i/o][sstf] adding          4589864
+[    5.683673] [i/o][sstf] dispatching     4589864
+[    5.683876] [i/o][sstf] adding          4589872
+[    5.683877] [i/o][sstf] dispatching     4589872
+[    5.684198] [i/o][sstf] adding          4589880
+[    5.684199] [i/o][sstf] dispatching     4589880
+[    5.684391] [i/o][sstf] adding          4589856
+[    5.684393] [i/o][sstf] dispatching     4589856
+[    5.685513] [i/o][sstf] adding          4590816
+[    5.685515] [i/o][sstf] dispatching     4590816
+[    5.685661] [i/o][sstf] adding          4590840
+[    5.685662] [i/o][sstf] dispatching     4590840
+[    5.691312] [i/o][sstf] adding          4593320
+[    5.691314] [i/o][sstf] dispatching     4593320
+[    5.692806] [i/o][sstf] adding          371880
+[    5.692808] [i/o][sstf] dispatching     371880
+[    5.693086] [i/o][sstf] adding          371952
+[    5.693088] [i/o][sstf] dispatching     371952
+[    5.693247] [i/o][sstf] adding          375640
+[    5.693248] [i/o][sstf] dispatching     375640
+[    5.693478] [i/o][sstf] adding          371944
+[    5.693480] [i/o][sstf] adding          372112
+[    5.693481] [i/o][sstf] dispatching     371944
+[    5.693616] [i/o][sstf] dispatching     372112
+[    5.693662] [i/o][sstf] adding          4637008
+[    5.693809] [i/o][sstf] dispatching     4637008
+[    5.696191] [i/o][sstf] adding          4637080
+[    5.696193] [i/o][sstf] dispatching     4637080
+[    5.696341] [i/o][sstf] adding          4637128
+[    5.696342] [i/o][sstf] dispatching     4637128
+[    5.696665] [i/o][sstf] adding          372368
+[    5.696666] [i/o][sstf] dispatching     372368
+[    5.697445] [i/o][sstf] adding          374240
+[    5.697446] [i/o][sstf] dispatching     374240
+[    5.698305] [i/o][sstf] adding          4593624
+[    5.698307] [i/o][sstf] dispatching     4593624
+[    5.699848] [i/o][sstf] adding          373376
+[    5.699850] [i/o][sstf] dispatching     373376
+[    5.921426] [i/o][sstf] adding          430008
+[    5.921429] [i/o][sstf] dispatching     430008
+[    5.960512] [i/o][sstf] adding          374456
+[    5.960710] [i/o][sstf] dispatching     374456
+[    5.960792] [i/o][sstf] adding          430080
+[    5.961016] [i/o][sstf] dispatching     430080
+[    5.962497] [i/o][sstf] adding          373872
+[    5.962657] [i/o][sstf] dispatching     373872
+[    5.962669] [i/o][sstf] adding          430408
+[    5.962895] [i/o][sstf] dispatching     430408
+[    5.962949] [i/o][sstf] adding          374712
+[    5.963022] [i/o][sstf] dispatching     374712
+[    5.963301] [i/o][sstf] adding          529600
+[    5.963538] [i/o][sstf] dispatching     529600
+[    5.966194] [i/o][sstf] adding          2378848
+[    5.966195] [i/o][sstf] dispatching     2378848
+[    5.966281] [i/o][sstf] adding          278712
+[    5.966283] [i/o][sstf] dispatching     278712
+[    5.966393] [i/o][sstf] adding          2378920
+[    5.966541] [i/o][sstf] dispatching     2378920
+[    5.966551] [i/o][sstf] adding          1966080
+[    5.966701] [i/o][sstf] dispatching     1966080
+[    5.966711] [i/o][sstf] adding          2379136
+[    5.966856] [i/o][sstf] dispatching     2379136
+[    5.969428] [i/o][sstf] adding          430072
+[    5.969430] [i/o][sstf] adding          430240
+[    5.969431] [i/o][sstf] dispatching     430072
+[    5.969603] [i/o][sstf] dispatching     430240
+[    5.969661] [i/o][sstf] adding          430272
+[    5.969860] [i/o][sstf] dispatching     430272
+[    5.969869] [i/o][sstf] adding          2378912
+[    5.969870] [i/o][sstf] adding          2379000
+[    5.970007] [i/o][sstf] dispatching     2378912
+[    5.970639] [i/o][sstf] adding          4594584
+[    5.970796] [i/o][sstf] dispatching     2379000
+[    5.971082] [i/o][sstf] adding          373984
+[    5.971239] [i/o][sstf] dispatching     373984
+[    5.972178] [i/o][sstf] dispatching     4594584
+[    5.973595] [i/o][sstf] adding          373120
+[    5.973732] [i/o][sstf] dispatching     373120
+[    5.975297] [i/o][sstf] adding          4590464
+[    5.975299] [i/o][sstf] dispatching     4590464
+[    5.975444] [i/o][sstf] adding          4590472
+[    5.975446] [i/o][sstf] dispatching     4590472
+[    5.975602] [i/o][sstf] adding          373544
+[    5.975603] [i/o][sstf] dispatching     373544
+[    5.975786] [i/o][sstf] adding          372984
+[    5.975788] [i/o][sstf] dispatching     372984
+[    5.976062] [i/o][sstf] adding          372840
+[    5.976063] [i/o][sstf] dispatching     372840
+[    5.976395] [i/o][sstf] adding          372704
+[    5.976396] [i/o][sstf] dispatching     372704
+[    5.976606] [i/o][sstf] adding          373616
+[    5.976607] [i/o][sstf] dispatching     373616
+[    5.976802] [i/o][sstf] adding          372496
+[    5.976803] [i/o][sstf] dispatching     372496
+[    5.983420] [i/o][sstf] adding          4594760
+[    5.983422] [i/o][sstf] dispatching     4594760
+[    5.983899] [i/o][sstf] adding          17168
+[    5.983901] [i/o][sstf] dispatching     17168
+[    5.984073] [i/o][sstf] adding          278616
+[    5.984075] [i/o][sstf] dispatching     278616
+[    5.984314] [i/o][sstf] adding          1954344
+[    5.984316] [i/o][sstf] dispatching     1954344
+[    5.984506] [i/o][sstf] adding          529000
+[    5.984508] [i/o][sstf] dispatching     529000
+[    5.984640] [i/o][sstf] adding          2179784
+[    5.984641] [i/o][sstf] dispatching     2179784
+[    5.984817] [i/o][sstf] adding          536224
+[    5.984819] [i/o][sstf] dispatching     536224
+[    5.984946] [i/o][sstf] adding          3921528
+[    5.984948] [i/o][sstf] dispatching     3921528
+[    5.985258] [i/o][sstf] adding          3921536
+[    5.985260] [i/o][sstf] dispatching     3921536
+[    5.985446] [i/o][sstf] adding          528880
+[    5.985448] [i/o][sstf] dispatching     528880
+[    5.985589] [i/o][sstf] adding          2120800
+[    5.985590] [i/o][sstf] dispatching     2120800
+[    5.985725] [i/o][sstf] adding          2120816
+[    5.985726] [i/o][sstf] dispatching     2120816
+[    5.986293] [i/o][sstf] adding          536248
+[    5.986294] [i/o][sstf] dispatching     536248
+[    5.986433] [i/o][sstf] adding          3931968
+[    5.986435] [i/o][sstf] dispatching     3931968
+[    5.989086] [i/o][sstf] adding          4593568
+[    5.989087] [i/o][sstf] dispatching     4593568
+[    5.992188] [i/o][sstf] adding          4581656
+[    5.992190] [i/o][sstf] dispatching     4581656
+[    5.993127] [i/o][sstf] adding          4581704
+[    5.993129] [i/o][sstf] dispatching     4581704
+[    6.001803] [i/o][sstf] adding          4588808
+[    6.001805] [i/o][sstf] dispatching     4588808
+[    6.002143] [i/o][sstf] adding          4588880
+[    6.002145] [i/o][sstf] dispatching     4588880
+[    6.003089] [i/o][sstf] adding          4588984
+[    6.003090] [i/o][sstf] dispatching     4588984
+[    6.004267] [i/o][sstf] adding          4588840
+[    6.004269] [i/o][sstf] dispatching     4588840
+[    6.011089] [i/o][sstf] adding          4582376
+[    6.011090] [i/o][sstf] dispatching     4582376
+[    6.012131] [i/o][sstf] adding          4582408
+[    6.012133] [i/o][sstf] dispatching     4582408
+[    6.015088] [i/o][sstf] adding          427272
+[    6.015090] [i/o][sstf] dispatching     427272
+[    6.016140] [i/o][sstf] adding          427344
+[    6.016142] [i/o][sstf] dispatching     427344
+[    6.016316] [i/o][sstf] adding          428200
+[    6.016317] [i/o][sstf] dispatching     428200
+[    6.016574] [i/o][sstf] adding          427336
+[    6.016576] [i/o][sstf] adding          427536
+[    6.016577] [i/o][sstf] dispatching     427336
+[    6.016688] [i/o][sstf] adding          528936
+[    6.016689] [i/o][sstf] dispatching     427536
+[    6.019220] [i/o][sstf] dispatching     528936
+[    6.022230] [i/o][sstf] adding          2146976
+[    6.022231] [i/o][sstf] dispatching     2146976
+[    6.022436] [i/o][sstf] adding          2146992
+[    6.022437] [i/o][sstf] dispatching     2146992
+[    6.022818] [i/o][sstf] adding          278752
+[    6.022819] [i/o][sstf] dispatching     278752
+[    6.023030] [i/o][sstf] adding          1966880
+[    6.023031] [i/o][sstf] dispatching     1966880
+[    6.023311] [i/o][sstf] adding          1966952
+[    6.023312] [i/o][sstf] dispatching     1966952
+[    6.023487] [i/o][sstf] adding          1967872
+[    6.023489] [i/o][sstf] dispatching     1967872
+[    6.023722] [i/o][sstf] adding          1966944
+[    6.023724] [i/o][sstf] adding          1967112
+[    6.023725] [i/o][sstf] dispatching     1966944
+[    6.023903] [i/o][sstf] dispatching     1967112
+[    6.024361] [i/o][sstf] adding          1967368
+[    6.024570] [i/o][sstf] dispatching     1967368
+[    6.025271] [i/o][sstf] adding          427792
+[    6.025521] [i/o][sstf] dispatching     427792
+[    6.030096] [i/o][sstf] adding          1967632
+[    6.030098] [i/o][sstf] dispatching     1967632
+[    6.031126] [i/o][sstf] adding          427936
+[    6.031128] [i/o][sstf] dispatching     427936
+[    6.042337] [i/o][sstf] adding          428064
+[    6.042339] [i/o][sstf] dispatching     428064
+[    6.044117] [i/o][sstf] adding          4593824
+[    6.044118] [i/o][sstf] dispatching     4593824
+[    6.045115] [i/o][sstf] adding          4593880
+[    6.045117] [i/o][sstf] dispatching     4593880
+[    6.045402] [i/o][sstf] adding          4593864
+[    6.045404] [i/o][sstf] dispatching     4593864
+[    6.045749] [i/o][sstf] adding          1967728
+[    6.045751] [i/o][sstf] dispatching     1967728
+[    6.046257] [i/o][sstf] adding          1967376
+[    6.046258] [i/o][sstf] dispatching     1967376
+[    6.046497] [i/o][sstf] adding          4593848
+[    6.046499] [i/o][sstf] dispatching     4593848
+[    6.047134] [i/o][sstf] adding          4032448
+[    6.047135] [i/o][sstf] dispatching     4032448
+[    6.047374] [i/o][sstf] adding          4134304
+[    6.047386] [i/o][sstf] dispatching     4134304
+[    6.047681] [i/o][sstf] adding          7792
+[    6.047682] [i/o][sstf] dispatching     7792
+[    6.047881] [i/o][sstf] adding          757744
+[    6.047882] [i/o][sstf] dispatching     757744
+[    6.048206] [i/o][sstf] adding          8168
+[    6.048212] [i/o][sstf] dispatching     8168
+[    6.048431] [i/o][sstf] adding          776272
+[    6.048432] [i/o][sstf] dispatching     776272
+[    6.048669] [i/o][sstf] adding          776296
+[    6.048671] [i/o][sstf] dispatching     776296
+[    6.049000] [i/o][sstf] adding          537128
+[    6.049002] [i/o][sstf] dispatching     537128
+[    6.050081] [i/o][sstf] adding          776280
+[    6.050083] [i/o][sstf] dispatching     776280
+[    6.050248] [i/o][sstf] adding          530704
+[    6.050249] [i/o][sstf] dispatching     530704
+[    6.050382] [i/o][sstf] adding          2532648
+[    6.050383] [i/o][sstf] dispatching     2532648
+[    6.050603] [i/o][sstf] adding          8176
+[    6.050604] [i/o][sstf] dispatching     8176
+[    6.050762] [i/o][sstf] adding          776424
+[    6.050764] [i/o][sstf] dispatching     776424
+[    6.050907] [i/o][sstf] adding          776464
+[    6.050909] [i/o][sstf] dispatching     776464
+[    6.051359] [i/o][sstf] adding          776456
+[    6.051361] [i/o][sstf] dispatching     776456
+[    6.051581] [i/o][sstf] adding          776440
+[    6.051582] [i/o][sstf] dispatching     776440
+[    6.051781] [i/o][sstf] adding          776472
+[    6.051782] [i/o][sstf] dispatching     776472
+[    6.051981] [i/o][sstf] adding          776448
+[    6.051982] [i/o][sstf] dispatching     776448
+[    6.052373] [i/o][sstf] adding          776432
+[    6.052374] [i/o][sstf] dispatching     776432
+[    6.052693] [i/o][sstf] adding          2532976
+[    6.052695] [i/o][sstf] dispatching     2532976
+[    6.053180] [i/o][sstf] adding          4595032
+[    6.053181] [i/o][sstf] dispatching     4595032
+[    6.054109] [i/o][sstf] adding          4134312
+[    6.054110] [i/o][sstf] dispatching     4134312
+[    6.058097] [i/o][sstf] adding          4593440
+[    6.058098] [i/o][sstf] dispatching     4593440
+[    6.060058] [i/o][sstf] adding          4595072
+[    6.060060] [i/o][sstf] dispatching     4595072
+[    6.069407] [i/o][sstf] adding          415712
+[    6.069409] [i/o][sstf] dispatching     415712
+[    6.069646] [i/o][sstf] adding          415784
+[    6.069648] [i/o][sstf] dispatching     415784
+[    6.069808] [i/o][sstf] adding          415816
+[    6.069809] [i/o][sstf] dispatching     415816
+[    6.071373] [i/o][sstf] adding          4593400
+[    6.071375] [i/o][sstf] dispatching     4593400
+[    6.072682] [i/o][sstf] adding          273824
+[    6.072684] [i/o][sstf] dispatching     273824
+[    6.072889] [i/o][sstf] adding          4134296
+[    6.072891] [i/o][sstf] dispatching     4134296
+[    6.073149] [i/o][sstf] adding          4589448
+[    6.073150] [i/o][sstf] dispatching     4589448
+[    6.073362] [i/o][sstf] adding          4590896
+[    6.073364] [i/o][sstf] dispatching     4590896
+[    6.078025] [i/o][sstf] adding          4590888
+[    6.078027] [i/o][sstf] dispatching     4590888
+[    6.078443] [i/o][sstf] adding          4594592
+[    6.078444] [i/o][sstf] dispatching     4594592
+[    6.078676] [i/o][sstf] adding          4594600
+[    6.078678] [i/o][sstf] dispatching     4594600
+[    6.078911] [i/o][sstf] adding          4594608
+[    6.078912] [i/o][sstf] dispatching     4594608
+[    6.079972] [i/o][sstf] adding          4593448
+[    6.079974] [i/o][sstf] dispatching     4593448
+[    6.080687] [i/o][sstf] adding          274200
+[    6.080689] [i/o][sstf] dispatching     274200
+[    6.080831] [i/o][sstf] adding          1738168
+[    6.080832] [i/o][sstf] dispatching     1738168
+[    6.081134] [i/o][sstf] adding          1738184
+[    6.081135] [i/o][sstf] dispatching     1738184
+[    6.081422] [i/o][sstf] adding          2183088
+[    6.081423] [i/o][sstf] dispatching     2183088
+[    6.091389] [i/o][sstf] adding          274048
+[    6.091391] [i/o][sstf] dispatching     274048
+[    6.091711] [i/o][sstf] adding          1688704
+[    6.091713] [i/o][sstf] dispatching     1688704
+[    6.091896] [i/o][sstf] adding          1688720
+[    6.091897] [i/o][sstf] dispatching     1688720
+[    6.092922] [i/o][sstf] adding          4593472
+[    6.092924] [i/o][sstf] dispatching     4593472
+[    6.098839] [i/o][sstf] adding          418616
+[    6.098841] [i/o][sstf] dispatching     418616
+[    6.099113] [i/o][sstf] adding          418688
+[    6.099115] [i/o][sstf] dispatching     418688
+[    6.099255] [i/o][sstf] adding          419088
+[    6.099256] [i/o][sstf] dispatching     419088
+[    6.099506] [i/o][sstf] adding          418680
+[    6.099508] [i/o][sstf] adding          418880
+[    6.099509] [i/o][sstf] dispatching     418680
+[    6.099597] [i/o][sstf] adding          529272
+[    6.099599] [i/o][sstf] dispatching     418880
+[    6.102255] [i/o][sstf] dispatching     529272
+[    6.105212] [i/o][sstf] adding          2325880
+[    6.105214] [i/o][sstf] dispatching     2325880
+[    6.105377] [i/o][sstf] adding          2325952
+[    6.105379] [i/o][sstf] dispatching     2325952
+[    6.105514] [i/o][sstf] adding          2326752
+[    6.105515] [i/o][sstf] dispatching     2326752
+[    6.105721] [i/o][sstf] adding          2325944
+[    6.105723] [i/o][sstf] adding          2326112
+[    6.105724] [i/o][sstf] dispatching     2325944
+[    6.105867] [i/o][sstf] dispatching     2326112
+[    6.107075] [i/o][sstf] adding          2326368
+[    6.107248] [i/o][sstf] dispatching     2326368
+[    6.107409] [i/o][sstf] adding          2326600
+[    6.107608] [i/o][sstf] dispatching     2326600
+[    6.108281] [i/o][sstf] adding          418952
+[    6.108283] [i/o][sstf] dispatching     418952
+[    6.109764] [i/o][sstf] adding          274144
+[    6.109766] [i/o][sstf] dispatching     274144
+[    6.110482] [i/o][sstf] adding          1722352
+[    6.110484] [i/o][sstf] dispatching     1722352
+[    6.110990] [i/o][sstf] adding          4582440
+[    6.110991] [i/o][sstf] dispatching     4582440
+[    6.111283] [i/o][sstf] adding          4582464
+[    6.111284] [i/o][sstf] dispatching     4582464
+[    6.216166] [i/o][sstf] adding          4590416
+[    6.216169] [i/o][sstf] dispatching     4590416
+[    7.709099] [i/o][sstf] adding          4585320
+[    7.709103] [i/o][sstf] dispatching     4585320
+[    7.709499] [i/o][sstf] adding          4585384
+[    7.709501] [i/o][sstf] dispatching     4585384
+[    7.709848] [i/o][sstf] adding          4635536
+[    7.709849] [i/o][sstf] dispatching     4635536
+[    7.710620] [i/o][sstf] adding          537144
+[    7.710621] [i/o][sstf] dispatching     537144
+[    7.710776] [i/o][sstf] adding          4594008
+[    7.710777] [i/o][sstf] dispatching     4594008
+[    7.711109] [i/o][sstf] adding          4589464
+[    7.711110] [i/o][sstf] dispatching     4589464
+[    7.711254] [i/o][sstf] adding          536848
+[    7.711255] [i/o][sstf] dispatching     536848
+[    7.711389] [i/o][sstf] adding          4589608
+[    7.711390] [i/o][sstf] dispatching     4589608
+[    7.711563] [i/o][sstf] adding          4619056
+[    7.711564] [i/o][sstf] dispatching     4619056
+[    7.711718] [i/o][sstf] adding          4619912
+[    7.711720] [i/o][sstf] dispatching     4619912
+[    7.711905] [i/o][sstf] adding          4619888
+[    7.711906] [i/o][sstf] dispatching     4619888
+[    7.712315] [i/o][sstf] adding          4619944
+[    7.712316] [i/o][sstf] dispatching     4619944
+[    7.712517] [i/o][sstf] adding          537272
+[    7.712518] [i/o][sstf] dispatching     537272
+[    7.712726] [i/o][sstf] adding          4619440
+[    7.712727] [i/o][sstf] dispatching     4619440
+[    7.712931] [i/o][sstf] adding          4589600
+[    7.712932] [i/o][sstf] dispatching     4589600
+[    7.713231] [i/o][sstf] adding          4619512
+[    7.713233] [i/o][sstf] dispatching     4619512
+[    7.713414] [i/o][sstf] adding          4619584
+[    7.713415] [i/o][sstf] dispatching     4619584
+[    7.713619] [i/o][sstf] adding          4619600
+[    7.713620] [i/o][sstf] dispatching     4619600
+[    7.713891] [i/o][sstf] adding          4619616
+[    7.713892] [i/o][sstf] dispatching     4619616
+[    7.714244] [i/o][sstf] adding          537280
+[    7.714246] [i/o][sstf] dispatching     537280
+[    7.714404] [i/o][sstf] adding          4619752
+[    7.714406] [i/o][sstf] dispatching     4619752
+[    7.714651] [i/o][sstf] adding          4619680
+[    7.714652] [i/o][sstf] dispatching     4619680
+[    7.714878] [i/o][sstf] adding          4619144
+[    7.714880] [i/o][sstf] dispatching     4619144
+[    7.715185] [i/o][sstf] adding          4619152
+[    7.715187] [i/o][sstf] dispatching     4619152
+[    7.715389] [i/o][sstf] adding          4619800
+[    7.715390] [i/o][sstf] dispatching     4619800
+[    7.715718] [i/o][sstf] adding          4619408
+[    7.715719] [i/o][sstf] dispatching     4619408
+[    7.715924] [i/o][sstf] adding          4619344
+[    7.715925] [i/o][sstf] dispatching     4619344
+[    7.716272] [i/o][sstf] adding          536856
+[    7.716273] [i/o][sstf] dispatching     536856
+[    7.716442] [i/o][sstf] adding          4589672
+[    7.716443] [i/o][sstf] dispatching     4589672
+[    7.716665] [i/o][sstf] adding          4589472
+[    7.716666] [i/o][sstf] dispatching     4589472
+[    7.716863] [i/o][sstf] adding          4589632
+[    7.716864] [i/o][sstf] dispatching     4589632
+[    7.717217] [i/o][sstf] adding          4589592
+[    7.717219] [i/o][sstf] dispatching     4589592
+[    7.717399] [i/o][sstf] adding          4619456
+[    7.717401] [i/o][sstf] dispatching     4619456
+[    7.717962] [i/o][sstf] adding          4591040
+[    7.717964] [i/o][sstf] dispatching     4591040
+[    7.718337] [i/o][sstf] adding          4590512
+[    7.718339] [i/o][sstf] dispatching     4590512
+[    7.718601] [i/o][sstf] adding          4637792
+[    7.718618] [i/o][sstf] dispatching     4637792
+[    7.718789] [i/o][sstf] adding          4637824
+[    7.718791] [i/o][sstf] dispatching     4637824
+[    7.718946] [i/o][sstf] adding          4590592
+[    7.718947] [i/o][sstf] dispatching     4590592
+[    7.719224] [i/o][sstf] adding          4590616
+[    7.719226] [i/o][sstf] dispatching     4590616
+[    7.719414] [i/o][sstf] adding          4594224
+[    7.719416] [i/o][sstf] dispatching     4594224
+[    7.719649] [i/o][sstf] adding          4590600
+[    7.719651] [i/o][sstf] dispatching     4590600
+[    7.719836] [i/o][sstf] adding          536904
+[    7.719837] [i/o][sstf] dispatching     536904
+[    7.719992] [i/o][sstf] adding          4590640
+[    7.719993] [i/o][sstf] dispatching     4590640
+[    7.720461] [i/o][sstf] adding          4134320
+[    7.720463] [i/o][sstf] dispatching     4134320
+[    7.720887] [i/o][sstf] adding          4590608
+[    7.720889] [i/o][sstf] dispatching     4590608
+[    7.723313] [i/o][sstf] adding          4637928
+[    7.723315] [i/o][sstf] dispatching     4637928
+[    7.723693] [i/o][sstf] adding          4594056
+[    7.723695] [i/o][sstf] dispatching     4594056
+[    7.723839] [i/o][sstf] adding          537152
+[    7.723840] [i/o][sstf] dispatching     537152
+[    7.723974] [i/o][sstf] adding          4594208
+[    7.723976] [i/o][sstf] dispatching     4594208
+[    7.724310] [i/o][sstf] adding          4594216
+[    7.724312] [i/o][sstf] dispatching     4594216
+[    7.724633] [i/o][sstf] adding          4587464
+[    7.724634] [i/o][sstf] dispatching     4587464
+[    7.724839] [i/o][sstf] adding          4590752
+[    7.724840] [i/o][sstf] dispatching     4590752
+[    9.536097] [i/o][sstf] adding          536760
+[    9.536100] [i/o][sstf] adding          537208
+[    9.536101] [i/o][sstf] adding          4134256
+[    9.536103] [i/o][sstf] dispatching     536760
+[    9.536217] [i/o][sstf] adding          4637952
+[    9.536218] [i/o][sstf] dispatching     537208
+[    9.539832] [i/o][sstf] dispatching     4134256
+[    9.542761] [i/o][sstf] dispatching     4637952
+root@qemux86:~# 
