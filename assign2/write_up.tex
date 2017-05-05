@@ -110,8 +110,37 @@ we did was print the sector number being added and dispatched. This would
 just print to the screen and interrupt everything in the foreground. 
 This gave us a good indication that things were happening in order but 
 was generally hard to read. We finally settled on creating a python 
-script which generated 25 of files and one million characters in 
-each. 
+script which generated 25 files and one million characters in 
+each. We plotted our output and saw that it was working correctly but were 
+concerned that our testing wasn't rigorous enough. We decided to redo our 
+script so that we created the files, shuffled their order, and randomly 
+read and wrote inside the file via seek. This did confirm that we were 
+testing correctly. Our graph indicates that we do jump all over the disk 
+but only in regards to files not the actual sectors.   
 \section{Version Control and Work Log}
+Tuesday, May 2, 3:20 pm to 5:30 pm: We met as a group to begin the 
+assignment. The majority of the time was spent researching and disecting
+the kernel code. We did not know where to begin. We did the initial set up 
+of copying the noop file and and doing the proper adjustments of sstf but 
+that was about it. \\
+Wednesday, May 3, 6:00 pm to 9:00 pm: We met to continue working on 
+the assignment. We began by grabbing a whiteboard and breaking down the 
+LOOK and C-LOOK algorithm and making a decision to go with C-LOOK. We 
+then spent time wrapping our head around how queues work in the kernel 
+and how to do a sort that would reflect C-LOOK and LOOK. Once we had 
+determined this we began coding. We had figured out where we needed to 
+adjust the code (in add request). We tested a few times and things looked 
+to be working so we called it a night. \\
+Thursday, May 4, 6:00 pm to 10:00 pm: We met to continue working. We were 
+in the testing stage. We wrote some python scripts to generate file i/o. 
+We also found a way to plot our output with python so we could see it 
+graphically. We began to worry that we were not doing things correctly 
+because the graph looked to clean. We adjusted our scripts and caught 
+one bug that we fixed. We were still concerned so we emailed McGrath our 
+data and he said it was correct.\\
+Friday, May 5, 2:00 pm to 3:30 pm: We met after our demo to finish the 
+code. The concurrency had been completed during recitation two and we
+ checked it to make sure it was working. We implemented our patch
+  and submitted. \\ 
 \newpage
 \end{document}
