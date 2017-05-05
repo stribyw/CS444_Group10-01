@@ -99,7 +99,7 @@ struct numbers remove_list()
 }
 
 /*
- *Monitor thread for buffer, and prints buffer count. 
+ *Monitor thread for buffer, and prints buffer count.
  */
 void *monitor(void *ptr)
 {
@@ -129,7 +129,7 @@ void *producer(void *ptr)
  *The consumer thread is capable of consuming as long as the buffer is greater
  *than zero. The mutex lock is blocked until consuming is possible. Then
  *consumption happens, the mutex lock is unblocked, and the consumer goes back
- *to sleep for the wait period. 
+ *to sleep for the wait period.
  */
 void *consumer(void *ptr)
 {
@@ -153,6 +153,10 @@ void *consumer(void *ptr)
  */
 int main(int argc, char *argv[])
 {
+        if(argc != 2) {
+                printf("usage: ./a.out <num threads>\n");
+                exit(0);
+        }
         pthread_t prod;
         pthread_t con;
         pthread_t mon;
