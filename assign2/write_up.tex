@@ -1,11 +1,11 @@
 \documentclass[letterpaper,10pt,serif,draftclsnofoot,onecolumn,compsoc,titlepage]{IEEEtran}
 
-\usepackage{graphicx}                                        
-\usepackage{amssymb}                                         
-\usepackage{amsmath}                                         
-\usepackage{amsthm}                                          
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{cite}
-\usepackage{alltt}                                           
+\usepackage{alltt}
 \usepackage{float}
 \usepackage{color}
 \usepackage{url}
@@ -46,101 +46,148 @@
 \tableofcontents
 \newpage
 \section{Purpose and Learning}
-The purpose of this assignment was to explore patching the kernel with a 
-new I/O scheduler, in particular the LOOK scheduler. The LOOK scheduler is 
-an elevator algorithm which is based on traveling in one direction on the 
-disk, looking to see if there is anything left in that direction, if there 
-is not, it turns around and continues going in the opposite direction 
-until nothing is left and so on. C-Look is similar only it goes to the 
-top and then restarts at the bottom instead of traveling down, servicing 
-requests along the way. From this assignment we learned a number of things. 
-We learned primarily about search the kernel code base for things that 
-were relevant to our patch. This was important as often the hardest step 
-is not figuring out the solution to the problem (we all had a fairly good 
-idea of what the elevator should do) but how to do it within the code 
-constraints presented. We were instructed to use the noop io scheduler file 
-as our guide so the first thing we had to do was figure out what was going 
-on in the file and what to change. This was the longest part of the 
-assignment. The next thing we learned was how to test that the system is 
-working. Not surprisingly, it is fairly difficult to test things which 
-are going on in the background or happening rapidly. Last we learned about 
-the elevator algorithm and queues in the kernal. Though this was the main 
-thrust of the assignment, it is ranked last as we definitely spent more 
-time and learned more on the supporting structures. 
+The purpose of this assignment was to explore patching the kernel with a
+new I/O scheduler, in particular the LOOK scheduler. The LOOK scheduler is
+an elevator algorithm which is based on traveling in one direction on the
+disk, looking to see if there is anything left in that direction, if there
+is not, it turns around and continues going in the opposite direction
+until nothing is left and so on. C-Look is similar only it goes to the
+top and then restarts at the bottom instead of traveling down, servicing
+requests along the way. From this assignment we learned a number of things.
+We learned primarily about search the kernel code base for things that
+were relevant to our patch. This was important as often the hardest step
+is not figuring out the solution to the problem (we all had a fairly good
+idea of what the elevator should do) but how to do it within the code
+constraints presented. We were instructed to use the noop io scheduler file
+as our guide so the first thing we had to do was figure out what was going
+on in the file and what to change. This was the longest part of the
+assignment. The next thing we learned was how to test that the system is
+working. Not surprisingly, it is fairly difficult to test things which
+are going on in the background or happening rapidly. Last we learned about
+the elevator algorithm and queues in the kernal. Though this was the main
+thrust of the assignment, it is ranked last as we definitely spent more
+time and learned more on the supporting structures.
 
 \section{Design Choices}
-In designing our solution we had a couple decisions to make. The first was 
-whether to implement LOOK or C-LOOK. The difference between the two 
-approaches is LOOK requires that the list is sorted relative to the current 
-position of the head on insert where C-LOOK is simply sorting in ascending 
-order. From an efficiency standpoint, LOOK is the better option. What 
-would need to occur in LOOK is we would have to pick a turning point for 
-going from ascending to descending and vice versa. This could be 
+In designing our solution we had a couple decisions to make. The first was
+whether to implement LOOK or C-LOOK. The difference between the two
+approaches is LOOK requires that the list is sorted relative to the current
+position of the head on insert where C-LOOK is simply sorting in ascending
+order. From an efficiency standpoint, LOOK is the better option. What
+would need to occur in LOOK is we would have to pick a turning point for
+going from ascending to descending and vice versa. This could be
 accomplished by how we sort and insert. If a value came in that was less
 than our head it would be placed after our max value but sorted relative to
-all of the values after our max. If a value came in that was greater than 
-our head but less than our max, then it would be sorted between the head 
-and the max. If a value came in that less than our smallest number it would 
-appended after our smallest number and point to the next highest if 
-we were in the ascending portion of the queue. This constant switching 
-and monitoring of direction can be tricky to do and will require two kinds 
+all of the values after our max. If a value came in that was greater than
+our head but less than our max, then it would be sorted between the head
+and the max. If a value came in that less than our smallest number it would
+appended after our smallest number and point to the next highest if
+we were in the ascending portion of the queue. This constant switching
+and monitoring of direction can be tricky to do and will require two kinds
 of sorts. \\
-For C-LOOK, it is slightly less efficient because it will go in one 
-direction until it runs out of jobs and then restarts from the smallest 
-number. This means the disk head will make a full pass of the disk without 
-doing anything. The algorithm for implementing this a tad simpler with only 
-one sort, a classic insertion sort, with the max number pointing next to 
-the smallest number. The only special cases for the sort would be if 
-inserting a number greater than the max or smaller than the smallest which 
-would just be getting the smallest previous to point to the max and the 
-max next to point to the smallest. In either case of LOOK or C-LOOK the 
-dispatch stays the same, only having to follow the next pointers of the 
+For C-LOOK, it is slightly less efficient because it will go in one
+direction until it runs out of jobs and then restarts from the smallest
+number. This means the disk head will make a full pass of the disk without
+doing anything. The algorithm for implementing this a tad simpler with only
+one sort, a classic insertion sort, with the max number pointing next to
+the smallest number. The only special cases for the sort would be if
+inserting a number greater than the max or smaller than the smallest which
+would just be getting the smallest previous to point to the max and the
+max next to point to the smallest. In either case of LOOK or C-LOOK the
+dispatch stays the same, only having to follow the next pointers of the
 queue as everything is in the correct order. \\
-We decided to go with the C-LOOK as it was an easier algorithm for us to 
-understand from a coding perspective, despite it being slightly less 
-efficient. The next design choice we had to make was how we were going 
-to keep track of our queue. We used the kernel data structure for this and 
-some kernel code to get access to the sector. Ultimately, we did not have 
-to change much in the noop io scheduler aside from add request which simply 
-required us to specify our method of inserting as we described above. 
+We decided to go with the C-LOOK as it was an easier algorithm for us to
+understand from a coding perspective, despite it being slightly less
+efficient. The next design choice we had to make was how we were going
+to keep track of our queue. We used the kernel data structure for this and
+some kernel code to get access to the sector. Ultimately, we did not have
+to change much in the noop io scheduler aside from add request which simply
+required us to specify our method of inserting as we described above.
 \section{Testing}
-The first indication that everything was working was the kernel boot. For 
-the first few times the kernel would not compile or boot. The next thing 
-we did was print the sector number being added and dispatched. This would 
-just print to the screen and interrupt everything in the foreground. 
-This gave us a good indication that things were happening in order but 
-was generally hard to read. We finally settled on creating a python 
-script which generated 25 files and one million characters in 
-each. We plotted our output and saw that it was working correctly but were 
-concerned that our testing wasn't rigorous enough. We decided to redo our 
-script so that we created the files, shuffled their order, and randomly 
-read and wrote inside the file via seek. This did confirm that we were 
-testing correctly. Our graph indicates that we do jump all over the disk 
-but only in regards to files not the actual sectors.   
-\section{Version Control and Work Log}
-Tuesday, May 2, 3:20 pm to 5:30 pm: We met as a group to begin the 
+The first indication that everything was working was the kernel boot. For
+the first few times the kernel would not compile or boot. The next thing
+we did was print the sector number being added and dispatched. This would
+just print to the screen and interrupt everything in the foreground.
+This gave us a good indication that things were happening in order but
+was generally hard to read. We finally settled on creating a python
+script which generated 25 files and one million characters in
+each. We plotted our output and saw that it was working correctly but were
+concerned that our testing wasn't rigorous enough. We decided to redo our
+script so that we created the files, shuffled their order, and randomly
+read and wrote inside the file via seek. This did confirm that we were
+testing correctly. Our graph indicates that we do jump all over the disk
+but only in regards to files not the actual sectors.
+\section{Work Log}
+Tuesday, May 2, 3:20 pm to 5:30 pm: We met as a group to begin the
 assignment. The majority of the time was spent researching and disecting
-the kernel code. We did not know where to begin. We did the initial set up 
-of copying the noop file and and doing the proper adjustments of sstf but 
+the kernel code. We did not know where to begin. We did the initial set up
+of copying the noop file and and doing the proper adjustments of sstf but
 that was about it. \\
-Wednesday, May 3, 6:00 pm to 9:00 pm: We met to continue working on 
-the assignment. We began by grabbing a whiteboard and breaking down the 
-LOOK and C-LOOK algorithm and making a decision to go with C-LOOK. We 
-then spent time wrapping our head around how queues work in the kernel 
-and how to do a sort that would reflect C-LOOK and LOOK. Once we had 
-determined this we began coding. We had figured out where we needed to 
-adjust the code (in add request). We tested a few times and things looked 
+Wednesday, May 3, 6:00 pm to 9:00 pm: We met to continue working on
+the assignment. We began by grabbing a whiteboard and breaking down the
+LOOK and C-LOOK algorithm and making a decision to go with C-LOOK. We
+then spent time wrapping our head around how queues work in the kernel
+and how to do a sort that would reflect C-LOOK and LOOK. Once we had
+determined this we began coding. We had figured out where we needed to
+adjust the code (in add request). We tested a few times and things looked
 to be working so we called it a night. \\
-Thursday, May 4, 6:00 pm to 10:00 pm: We met to continue working. We were 
-in the testing stage. We wrote some python scripts to generate file i/o. 
-We also found a way to plot our output with python so we could see it 
-graphically. We began to worry that we were not doing things correctly 
-because the graph looked to clean. We adjusted our scripts and caught 
-one bug that we fixed. We were still concerned so we emailed McGrath our 
+Thursday, May 4, 6:00 pm to 10:00 pm: We met to continue working. We were
+in the testing stage. We wrote some python scripts to generate file i/o.
+We also found a way to plot our output with python so we could see it
+graphically. We began to worry that we were not doing things correctly
+because the graph looked to clean. We adjusted our scripts and caught
+one bug that we fixed. We were still concerned so we emailed McGrath our
 data and he said it was correct.\\
-Friday, May 5, 2:00 pm to 3:30 pm: We met after our demo to finish the 
+Friday, May 5, 2:00 pm to 3:30 pm: We met after our demo to finish the
 code. The concurrency had been completed during recitation two and we
  checked it to make sure it was working. We implemented our patch
-  and submitted. \\ 
+  and submitted. \\
+
+\section{Version Control Log}
+
+\begin{tabular}{ | p{1.5cm} | p{4cm} | p{3cm} | p{8cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/ea7fef3257e2c4c38b2c29083c0b9e1ac99e4e97}{ea7fef3} & \detokenize{05 May 2017 03:16 PM} & \detokenize{Tanner Cecchetti} & \detokenize{Add patch file}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/1420d4c1a7a833c8843e4b8666be886535355648}{1420d4c} & \detokenize{05 May 2017 03:08 PM} & \detokenize{William StribyJr} & \detokenize{remove files}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/b1468d2d9a73e42ae338de81b257cc980bbfeb19}{b1468d2} & \detokenize{05 May 2017 03:05 PM} & \detokenize{William StribyJr} & \detokenize{altered test_random_3 and renamed the tests}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/15427d1ae5fd4e2cf5b51f07cadeb219ddc01c08}{15427d1} & \detokenize{05 May 2017 02:37 PM} & \detokenize{William StribyJr} & \detokenize{update local for push Merge branch 'master' of https://github.com/stribyw/CS444_Group10-01}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/69e1462acee8e054d55f1a9b3a9f859bf5626bc2}{69e1462} & \detokenize{05 May 2017 02:37 PM} & \detokenize{William StribyJr} & \detokenize{added more test scripts}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/685bd8aab81cdd9e665269f9950d8a634683d007}{685bd8a} & \detokenize{05 May 2017 02:11 PM} & \detokenize{Shannon Ernst} & \detokenize{Merge branch 'master' of https://github.com/stribyw/CS444_Group10-01}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/48c6c968122cb151d1e8c67df796998c8ea771bd}{48c6c96} & \detokenize{05 May 2017 02:10 PM} & \detokenize{Shannon Ernst} & \detokenize{finishing write up}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/6ac833fcf6da63d1419babf4d62cf99429f755d5}{6ac833f} & \detokenize{05 May 2017 01:53 PM} & \detokenize{Tanner Cecchetti} & \detokenize{Merge branch 'master' of https://github.com/stribyw/CS444_producer-consumer}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/e9a97f3209bcd3109176ea21f62438c2720565bc}{e9a97f3} & \detokenize{05 May 2017 01:53 PM} & \detokenize{Tanner Cecchetti} & \detokenize{Add Makefile for synchro2}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/c87474154ac02391cdd3c49e891acd8d7d26e2a0}{c874741} & \detokenize{04 May 2017 08:52 PM} & \detokenize{William StribyJr} & \detokenize{changed filename}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/29a97b54f6399bedad2d7a5c53077b1be27b5fd1}{29a97b5} & \detokenize{04 May 2017 08:44 PM} & \detokenize{William StribyJr} & \detokenize{changed test file to read and write}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/efb041013e36e29767370c88638df2c5c46e5c6b}{efb0410} & \detokenize{04 May 2017 08:32 PM} & \detokenize{William StribyJr} & \detokenize{update local Merge branch 'master' of https://github.com/stribyw/CS444_Group10-01}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/1f46fa6da433a70a42a1e7ea18abf14417ebc79a}{1f46fa6} & \detokenize{04 May 2017 08:32 PM} & \detokenize{William StribyJr} & \detokenize{added test file that shuffles to write}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/506cc3e5dc3c8ed95b4014a9b4846f822223e7c0}{506cc3e} & \detokenize{04 May 2017 08:24 PM} & \detokenize{Tanner Cecchetti} & \detokenize{Update plot script}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/c1960832972cfbd27e327a8d1c3a0b3db46d53eb}{c196083} & \detokenize{04 May 2017 07:53 PM} & \detokenize{William StribyJr} & \detokenize{update files to push Merge branch 'master' of https://github.com/stribyw/CS444_Group10-01}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/e9c39e3fa729f084e14f8ee205c73610629bf7e7}{e9c39e3} & \detokenize{04 May 2017 07:52 PM} & \detokenize{Shannon Ernst} & \detokenize{named the philosophers}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/301901512c3dd2f16c706d252e2a8a5df3123da0}{3019015} & \detokenize{04 May 2017 07:51 PM} & \detokenize{William StribyJr} & \detokenize{Merge branch 'master' of https://github.com/stribyw/CS444_Group10-01}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/a4783728d8882e59716f658cdf57d71f890bd750}{a478372} & \detokenize{04 May 2017 07:51 PM} & \detokenize{Tanner} & \detokenize{Move tools to other dir}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/bad45a37c0655f452c1917da7200993b5b212aa9}{bad45a3} & \detokenize{04 May 2017 07:50 PM} & \detokenize{William StribyJr} & \detokenize{python test file to test sstf scheduler}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/5e0dadd2c3e14745fd1a27885c3a67feb151c0c3}{5e0dadd} & \detokenize{04 May 2017 07:48 PM} & \detokenize{Tanner Cecchetti} & \detokenize{Merge branch 'master' of https://github.com/stribyw/CS444_producer-consumer}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/93ed0231966ccd1e40e96adf15f1ffd4734ccf66}{93ed023} & \detokenize{04 May 2017 07:48 PM} & \detokenize{Shannon Ernst} & \detokenize{updating report}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/24957aba9d0526ddf608c9036fa197cfd29b0774}{24957ab} & \detokenize{04 May 2017 07:47 PM} & \detokenize{Tanner Cecchetti} & \detokenize{Add plotting tools for HW2}\\\hline
+\href{https://github.com/stribyw/CS444_producer-consumer/commit/8d6f30f96788d2d81e1575a1e823a7dd167beb69}{8d6f30f} & \detokenize{02 May 2017 05:03 PM} & \detokenize{Shannon Ernst} & \detokenize{tex file set up}\\\hline\end{tabular}
+
+\begin{tabular}{ | p{2.5cm} | p{4cm} | p{3cm} | p{7cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/a890cd96b7db2e56e7222c1b33bac17cfee8b167}{a890cd96b7d} & \detokenize{05 May 2017 02:52 PM} & \detokenize{Tanner} & \detokenize{Merge branch 'master' of https://github.com/t-a-n-n-e-r/cs444-kernel}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/3919b5c579b79f8c64c3a17e77319db4d3044f46}{3919b5c579b} & \detokenize{05 May 2017 02:52 PM} & \detokenize{Tanner} & \detokenize{Make our scheduler default}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f715294506075aa8b097d46967ac0aa1164be665}{f7152945060} & \detokenize{05 May 2017 02:18 PM} & \detokenize{Tanner Cecchetti} & \detokenize{Add better description}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/ba551c30bc807ad7c3ae7f5127c65d4de4433a0e}{ba551c30bc8} & \detokenize{04 May 2017 09:29 PM} & \detokenize{Tanner} & \detokenize{Attempt to remove elevator sort}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/26d91537530fa857969eaf21f514dc7d3a2292c2}{26d91537530} & \detokenize{04 May 2017 07:06 PM} & \detokenize{Tanner} & \detokenize{Attempt to add log level}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/a9af80232f7adad8c2dea8f08e1be7c2fcc99e53}{a9af80232f7} & \detokenize{03 May 2017 11:10 PM} & \detokenize{Tanner} & \detokenize{Fix small logical error}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/078545fafb8d2a0ff167cb1e604bae4853fdf4a8}{078545fafb8} & \detokenize{03 May 2017 10:55 PM} & \detokenize{Tanner} & \detokenize{Add test print statement}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/e34a132f7d4fce356e1518e9f914dd0e21192587}{e34a132f7d4} & \detokenize{03 May 2017 08:51 PM} & \detokenize{Tanner} & \detokenize{Improve formatting so numbers align}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/ce03ba7bb007186bf5c550a5bb94ddbd55913b90}{ce03ba7bb00} & \detokenize{03 May 2017 08:39 PM} & \detokenize{Tanner} & \detokenize{Add more meaningful print statements}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/5a1ec241c05ebb149d1d514ea72dff359fed5c4a}{5a1ec241c05} & \detokenize{03 May 2017 08:24 PM} & \detokenize{Tanner} & \detokenize{Fix infinite loop}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/e0eda9ee7e557ca22ec1f27b91ed97bb69d4b070}{e0eda9ee7e5} & \detokenize{03 May 2017 08:17 PM} & \detokenize{Tanner} & \detokenize{Add print statements}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/401abb045156fd4f2c255dad0744b21385be2150}{401abb04515} & \detokenize{03 May 2017 08:11 PM} & \detokenize{Tanner} & \detokenize{Add empty list check}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/5b8e13a2eaf7efb3b4696da7a518028902d40541}{5b8e13a2eaf} & \detokenize{03 May 2017 08:05 PM} & \detokenize{Tanner} & \detokenize{Fix compilation error, hopefully}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/731830ad4255ed15d427480ffd64f9547f315008}{731830ad425} & \detokenize{03 May 2017 07:59 PM} & \detokenize{Tanner} & \detokenize{Change how sector is read}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/3b0b185ef269b93eefad11752bf93357109487ed}{3b0b185ef26} & \detokenize{03 May 2017 07:50 PM} & \detokenize{Tanner} & \detokenize{Fix issues with add request}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/53f60edb311c3e052db6668d30c1cef6f5e4a734}{53f60edb311} & \detokenize{03 May 2017 07:35 PM} & \detokenize{Tanner} & \detokenize{Attempt to implement add request function}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/92f0965da3e9990cdf409eca471c9aa20753a6ed}{92f0965da3e} & \detokenize{02 May 2017 04:59 PM} & \detokenize{Tanner} & \detokenize{add our scheduler to makefile}\\\hline\end{tabular}
+
 \newpage
 \end{document}
