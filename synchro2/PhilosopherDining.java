@@ -1,7 +1,7 @@
 public class PhilosopherDining {
 
    public static void main(String[] args) {
-      final Table table = buildTable(new String[] { "abc", "def", "ghi", "nmo", "rst" });
+      final Table table = buildTable(new String[] { "Plato", "Aristole", "Socrates", "Locke", "Hobbes" });
 
       for(final Philosopher p : table.getPhilosophers()) {
          p.start();
