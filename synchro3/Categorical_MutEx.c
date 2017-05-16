@@ -79,8 +79,8 @@ void print_list()
 {
 		struct node* current = head;
 		while (current != NULL) {
-			printf(" %d ", current->val);
-			current = current->next;
+			    printf(" %d ", current->val);
+			    current = current->next;
 		}
 		printf("\n");
 }
