@@ -17,7 +17,7 @@
 */
 pthread_mutex_t insert_lock;
 pthread_mutex_t delete_lock;
-pthread_mutex_t search_count_lock;
+pthread_mutex_t print_lock;
 
 /*
 * Global variables.
@@ -72,12 +72,16 @@ void pop()
 */
 void print_list()
 {
+        pthread_mutex_lock(&print_lock);
+
         struct node* current = head;
         while (current != NULL) {
                 printf(" %d ", current->val);
                 current = current->next;
         }
         printf("\n");
+
+        pthread_mutex_unlock(&print_lock);
 }
 
 /*
@@ -88,12 +92,16 @@ void* delete(void* ptr)
         pthread_mutex_lock(&insert_lock);
         pthread_mutex_lock(&delete_lock);
 
+        pthread_mutex_lock(&print_lock);
         printf("deleting start\n");
+        pthread_mutex_unlock(&print_lock);
 
         pop();
         print_list();
 
+        pthread_mutex_lock(&print_lock);
         printf("deleting finish\n");
+        pthread_mutex_unlock(&print_lock);
 
         pthread_mutex_unlock(&insert_lock);
         pthread_mutex_unlock(&delete_lock);
@@ -106,23 +114,25 @@ void* delete(void* ptr)
 */
 void* search(void* ptr)
 {
-        pthread_mutex_lock(&search_count_lock);
+        pthread_mutex_lock(&print_lock);
         search_count++;
         printf("searches in progress: %d\n", search_count);
-        pthread_mutex_unlock(&search_count_lock);
+        pthread_mutex_unlock(&print_lock);
 
         struct node* current = head;
         while (current != NULL) {
                 pthread_mutex_lock(&delete_lock);
                 current = current->next;
+                pthread_mutex_lock(&print_lock);
                 printf("looking at current\n");
+                pthread_mutex_unlock(&print_lock);
                 pthread_mutex_unlock(&delete_lock);
         }
 
-        pthread_mutex_lock(&search_count_lock);
+        pthread_mutex_lock(&print_lock);
         search_count--;
         printf("finished search: %d\n", search_count);
-        pthread_mutex_unlock(&search_count_lock);
+        pthread_mutex_unlock(&print_lock);
 
         pthread_exit(NULL);
 }
@@ -134,12 +144,16 @@ void* insert(void* ptr)
 {
         pthread_mutex_lock(&insert_lock);
 
+        pthread_mutex_lock(&print_lock);
         printf("insert start\n");
+        pthread_mutex_unlock(&print_lock);
 
         push();
         print_list();
 
+        pthread_mutex_lock(&print_lock);
         printf("insert finish\n");
+        pthread_mutex_unlock(&print_lock);
 
         pthread_mutex_unlock(&insert_lock);
 
@@ -150,6 +164,10 @@ int main()
 {
         int choice = 0;
         time_t t;
+
+        pthread_mutex_init(&insert_lock, NULL);
+        pthread_mutex_init(&delete_lock, NULL);
+        pthread_mutex_init(&print_lock, NULL);
 
         srand ((unsigned) time(&t));
         pthread_t thread;
