@@ -47,9 +47,82 @@
 \tableofcontents
 \newpage
 \section{Purpose and Learning}
+
 \section{Design Choices}
+
 \section{Testing}
+
 \section{Work Log}
+Monday, May 15: We met as a group to begin the assignment. Before meeting the group agreed to research the assignment, and more research was needed after come collaboration on findings. After looking over email from TA we located an sbull.c file and added it to the block directory and adjusted the block Makefile. We were unable to make sufficient progress to keep working so we broke to do more research, and agreed to meet the following evening. We were capable of compiling the kernel and creating the block device. \\
+Wednesday, May 17: After looking over various sbull.c and sbd.c files we changed our approach to the solution and went with sbd.c. This decision was mostly based on simplicity of the sbd.c versus sbull.c file. Then from there we were researching and trying to figure out how to implement encryption in the sbd.c file. Including linux crypto.h and understanding the sbd.c file was the first step. We continued to work off the email from the TA for help, and started to adjust sbd\_init, the key size, and also had trouble determining which encryption standard to use. We were capable of getting the kernel to compile with the addition of the sbd.c file and added print statements for testing to observe our adjustments through the evening. By the end of the evening we were capable of implementing the disk device driver and writing to it, but it was not yet RAM. \\
+Sunday, May 21: Following Thursday's class and Prof McGrath's strong suggestion on encryption standard we started off with changing it to cbc(aes). Following this adjustments were continued to be made to the sbd\_init, sbd\_transfer, and key size. \\
+
 \section{Version Control Log}
+
+\begin{tabular}{ | p{3cm} | p{4cm} | p{3cm} | p{9cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f5e9307ee8c1affb3499f2e3a9da44b6080e2353}{28b0da2} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Reset to clean}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/28b0da2f6cde1913f819ee3b2e6bfb28c7f87496}{0e0c4a0} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove from Kconfig, change Makefile so .ko is added}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/0e0c4a05d94b65d4967289f34917811e90ee1e88}{e669138} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Adjust sbd Makefile}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/e669138aecc7c33a068f5441b42adf32129ccc22}{9e77faa} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Move module to own directory by adjust to sbd Makefile}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/9e77faa6515cfcccffb13d4b0ba15afd619f96e1}{baefe23} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Forgot to change to cipher size, for-loop in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/baefe236efe8915818e162e54fdc1713385247f5}{9c6d1e7} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove memcpys from sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/9c6d1e7464cb283477178cad64b575764fa4c0ba}{8642350} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add massive print statement in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/86423505f6b3a301ebbefe08e9af959844b6dc2f}{e1a896b} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Disable encoder}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/e1a896b4e6b4f0825beee589c7d3e854b91b7305}{d97602f} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove tmp variable and print statements in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/d97602f60868c46145cde6e9232044c5ef423388}{2318b32} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add and change location of test code in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/2318b3224749bbf0d255d0baac946aa5c4877728}{6519eab} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add longer print statement for verification}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/6519eab3f41501e6058e82157bcd55b09d02cdc2}{c7b1c6c} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add hex printing}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/c7b1c6ccff1cbcc737483755b65165e28e71caf0}{94d8776} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add print statements in sbd\_transfer, change encryption type back to 0}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/94d877601569c5a274381a24815663c1e932c2bb}{f1d333a} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Try type 4 with aes}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f1d333a066197e7407fed79c1ea385a2bd4fca36}{f3c6504} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change pointer in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f3c6504cf8e9900b6db58326a44e54a54a5a3330}{1750b6d} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove bad referencein sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/1750b6d56721bac765f0f3da99cae0a67456ba6c}{f33ce72} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Use temp buffer in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f33ce725426312966346d12a0733e1f9a2117fa4}{f54d525} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Use 128 bit block size in for-loops located in sbd\_transfer}
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f54d525b7b009618f6cb1ac3c053a82b25ae1728}{e91465f} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Implement encoder, decoder again}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/e91465f3034a90344b05758fea9d8c3d68f924eb}{c890021} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Move cipher alloc from sbd\_request to sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/c89002172a2251bb32efc946565485cbd7d113f8}{3808771} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Fix typo}\\\hline\end{tabular}
+
+\begin{tabular}{ | p{3cm} | p{4cm} | p{3cm} | p{9cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/3808771570c6ef4bd49d776686d83aa2d0115f75}{ae42054} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Forgot variables in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/ae4205457f9d80d901c6471b2e5cc6e9a8fb18f7}{db9db0b} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Convert to cipher instead of block cipher}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/db9db0b9e09724248470929b2a55f3a7d1d7c004}{83f0f07} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Enable encoder from sbd\_transfer and adjust function called in if-else}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/83f0f07fbd13201ea81420b47ff6d1ac677696d6}{5d2a59a} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove encoder from sbd\_transfer for troubleshooting}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/5d2a59a7c0753ed776dd947f729455a79a34c062}{09bdd35} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Attempt to make compile, adjust sbd\_transfer again}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/09bdd355d1c02efcca3ea80f40522e3a735a6f44}{767db8c} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Attempt to make compile, adjust if-else in sbd\_transfer again}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/767db8ca3b8e3d6a604e8cf299106e06fdf0308b}{28f39d3} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Attempt to make compile, adjust if-else in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/28f39d34aa1defcb2d8a97afa27694b7d35a37d5}{7ee3bbd} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Attempt to make compile, adjust scatterlist struct and sg\_init\_table variables}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/7ee3bbda146f859103c271b5cef073240f26de5a}{6ac9d05} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add include linux scatterlist.h, adjust for loop in sbd\_transfer}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/6ac9d050747a36d08a352877508a6ed331e4fdc6}{1513234} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Enable encoder, decoder}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/15132340f59c53d191d4913a3ae0908bb9ab10c4}{963f58a} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change encryption back to cbc aes}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/963f58a7e34873e773efe5419a96cec2c90399c0}{1498e07} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change encryption back to acb aes-generic}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/1498e075a2c4b535a41afc290a19c919a79bce26}{a6b3fca} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove async flag, change encryption back to acb aes}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/a6b3fca2f7fbc6e44831e45b91bf6b5c9d06ace4}{1bd8464} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change encryption to ecb aes-generic}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/1bd84649b44a168717a4cd2a1140cfec61a4ede9}{dfbbe93} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change encryption back to ecb aes}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/dfbbe93356d9ccb9055577a5777debbefbd46e8b}{9c89ba5} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Simplify sbd\_request, remove print statements}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/9c89ba538ad1b2aff74d4dd610912d75040a17a6}{089b017} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Forgot variable, added \_\_u8}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/089b017cd86a7a5179a7333579f90e8755ec6915}{3ec024f} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Reinit cipher each time by putting key set back in sbd\_request}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/3ec024f33a78f1523a0cbfb5493c5032612f66b3}{bd411d7} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Move variables to \_\_init sbd\_init from sbd\_request}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/bd411d75931bc692eca85358a9645f95ee5d23fd}{eeacb3e} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Move key set to \_\_init sbd\_init from sbd\_request}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/eeacb3ee0d55bf11af4da872737647582a50fbdf}{8a943ff} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Forgot a variable, added \_\_u8}\\\hline\end{tabular}
+
+\begin{tabular}{ | p{1.5cm} | p{4cm} | p{3cm} | p{8cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/8a943ff527fc2094fd33deff7b8d5727300317c7}{6e3191c} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Move key logic in sbd\_request, and and update keys}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/6e3191c3c032abfec671bdb2a8be528f0a01d865}{2411ee7} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Convert encryption key to string}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/2411ee78bfe1fe16428cb9425567078ada3c90a9}{ae60c84} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Convert encryption key from int array to string array}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/ae60c845dc4dce0e4cf4fd1536a7c454b306dc12}{555d4fd} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change encryption from ecb aes to cdc aes}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/555d4fd20d89f69d4754783a570fc5d4ab61a99b}{6f5d72d} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change size of key from 0x02 to 0x2}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/6f5d72d3e859773f182c996b6a8b0eefd33fc461}{f25ed77} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change encryption from aes to ecb aes}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f25ed77340db8f3435496b24243c09fe10ad7550}{b4df96c} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add print statements, change key size}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/b4df96cb15785be6c7ab6abca3444aef0ff90cd8}{c86d7c1} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Fix for-loop error for setting key variable}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/c86d7c1d2565bcb1a9c1c45e9f310b0e4c6640d5}{f6471d0} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Fix var declaration regarding key}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f6471d0de8da510d0f167ed17ce89a38925912de}{7e59955} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Attempt to set key}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/7e59955813fc1a9ecf87e09eb2347e02a4bf90c2}{a566ec7} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add include linux crypto.h}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/a566ec75ed4bd4bec10c6c9cd571ca98476fa110}{90c221d} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add cipher alloc and struct crypto\_blkcipher variable}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/90c221dcdc9f55091e60724d335c679f5d658cee}{ad0d09e} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Attempt to add encryption parameter}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/ad0d09e36a89b39b8befcdd5759a7191cedc270c}{6ad48f4} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Convert to sbd from sbull}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/6ad48f492f487b3081c6b562fc3340ca5a0fce15}{bffc470} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Make changes to Kconfig regarding sbull}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/bffc470558317dea3c8321fe396f005270609f2e}{7d357a6} & \detokenize{15 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Error in adding sbull last commit, actually adding sbull}\\\hline
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/7d357a6cfe501add7f07017dac6bbfd2ce74c079}{a890cd9} & \detokenize{15 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add initial sbull to see what happens}\\\hline\end{tabular}
+
 \newpage
-\end{document}
+\end{document}  
