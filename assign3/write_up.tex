@@ -41,14 +41,38 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-
+Documentation is the bane of all developers yet it absolutely necessary to work with 
+code bases. This assignment explores implementing an API with poor documentation. 
+The focus is on device drivers and encryption/decryption.
 \end{abstract}
 \newpage
 \tableofcontents
 \newpage
 \section{Purpose and Learning}
-
+The purpose of this assignment was to work with a poorly documented API. 
+Though the assignment decription would have you believe we were learning 
+about encryption and decryption of device drivers, the real issue was learning 
+how to mount and unmount a module to the kernel. We also had to learn how to test 
+it. We were essentially trying to simulate a USB file system. This was difficult 
+for us to wrap our heads around occassionally due to not having physical hardware 
+to work with. In our pursuit of poor documentation we consulted many blogs and other
+univerity resources. We also looked up the book McGrath had recommended for the device 
+driver.
 \section{Design Choices}
+The design for this assignment was messy and essentially nonexistant. Primarily 
+we needed to look up a lot of procedural how-tos: how to mount and unmount a module, 
+how to create an ext2 file system, where to put our device driver, which driver to 
+use, which encryption algorithm to use. Once we answered all of these questions the 
+implementation was actually fairly simple: take in a key for the module parameter, 
+set the key, when you read decrypt with the key, when you write encrypt with the key. 
+We ended up using a sbd device driver and the ecb aes encryption. This was after mixing 
+and matching between cbc and an sbull implementation so see what would compile and what 
+would not. We did not have much in the way of actual design, just trial and error. If we 
+were to do this again we would more formally research the two different devices and the 
+various modes of the encryption to know what was absolutely necessary. Instead we consulted 
+multiple, conflicting example files which caused us to toggle back and forth quite frequently. 
+Ultimately this project was about how to search and read documentation and use preexisting things,
+not about actively coming up with new concepts like the previous ones. 
 
 \section{Testing}
 
@@ -59,10 +83,10 @@ Sunday, May 21: Following Thursday's class and Prof McGrath's strong suggestion 
 
 \section{Version Control Log}
 
-\begin{tabular}{ | p{3cm} | p{4cm} | p{3cm} | p{9cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
+\begin{tabular}{ | p{1.5cm} | p{4cm} | p{3cm} | p{8cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f5e9307ee8c1affb3499f2e3a9da44b6080e2353}{28b0da2} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Reset to clean}\\\hline
-\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/28b0da2f6cde1913f819ee3b2e6bfb28c7f87496}{0e0c4a0} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove from Kconfig, change Makefile so .ko is added}\\\hline
-\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/0e0c4a05d94b65d4967289f34917811e90ee1e88}{e669138} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Adjust sbd Makefile}\\\hline
+ \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/28b0da2f6cde1913f819ee3b2e6bfb28c7f87496}{0e0c4a0} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove from Kconfig, change Makefile so .ko is added}\\\hline
+ \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/0e0c4a05d94b65d4967289f34917811e90ee1e88}{e669138} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Adjust sbd Makefile}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/e669138aecc7c33a068f5441b42adf32129ccc22}{9e77faa} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Move module to own directory by adjust to sbd Makefile}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/9e77faa6515cfcccffb13d4b0ba15afd619f96e1}{baefe23} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Forgot to change to cipher size, for-loop in sbd\_transfer}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/baefe236efe8915818e162e54fdc1713385247f5}{9c6d1e7} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove memcpys from sbd\_transfer}\\\hline
@@ -77,12 +101,12 @@ Sunday, May 21: Following Thursday's class and Prof McGrath's strong suggestion 
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f1d333a066197e7407fed79c1ea385a2bd4fca36}{f3c6504} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Change pointer in sbd\_transfer}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f3c6504cf8e9900b6db58326a44e54a54a5a3330}{1750b6d} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Remove bad referencein sbd\_transfer}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/1750b6d56721bac765f0f3da99cae0a67456ba6c}{f33ce72} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Use temp buffer in sbd\_transfer}\\\hline
-\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f33ce725426312966346d12a0733e1f9a2117fa4}{f54d525} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Use 128 bit block size in for-loops located in sbd\_transfer}
+\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f33ce725426312966346d12a0733e1f9a2117fa4}{f54d525} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Use 128 bit block size in for loops located in sbd\_transfer}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/f54d525b7b009618f6cb1ac3c053a82b25ae1728}{e91465f} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Implement encoder, decoder again}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/e91465f3034a90344b05758fea9d8c3d68f924eb}{c890021} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Move cipher alloc from sbd\_request to sbd\_transfer}\\\hline
-\href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/c89002172a2251bb32efc946565485cbd7d113f8}{3808771} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Fix typo}\\\hline\end{tabular}
+ \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/c89002172a2251bb32efc946565485cbd7d113f8}{3808771} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Fix typo}\\\hline\end{tabular}
 
-\begin{tabular}{ | p{3cm} | p{4cm} | p{3cm} | p{9cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
+\begin{tabular}{ | p{1.5cm} | p{4cm} | p{3cm} | p{8cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/3808771570c6ef4bd49d776686d83aa2d0115f75}{ae42054} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Forgot variables in sbd\_transfer}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/ae4205457f9d80d901c6471b2e5cc6e9a8fb18f7}{db9db0b} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Convert to cipher instead of block cipher}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/db9db0b9e09724248470929b2a55f3a7d1d7c004}{83f0f07} & \detokenize{21 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Enable encoder from sbd\_transfer and adjust function called in if-else}\\\hline
@@ -123,6 +147,4 @@ Sunday, May 21: Following Thursday's class and Prof McGrath's strong suggestion 
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/6ad48f492f487b3081c6b562fc3340ca5a0fce15}{bffc470} & \detokenize{17 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Make changes to Kconfig regarding sbull}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/bffc470558317dea3c8321fe396f005270609f2e}{7d357a6} & \detokenize{15 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Error in adding sbull last commit, actually adding sbull}\\\hline
 \href{https://github.com/t-a-n-n-e-r/cs444-kernel/commit/7d357a6cfe501add7f07017dac6bbfd2ce74c079}{a890cd9} & \detokenize{15 May 2017} & \detokenize{Tanner Cecchetti} & \detokenize{Add initial sbull to see what happens}\\\hline\end{tabular}
-
-\newpage
-\end{document}  
+\end{document}
