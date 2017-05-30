@@ -15,6 +15,7 @@ int num_chairs;
 int filled_chairs;
 int barber_state;
 int *chair_states;
+int customer_sleep_offset;
 
 int count_customers_serviced;
 int count_customers_rejected;
@@ -56,6 +57,7 @@ void *barber(void *ptr)
    int should_sleep;
 
    while(1) {
+      // Check if nobody is here, go to sleep
       pthread_mutex_lock(&count_lock);
       if(!filled_chairs) {
          barber_state = BARBER_SLEEPING;
@@ -63,16 +65,22 @@ void *barber(void *ptr)
       }
       pthread_mutex_unlock(&count_lock);
 
+      // Barber is awake
       barber_state = BARBER_AWAKE;
+
       for(i = 0; i < num_chairs; i++) {
+         // Check if chair contains a waiting customer
          if(chair_states[i] == STATE_WAITING) {
+            // Start haircut, signal to customer it has begun
             pthread_mutex_lock(&chair_locks[i]);
             chair_states[i] = STATE_HAIRCUT;
             pthread_cond_signal(&haircut_conds[i]);
             pthread_mutex_unlock(&chair_locks[i]);
 
-            sleep(rand() % 5 + 1);
+            // Complete haircut
+            sleep(rand() % 4 + 2);
 
+            // End haircut, signal to customer it has ended
             pthread_mutex_lock(&chair_locks[i]);
             pthread_cond_signal(&haircut_conds[i]);
             pthread_mutex_unlock(&chair_locks[i]);
@@ -112,7 +120,7 @@ void *customer(void *ptr)
    pthread_mutex_unlock(&count_lock);
 
    // Wait for haircut to begin
-   chair_states[i] = STATE_WAITING;
+   chair_states[index] = STATE_WAITING;
    pthread_cond_wait(&haircut_conds[index], &chair_locks[index]);
 
    // Wait for haircut to finish
@@ -144,13 +152,21 @@ int main(int argc, char *argv[])
 {
    int i;
 
-   if(argc != 2) {
-      printf("usage: ./a.out <num chairs>\n");
+   if(argc < 2 || argc > 3) {
+      printf("usage: ./a.out <num chairs> [customer sleep offset]\n\n");
+      printf("  using customer sleep offset of -1 or -2 will make chairs fill\n");
+      printf("  faster than the barber can complete haircuts. using 1 or 2 will\n");
+      printf("  have the opposite effect.\n");
       exit(0);
    }
 
    num_chairs = atoi(argv[1]);
    printf("barber shop has %d chairs\n", num_chairs);
+
+   customer_sleep_offset = argc >= 3 ? atoi(argv[2]) : 0;
+   if(customer_sleep_offset != 0) {
+      printf("using %d sec customer sleep offset\n", customer_sleep_offset);
+   }
 
    // Initialize states and counters
    filled_chairs = 0;
@@ -179,6 +195,6 @@ int main(int argc, char *argv[])
    pthread_create(&t, NULL, print_thread, NULL);
    while(1) {
       pthread_create(&t, NULL, customer, NULL);
-      sleep(rand() % 5 + 5);
+      sleep(rand() % 4 + 2 + customer_sleep_offset);
    }
 }
