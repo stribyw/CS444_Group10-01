@@ -43,9 +43,9 @@ void print_state()
 {
         printf("[barber] state: %s\n", barber_state == BARBER_SLEEPING ? "sleeping" : "awake");
         printf("[customers] total: %d | serviced: %d | rejected: %d\n",
-        count_customers_serviced + count_customers_rejected,
-        count_customers_serviced,
-        count_customers_rejected);
+                count_customers_serviced + count_customers_rejected,
+                count_customers_serviced,
+                count_customers_rejected);
         print_chair_states();
 }
 
