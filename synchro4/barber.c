@@ -28,9 +28,7 @@ pthread_cond_t barber_wake_cond;
 
 void print_chair_states()
 {
-        int i;
-
-        for(i = 0; i < num_chairs; i++) {
+        for(int i = 0; i < num_chairs; i++) {
                 printf("chair %d: ", i);
                 switch(chair_states[i]) {
                         case STATE_EMPTY: printf("empty\n"); break;
@@ -53,9 +51,6 @@ void print_state()
 
 void *barber(void *ptr)
 {
-        int i;
-        int should_sleep;
-
         while(1) {
                 // Check if nobody is here, go to sleep
                 pthread_mutex_lock(&count_lock);
@@ -68,7 +63,7 @@ void *barber(void *ptr)
                 // Barber is awake
                 barber_state = BARBER_AWAKE;
 
-                for(i = 0; i < num_chairs; i++) {
+                for(int i = 0; i < num_chairs; i++) {
                         // Check if chair contains a waiting customer
                         if(chair_states[i] == STATE_WAITING) {
                                 // Start haircut, signal to customer it has begun
@@ -91,11 +86,10 @@ void *barber(void *ptr)
 
 void *customer(void *ptr)
 {
-        int i;
         int index = -1;
 
         // Attempt to find an empty chair
-        for(i = 0; i < num_chairs; i++) {
+        for(int i = 0; i < num_chairs; i++) {
                 pthread_mutex_lock(&chair_locks[i]);
                 if(chair_states[i] == STATE_EMPTY) {
                         index = i;
@@ -134,7 +128,7 @@ void *customer(void *ptr)
         filled_chairs--;
         pthread_mutex_unlock(&count_lock);
 
-        pthread_mutex_unlock(&chair_locks[i]);
+        pthread_mutex_unlock(&chair_locks[index]);
 
         pthread_exit(0);
 }
@@ -150,8 +144,6 @@ void *print_thread(void *ptr)
 
 int main(int argc, char *argv[])
 {
-        int i;
-
         if(argc < 2 || argc > 3) {
                 printf("usage: ./a.out <num chairs> [customer sleep offset]\n\n");
                 printf("  using customer sleep offset of -1 or -2 will make chairs fill\n");
@@ -183,7 +175,7 @@ int main(int argc, char *argv[])
         chair_states = malloc(sizeof(int) * num_chairs);
         haircut_conds = malloc(sizeof(pthread_cond_t) * num_chairs);
         chair_locks = malloc(sizeof(pthread_mutex_t) * num_chairs);
-        for(i = 0; i < num_chairs; i++) {
+        for(int i = 0; i < num_chairs; i++) {
                 chair_states[i] = STATE_EMPTY;
                 pthread_cond_init(&haircut_conds[i], NULL);
                 pthread_mutex_init(&chair_locks[i], NULL);
