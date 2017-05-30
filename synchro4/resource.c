@@ -32,7 +32,6 @@ void print_status()
 
 void* third(void* ptr)
 {
-        //pthread_mutex_lock(&all_lock);
         pthread_mutex_lock(&third_lock);
         r.count++;
         printf("third lock in use\n");
@@ -40,12 +39,10 @@ void* third(void* ptr)
         printf("third lock not in use\n");
         r.count--;
         pthread_mutex_unlock(&third_lock);
-        //pthread_mutex_unlock(&all_lock);
 }
 
 void* second(void* ptr)
 {
-        //pthread_mutex_lock(&all_lock);
         pthread_mutex_lock(&second_lock);
         r.count++;
         printf("second lock in use\n");
@@ -53,12 +50,10 @@ void* second(void* ptr)
         printf("second lock not in use\n");
         r.count--;
         pthread_mutex_unlock(&second_lock);
-        //pthread_mutex_unlock(&all_lock);
 }
 
 void* first(void* ptr)
 {
-        //pthread_mutex_lock(&all_lock);
         pthread_mutex_lock(&first_lock);
         r.count++;
         printf("first lock in use\n");
@@ -66,8 +61,6 @@ void* first(void* ptr)
         printf("first lock not in use\n");
         r.count--;
         pthread_mutex_unlock(&first_lock);
-        //pthread_mutex_unlock(&all_lock);
-
 }
 
 //void make_thread()
@@ -84,23 +77,23 @@ int main()
         srand((unsigned) time (&t));
 
         while(1) {
-                /*if (r.count == 3) {
-                        pthread_create(&thread, NULL, all, NULL);
-                }*/
-                choice = rand () % 3 + 1;
-                if (choice == 1) {
-                        print_status();
-                        pthread_create(&thread, NULL, first, NULL);
-                        print_status();
-                } else if (choice == 2) {
-                        print_status();
-                        pthread_create(&thread, NULL, second, NULL); 
-                        print_status();
-                } else if (choice == 3) {
-                        print_status();
-                        pthread_create(&thread, NULL, third, NULL); 
-                        print_status();
-                }
-                sleep(2);
+                // if (r.count == 0) {
+                //         pthread_mutex_unlock(&all_lock);
+                        choice = rand () % 3 + 1;
+                        if (choice == 1) {
+                                print_status();
+                                pthread_create(&thread, NULL, first, NULL);
+                                print_status();
+                        } else if (choice == 2) {
+                                print_status();
+                                pthread_create(&thread, NULL, second, NULL); 
+                                print_status();
+                        } else if (choice == 3) {
+                                print_status();
+                                pthread_create(&thread, NULL, third, NULL); 
+                                print_status();
+                        }
+                // if (r.count == 3) {
+                //         pthread_mutex_lock(&all_lock);        
         }
 }
