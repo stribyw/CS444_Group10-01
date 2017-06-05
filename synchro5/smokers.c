@@ -4,8 +4,10 @@
 #include <pthread.h>
 #include <time.h>
 
+pthread_mutex_t agent_lock;
 pthread_mutex_t pusher_lock;
 pthread_mutex_t person_lock;
+pthread_cond_t wake_agent;
 pthread_cond_t tobacco, paper, matches;
 pthread_cond_t wake_tobacco_person, wake_paper_person, wake_matches_person;
 int isTobacco, isPaper, isMatches;
@@ -15,30 +17,33 @@ void *agent(void *ptr)
    while(1) {
       switch(random() % 3) {
          case 0:
-            printf("[agent] signaling t+p\n");
+            printf("[agent] placing down tobacco and papers\n");
             pthread_cond_signal(&tobacco);
             pthread_cond_signal(&paper);
             break;
 
          case 1:
-            printf("[agent] signaling p+m\n");
+            printf("[agent] placing down papers and matches\n");
             pthread_cond_signal(&paper);
             pthread_cond_signal(&matches);
             break;
 
          case 2:
-            printf("[agent] signaling t+m\n");
+            printf("[agent] placing down tobacco and matches\n");
             pthread_cond_signal(&tobacco);
             pthread_cond_signal(&matches);
             break;
       }
-      sleep(random() % 3 + 1);
+      pthread_mutex_lock(&agent_lock);
+      pthread_cond_wait(&wake_agent, &agent_lock);
+      pthread_mutex_unlock(&agent_lock);
    }
 }
 
 void *pusherA(void *ptr)
 {
    while(1) {
+      pthread_mutex_lock(&pusher_lock);
       pthread_cond_wait(&tobacco, &pusher_lock);
       if(isPaper) {
          isPaper = 0;
@@ -56,6 +61,7 @@ void *pusherA(void *ptr)
 void *pusherB(void *ptr)
 {
    while(1) {
+      pthread_mutex_lock(&pusher_lock);
       pthread_cond_wait(&paper, &pusher_lock);
       if(isMatches) {
          isMatches = 0;
@@ -73,6 +79,7 @@ void *pusherB(void *ptr)
 void *pusherC(void *ptr)
 {
    while(1) {
+      pthread_mutex_lock(&pusher_lock);
       pthread_cond_wait(&matches, &pusher_lock);
       if(isPaper) {
          isPaper = 0;
@@ -93,6 +100,9 @@ void *tobacco_person(void *ptr)
       pthread_cond_wait(&wake_tobacco_person, &person_lock);
       printf("[person] tobacco guy is smoking\n");
       pthread_mutex_unlock(&person_lock);
+
+      sleep(random() % 3 + 1);
+      pthread_cond_signal(&wake_agent);
    }
 }
 
@@ -102,6 +112,9 @@ void *paper_person(void *ptr)
       pthread_cond_wait(&wake_paper_person, &person_lock);
       printf("[person] paper guy is smoking\n");
       pthread_mutex_unlock(&person_lock);
+
+      sleep(random() % 3 + 1);
+      pthread_cond_signal(&wake_agent);
    }
 }
 
@@ -111,6 +124,9 @@ void *matches_person(void *ptr)
       pthread_cond_wait(&wake_matches_person, &person_lock);
       printf("[person] matches guy is smoking\n");
       pthread_mutex_unlock(&person_lock);
+
+      sleep(random() % 3 + 1);
+      pthread_cond_signal(&wake_agent);
    }
 }
 
@@ -118,12 +134,15 @@ int main()
 {
    isTobacco = isPaper = isMatches = 0;
 
+   pthread_mutex_init(&agent_lock, NULL);
    pthread_mutex_init(&pusher_lock, NULL);
    pthread_mutex_init(&person_lock, NULL);
 
    pthread_cond_init(&tobacco, NULL);
    pthread_cond_init(&paper, NULL);
    pthread_cond_init(&matches, NULL);
+
+   pthread_cond_init(&wake_agent, NULL);
 
    pthread_cond_init(&wake_tobacco_person, NULL);
    pthread_cond_init(&wake_paper_person, NULL);
