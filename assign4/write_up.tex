@@ -41,14 +41,40 @@
 \begin{document}
 \maketitle
 \begin{abstract}
+Comparing algorithms is fundamental to Computer Science. This project 
+compares best fit to first fit in the slob aspect of the kernel. 
 \end{abstract}
 \newpage
 \tableofcontents
 \newpage
 \section{Purpose and Learning}
+The purpose of this assignment was to learn the trade offs between two algorithms: 
+best fit and first fit. We also had to learn about custom system calls and 
+testing vague pieces of information. 
 \section{Design Choices}
+For this assignment we needed to work in slob.c under the mm folder. Slob operates 
+originally on a first-fit algorithm meaning that it checks the available memory space 
+on a page and which ever comes up as being able to hold the new piece of memory gets 
+the new piece of memory. We were instructed to change this to a best fit algorithm. 
+The difference is that for every piece of memory to be allocated, all available memory 
+will be searched for the fit which is most exact to that piece. This will take longer 
+because it has to search everything but it will be more efficient with memory and reduce
+ fragmentation. The first fit is fast but uses a lot of memory and has a high fragmentation 
+ rate. To implement best fit we needed to change slob alloc. Slob alloc 
+ will look through all of the files with available space and examine them for a best fit, 
+ saving the one which is a best fit and then allocating to that location once we have looked 
+ through everything. This was all relatively trivial to implement.
 \section{Testing}
+To test our code we adjusted the system call table to include new system calls so we 
+could have control over the memory usage. After adding these system calls we wrote a 
+script in c to boot both kernel images and call our custom system calls. This recorded 
+the memory usage for both and outputted it in a printed fashion. The fact that both images 
+booted and have different memory usages is what causes us to say our algorithm is correct. 
+As expected, the best fit had less fragmentation where the first fit had more.
 \section{Work Log}
+We met Memorial Day to work on the concurrency and we outlined our work for the kernel project.
+We met on the Wednesday to work on the kernel and completed most of it. Over the weekend Tanner 
+completed the testing. We then met Monday to do the write up and submit the assignment. 
 \section{Version Control Log}
 \subsection{Concurrency Assignments Version Control Log}
 \begin{tabular}{ | p{1.5cm} | p{4cm} | p{3cm} | p{8cm} | }\hline\textbf{Commit} & \textbf{Date} & \textbf{Author} & \textbf{Description}\\\hline
