@@ -1,6 +1,6 @@
 all: smokers
 
-barber:
+smokers:
 	gcc -std=gnu99 -pthread smokers.c -o smokers
 
 clean:
