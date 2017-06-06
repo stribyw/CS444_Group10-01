@@ -111,7 +111,6 @@ void *tobacco_person(void *ptr)
 {
    while(1) {
       pthread_cond_wait(&wake_tobacco_person, &person_lock);
-      printf("[person] tobacco guy is smoking\n");
       pthread_mutex_unlock(&person_lock);
 
       thread_states[0] = 1;
@@ -127,7 +126,6 @@ void *paper_person(void *ptr)
 {
    while(1) {
       pthread_cond_wait(&wake_paper_person, &person_lock);
-      printf("[person] paper guy is smoking\n");
       pthread_mutex_unlock(&person_lock);
 
       thread_states[1] = 1;
@@ -143,7 +141,6 @@ void *matches_person(void *ptr)
 {
    while(1) {
       pthread_cond_wait(&wake_matches_person, &person_lock);
-      printf("[person] matches guy is smoking\n");
       pthread_mutex_unlock(&person_lock);
 
       thread_states[2] = 1;
